@@ -13,6 +13,14 @@ public class ManhattanSquareFinder implements IManhattanSquareFinder {
 	 */
 	public Coordinate find(ManhattanSquare ms, int target) {
 
+		/*for (int row = 0; row < ms.N-1; row++) {
+			for (int column = 0; column < ms.N-1; column++) {
+				if (ms.distance(row, column, target) == target) {
+
+				}
+			}
+		}*/
+
 		throw new RuntimeException("to be completed by student.");
 	}
 

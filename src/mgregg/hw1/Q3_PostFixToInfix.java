@@ -1,6 +1,7 @@
 package mgregg.hw1;
 
 import algs.days.day04.FixedCapacityStack;
+import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
@@ -21,12 +22,48 @@ import edu.princeton.cs.algs4.StdOut;
  */
 public class Q3_PostFixToInfix {
 
+	private static double evaluate(String op, double leftEval, double rightEval) {
+		double output = 0;
+		switch (op) {
+			case "+":
+				output = leftEval + rightEval;
+				break;
+			case "-":
+				output = leftEval - rightEval;
+				break;
+			case "*":
+				output = leftEval * rightEval;
+				break;
+			case "/":
+				output = leftEval / rightEval;
+				break;
+		}
+		return output;
+	}
+
 	public static void main(String[] args) {
 
 		FixedCapacityStack<String> exprs = new FixedCapacityStack<String>(100);
 		FixedCapacityStack<Double> vals = new FixedCapacityStack<Double>(100);
 
 		// COMPLETE IN HERE...
+
+		while (!StdIn.isEmpty()) {
+			String input = StdIn.readString();
+
+			// finding expression
+			if (input.equals("+") || input.equals("-") || input.equals("*") || input.equals("/")) {
+				String rightExpression = exprs.pop();
+				String leftExpression = exprs.pop();
+				exprs.push("(" + leftExpression + input + rightExpression + ")");
+				double rightValue = vals.pop();
+				double leftValue = vals.pop();
+				vals.push(evaluate(input, leftValue, rightValue));
+			} else {
+				exprs.push(input);
+				vals.push(Double.parseDouble(input));
+			}
+		}
 
 		StdOut.print(exprs.pop() + " = " + vals.pop());
 	}

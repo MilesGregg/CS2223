@@ -167,6 +167,8 @@ public class SlicerFinder implements ISlicerFinder {
 		int column = 0;
 		int row = 0;
 
+		// ASK ABOUT NULL
+
 		for (int i = 0; i < s.N; i++) {
 			if (s.inLeft(i, target)) {
 				column = i;
