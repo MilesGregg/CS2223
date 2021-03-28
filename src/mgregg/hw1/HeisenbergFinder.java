@@ -17,8 +17,25 @@ public class HeisenbergFinder implements IHeisenbergFinder {
 	 * You can inspect the contents of the array for h using inspect() method.
 	 */
 	public int find(Heisenberg h, int target) {
-		for (int i = 0; i < h.N; i++) {
+		/*for (int i = 0; i < h.N; i++) {
 			if (h.inspect(i) == i+target) { return i; }
+		}*/
+
+		int low = 0;
+		int high = h.N-1;
+
+		while (low <= high) {
+			int mid = (low + high) / 2;
+			//System.out.println(h.inspect(mid));
+			int rc = h.inspect(mid);
+			if (rc < target) {
+				low = mid+1;
+			} else if (rc > target) {
+				high = mid-1;
+			} else {
+				System.out.println(mid);
+				return mid;
+			}
 		}
 
 		return -1;

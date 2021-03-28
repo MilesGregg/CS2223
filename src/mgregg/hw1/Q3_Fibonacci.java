@@ -28,6 +28,7 @@ public class Q3_Fibonacci {
 	 * Make sure you increase count for numRecursiveImproved.
 	 */
 	static long fibonacci_improved(long n) {
+		numRecursiveImproved++;
 		// base case.
 		if (n == 0) { return 0; }
 		if (n == 1) { return 1; }
@@ -35,7 +36,9 @@ public class Q3_Fibonacci {
 		if (n == 3) { return 2; }  // THIS NEEDS TO BE HERE. BONUS QUESTION ASKS WHY!
 
 		// COMPLETE THIS IMPLEMENTATION
-		throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
+
+		return fibonacci_improved(n-1) + fibonacci_improved(n-2);
+		//throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
 	}
 
 	/**
@@ -51,7 +54,8 @@ public class Q3_Fibonacci {
 		if (n == 1) { return 1; }
 
 		// COMPLETE THIS IMPLEMENTATION
-		throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
+		return lucas_improved(n-1) + lucas_improved(n-2);
+		//throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
 	}
 
 	// ---------------------------------------------------------------------------------

@@ -34,6 +34,8 @@ public class Evaluate {
 			else if (s.equals ("*")) { ops.push(s); }
 			else if (s.equals ("/")) { ops.push(s); }
 			else if (s.equals ("sqrt")) { ops.push(s); }
+			else if (s.equals ("exp")) { ops.push(s); }
+			else if (s.equals ("log")) { ops.push(s); }
 			else if (s.equals (")")) {
 				// pop, evaluate, and push result if token is ")".
 				String op = ops.pop();
@@ -43,6 +45,8 @@ public class Evaluate {
 				else if (op.equals("*")) { v = vals.pop() * v; }
 				else if (op.equals("/")) { v = vals.pop() / v; }
 				else if (op.equals("sqrt")) { v = Math.sqrt(v); }
+				else if (op.equals ("exp")) { v = Math.pow(vals.pop(), v); }
+				else if (op.equals ("log")) { v = Math.log(vals.pop()) / Math.log(v); }
 				vals.push(v);
 			} else {
 				// Token no operator or paren; must be double value to push
