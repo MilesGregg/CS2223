@@ -28,12 +28,11 @@ public class HeisenbergFinder implements IHeisenbergFinder {
 			int mid = (low + high) / 2;
 			//System.out.println(h.inspect(mid));
 			int rc = h.inspect(mid);
-			if (rc < target) {
+			if (rc < mid+target) {
 				low = mid+1;
-			} else if (rc > target) {
+			} else if (rc > mid+target) {
 				high = mid-1;
 			} else {
-				System.out.println(mid);
 				return mid;
 			}
 		}
