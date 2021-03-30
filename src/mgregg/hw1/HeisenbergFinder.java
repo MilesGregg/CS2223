@@ -23,17 +23,20 @@ public class HeisenbergFinder implements IHeisenbergFinder {
 
 		int low = 0;
 		int high = h.N-1;
+		int indexInspection = 0;
 
 		while (low <= high) {
 			int mid = (low + high) / 2;
-			//System.out.println(h.inspect(mid));
-			int rc = h.inspect(mid);
-			if (rc < mid+target) {
-				low = mid+1;
-			} else if (rc > mid+target) {
-				high = mid-1;
-			} else {
+			int inspect = h.inspect(mid);
+
+			if (inspect == indexInspection+target) {
 				return mid;
+			} else if (inspect < indexInspection+target) {
+				low = mid + 1;
+				indexInspection++;
+			} else {
+				high = mid - 1;
+				indexInspection--;
 			}
 		}
 

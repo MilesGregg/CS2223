@@ -1,7 +1,7 @@
 public class Test {
 
     public static void main(String[] args) {
-        int[][] array = {
+        /*int[][] array = {
                 {0, 1, 2, 3, 4},
                 {1, 2, 3, 4, 5},
                 {2, 3, 4, 5, 6},
@@ -16,6 +16,10 @@ public class Test {
                     System.out.println("output: " + array[row][column]);
                 }
             }
+        }*/
+
+        for (int i = 0; i < 7; i += 3) {
+            System.out.println(i);
         }
     }
 }

@@ -82,7 +82,7 @@ public class ManhattanSquareFinder implements IManhattanSquareFinder {
 	// You do not need to modify below this line.
 	// ------------------------------------------
 	public static void main(String[] args) {
-		for (int n = 1; n < 14; n++) {
+		for (int n = 1; n < 15; n++) {
 			ManhattanSquare ms = new ManhattanSquare(n, 99);
 			int numProbes = ms.solver(new ManhattanSquareFinder());
 			System.out.println(n + "\t" + numProbes);

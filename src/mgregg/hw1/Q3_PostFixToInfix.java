@@ -47,11 +47,9 @@ public class Q3_PostFixToInfix {
 		FixedCapacityStack<Double> vals = new FixedCapacityStack<Double>(100);
 
 		// COMPLETE IN HERE...
-
 		while (!StdIn.isEmpty()) {
 			String input = StdIn.readString();
 
-			// finding expression
 			if (input.equals("+") || input.equals("-") || input.equals("*") || input.equals("/")) {
 				String rightExpression = exprs.pop();
 				String leftExpression = exprs.pop();
