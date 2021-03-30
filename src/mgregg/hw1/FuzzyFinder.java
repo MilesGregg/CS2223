@@ -17,18 +17,16 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 		int output = row;
 		if (maxPosition == fs.N) {
 			for (int i = row; i < fs.N; i++) {
-				if (fs.probe3x3(i, column, target) == FuzzySquare.NOT_PRESENT) {
+				if (fs.probe3x3(i, column, target) != FuzzySquare.FOUND) {
+					output = i-2;
 					break;
-				} else {
-					output = i;
 				}
 			}
 		} else {
-			for (int i = row; i > 0; i--) {
-				if (fs.probe3x3(i, column, target) == FuzzySquare.NOT_PRESENT) {
+			for (int i = row; i >= 0; i--) {
+				if (fs.probe3x3(i, column, target) != FuzzySquare.FOUND) {
+					output = i+2;
 					break;
-				} else {
-					output = i;
 				}
 			}
 		}
@@ -43,19 +41,24 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 								int column) {
 		int output = column;
 		if (maxPosition == fs.N) {
-			for (int i = row; i < fs.N; i++) {
-				if (fs.probe3x3(row, i, target) == FuzzySquare.NOT_PRESENT) {
+			System.out.println("column checking: " + column);
+			for (int i = column; i < fs.N; i++) {
+				int probe = fs.probe3x3(row, i, target);
+				System.out.println("column: " + i + " probe: " + probe);
+				if (probe != FuzzySquare.FOUND) {
+					System.out.println("outputting");
+					output = i-2;
 					break;
-				} else {
-					output = i;
 				}
 			}
 		} else {
-			for (int i = row; i > 0; i--) {
-				if (fs.probe3x3(row, i, target) == FuzzySquare.NOT_PRESENT) {
+			System.out.println("in descending: " + column);
+			for (int i = column; i >= 0; i--) {
+				System.out.println("column: " + i);
+				if (fs.probe3x3(row, i, target) != FuzzySquare.FOUND) {
+					System.out.println("outputting");
+					output = i+2;
 					break;
-				} else {
-					output = i;
 				}
 			}
 		}
@@ -70,19 +73,34 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 	 * You can inspect the contents of the array for fs using the probe3x3() method.
 	 */
 	public Coordinate find(FuzzySquare fs, int target) {
-		for (int row = 0; row < fs.N; row += 3) {
-			for (int column = 0; column < fs.N; column += 3) {
+
+//		for (int row = 0; row < fs.N; row += 3) {
+//			for (int column = 0; column < fs.N; column += 3) {
+
+		System.out.println("target: " + target);
+
+		int mid = fs.N / 2;
+
+		System.out.println("mid: " + mid);
+
+		for (int column = 0; column < fs.N; column += 3) {
+			for (int row = 0; row < fs.N; row += 3) {
 				int output = fs.probe3x3(row, column, target);
 				if (output == FuzzySquare.FOUND) {
-					/*System.out.println("current row");
-					int rowPositionToGoTo = row >= fs.N / 2 ? fs.N : 0;
-					int columnPositionToGoTo = column >= fs.N / 2 ? fs.N : 0;
+					System.out.println("current row: " + row);
+					System.out.println("current column: " + column);
+					int rowPositionToGoTo = mid >= row ? fs.N : 0;
+					int columnPositionToGoTo = mid >= column ? fs.N : 0;
+//					System.out.println("mid: " + mid);
 					System.out.println("row pos to go to: " + rowPositionToGoTo);
 					System.out.println("column pos to go to: " + columnPositionToGoTo);
+
 					int rowOutput = getRowCoordinate(fs, target, rowPositionToGoTo, row, column);
-					int columnOutput = getColumnCoordinate(fs, target, columnPositionToGoTo, row, column);*/
+					int columnOutput = getColumnCoordinate(fs, target, columnPositionToGoTo, row, column);
 
-
+					System.out.println("------------------------------------------------");
+					System.out.println("row output: " + rowOutput);
+					System.out.println("column output: " + columnOutput);
 					return new Coordinate(rowOutput, columnOutput);
 				}
 			}
@@ -96,12 +114,12 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 	// You do not need to modify below this line.
 	// ------------------------------------------
 	public static void main(String[] args) {
-		FuzzySquare fs = new FuzzySquare(5, 99);
+		FuzzySquare fs = new FuzzySquare(13, 99);
 		fs.solver(new FuzzyFinder());
 		System.out.println();
 		System.out.println(fs.getNumProbes());
-		/*
-		for (int i = 5; i < 40; i++) {
+
+		/*for (int i = 5; i < 40; i++) {
 			FuzzySquare fs = new FuzzySquare(i, 99);
 			fs.solver(new FuzzyFinder());
 			System.out.println(i + "\t" + fs.getNumProbes());

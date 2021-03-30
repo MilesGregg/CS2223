@@ -18,7 +18,7 @@ public class Test {
             }
         }*/
 
-        for (int i = 0; i < 7; i += 3) {
+        for (int i = 0; i < 2; i ++) {
             System.out.println(i);
         }
     }
