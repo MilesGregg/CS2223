@@ -41,22 +41,22 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 								int column) {
 		int output = column;
 		if (maxPosition == fs.N) {
-			System.out.println("column checking: " + column);
+//			System.out.println("column checking: " + column);
 			for (int i = column; i < fs.N; i++) {
 				int probe = fs.probe3x3(row, i, target);
-				System.out.println("column: " + i + " probe: " + probe);
+//				System.out.println("column: " + i + " probe: " + probe);
 				if (probe != FuzzySquare.FOUND) {
-					System.out.println("outputting");
+//					System.out.println("outputting");
 					output = i-2;
 					break;
 				}
 			}
 		} else {
-			System.out.println("in descending: " + column);
+//			System.out.println("in descending: " + column);
 			for (int i = column; i >= 0; i--) {
-				System.out.println("column: " + i);
+//				System.out.println("column: " + i);
 				if (fs.probe3x3(row, i, target) != FuzzySquare.FOUND) {
-					System.out.println("outputting");
+//					System.out.println("outputting");
 					output = i+2;
 					break;
 				}
@@ -77,30 +77,30 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 //		for (int row = 0; row < fs.N; row += 3) {
 //			for (int column = 0; column < fs.N; column += 3) {
 
-		System.out.println("target: " + target);
-
 		int mid = fs.N / 2;
 
-		System.out.println("mid: " + mid);
-
-		for (int column = 0; column < fs.N; column += 3) {
-			for (int row = 0; row < fs.N; row += 3) {
+		for (int column = 0; column < fs.N; column += 2) {
+			for (int row = 0; row < fs.N; row += 2) {
 				int output = fs.probe3x3(row, column, target);
+				//System.out.println("probe output: " + output);
 				if (output == FuzzySquare.FOUND) {
-					System.out.println("current row: " + row);
-					System.out.println("current column: " + column);
-					int rowPositionToGoTo = mid >= row ? fs.N : 0;
-					int columnPositionToGoTo = mid >= column ? fs.N : 0;
+//					System.out.println("--------------------------------------------------------------------------");
+//					System.out.println("target: " + target);
 //					System.out.println("mid: " + mid);
-					System.out.println("row pos to go to: " + rowPositionToGoTo);
-					System.out.println("column pos to go to: " + columnPositionToGoTo);
+//					System.out.println("current row: " + row);
+//					System.out.println("current column: " + column);
+					int rowPositionToGoTo = mid > row ? fs.N : 0;
+					int columnPositionToGoTo = mid > column ? fs.N : 0;
+					//System.out.println("mid: " + mid);
+//					System.out.println("row pos to go to: " + rowPositionToGoTo);
+//					System.out.println("column pos to go to: " + columnPositionToGoTo);
 
 					int rowOutput = getRowCoordinate(fs, target, rowPositionToGoTo, row, column);
 					int columnOutput = getColumnCoordinate(fs, target, columnPositionToGoTo, row, column);
 
-					System.out.println("------------------------------------------------");
-					System.out.println("row output: " + rowOutput);
-					System.out.println("column output: " + columnOutput);
+//					System.out.println("row output: " + rowOutput);
+//					System.out.println("column output: " + columnOutput);
+//					System.out.println("--------------------------------------------------------------------------");
 					return new Coordinate(rowOutput, columnOutput);
 				}
 			}
@@ -114,15 +114,15 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 	// You do not need to modify below this line.
 	// ------------------------------------------
 	public static void main(String[] args) {
-		FuzzySquare fs = new FuzzySquare(13, 99);
+		/*FuzzySquare fs = new FuzzySquare(6, 99);
 		fs.solver(new FuzzyFinder());
 		System.out.println();
-		System.out.println(fs.getNumProbes());
+		System.out.println(fs.getNumProbes());*/
 
-		/*for (int i = 5; i < 40; i++) {
+		for (int i = 5; i < 40; i++) {
 			FuzzySquare fs = new FuzzySquare(i, 99);
 			fs.solver(new FuzzyFinder());
 			System.out.println(i + "\t" + fs.getNumProbes());
-		}*/
+		}
 	}
 }
