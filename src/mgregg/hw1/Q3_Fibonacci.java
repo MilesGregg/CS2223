@@ -37,7 +37,10 @@ public class Q3_Fibonacci {
 
 		// COMPLETE THIS IMPLEMENTATION
 
-		return fibonacci_improved(n-1) + fibonacci_improved(n-2);
+		long x = n / 2;
+		long y = n-x;
+
+		return ((fibonacci_improved(x) * lucas_improved(y)) + (fibonacci_improved(y) * lucas_improved(x))) / 2;
 		//throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
 	}
 
@@ -49,12 +52,13 @@ public class Q3_Fibonacci {
 	 * Make sure you increase count for numRecursiveImproved.
 	 */
 	static long lucas_improved(long n) {
+		numRecursiveImproved++;
 		// base case.
 		if (n == 0) { return 2; }
 		if (n == 1) { return 1; }
 
 		// COMPLETE THIS IMPLEMENTATION
-		return lucas_improved(n-1) + lucas_improved(n-2);
+		return fibonacci_improved((int) (n-1)) + fibonacci_improved((int) (n+1));
 		//throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
 	}
 

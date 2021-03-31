@@ -23,7 +23,7 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 				}
 			}
 		} else {
-			for (int i = row; i >= 0; i--) {
+			for (int i = row; i > 0; i--) {
 				if (fs.probe3x3(i, column, target) != FuzzySquare.FOUND) {
 					output = i+2;
 					break;
@@ -43,9 +43,9 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 		if (maxPosition == fs.N) {
 //			System.out.println("column checking: " + column);
 			for (int i = column; i < fs.N; i++) {
-				int probe = fs.probe3x3(row, i, target);
+				//int probe = fs.probe3x3(row, i, target);
 //				System.out.println("column: " + i + " probe: " + probe);
-				if (probe != FuzzySquare.FOUND) {
+				if (fs.probe3x3(row, i, target) != FuzzySquare.FOUND) {
 //					System.out.println("outputting");
 					output = i-2;
 					break;
@@ -53,7 +53,7 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 			}
 		} else {
 //			System.out.println("in descending: " + column);
-			for (int i = column; i >= 0; i--) {
+			for (int i = column; i > 0; i--) {
 //				System.out.println("column: " + i);
 				if (fs.probe3x3(row, i, target) != FuzzySquare.FOUND) {
 //					System.out.println("outputting");

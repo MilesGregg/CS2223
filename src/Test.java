@@ -18,8 +18,15 @@ public class Test {
             }
         }*/
 
-        for (int i = 0; i < 6; i += 3) {
+        long x = 81;
+        long y = x / 2;
+        long z = x % 2;
+
+        System.out.println("x: " + y);
+        System.out.println("other value: " + (y+z));
+
+        /*for (int i = 0; i < 6; i += 3) {
             System.out.println(i);
-        }
+        }*/
     }
 }
