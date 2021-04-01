@@ -58,7 +58,7 @@ public class Q3_Fibonacci {
 		if (n == 1) { return 1; }
 
 		// COMPLETE THIS IMPLEMENTATION
-		return fibonacci_improved((int) (n-1)) + fibonacci_improved((int) (n+1));
+		return fibonacci_improved(n-1) + fibonacci_improved(n+1);
 		//throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
 	}
 
