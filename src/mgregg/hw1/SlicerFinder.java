@@ -9,60 +9,6 @@ import algs.hw1.api.ISlicerFinder;
  */
 public class SlicerFinder implements ISlicerFinder {
 
-	/*for (int i = 0; i < s.N; i++) {
-			if (s.inLeft(i, target)) {
-				column = i;
-				break;
-			}
-		}
-		for (int i = 0; i < s.N; i++) {
-			if (s.inTop(i, target)) {
-				row = i;
-				break;
-			}
-		}*/
-
-
-	private int low;
-	private int high;
-
-	/*public int findRow(Slicer s, int low, int high, int target) {
-		if (low >= high) {
-			return high;
-		}
-
-		if ((low+high) % 2 == 0) {
-			mid = (low+high)/2;
-		} else {
-			mid = (low+high+1)/2;
-		}
-		boolean condition = s.inTop(mid, target);
-		if (condition) {
-			return findRow(s, low, mid, target);
-		} else {
-			return findRow(s, mid, high, target);
-		}
-	}
-
-	public int findColumn(Slicer s, int low, int high, int target) {
-		if (low >= high) {
-			return high;
-		}
-
-		if ((low+high) % 2 == 0) {
-			mid = (low+high)/2;
-		} else {
-			mid = (low+high+1)/2;
-		}
-
-		int mid = (low+high)/2;
-
-		if (s.inLeft(mid, target)) {
-			return findColumn(s, low, mid, target);
-		} else {
-			return findColumn(s, mid, high, target);
-		}
-	}*/
 
 	/**
 	 * Complete this implementation.
@@ -70,121 +16,35 @@ public class SlicerFinder implements ISlicerFinder {
 	 * You can inspect the contents of the array for s using the inLeft() and inTop() methods.
 	 */
 	public Coordinate find(Slicer s, int target) {
-		/*if (s.N == 0) return null;
-		if (s.N == 1){
-			if(s.inTop(0,target) && s.inLeft(0,target)){
-				return new Coordinate(0, 0);
-			} else{
-				return null;
-			}
-		}
-
-		if (s.N == 2){
-			int column= 0 , row= 0;
-			for (int i = 0; i < s.N; i++) {
-			if (s.inLeft(i, target)) {
-				column = i;
+		int lowRow = 0;
+		int highRow = s.N-1;
+		while (lowRow <= highRow) {
+			int mid = (lowRow+highRow) / 2;
+			if (lowRow == highRow) {
 				break;
 			}
-		}
-		for (int i = 0; i < s.N; i++) {
-			if (s.inTop(i, target)) {
-				row = i;
-				break;
-			}
-		}
-			return new Coordinate(row, column);
-		}*/
-
-
-		/*int low = 0;
-		int high = s.N-1;
-
-		int row = 0;
-		int column = 0;
-
-		// for row
-		while (low <= high) {
-			int mid = (low + high) / 2;
-
-			if ((low + high) % 2 == 0) {
-				if (s.inLeft(mid, target)) {
-					row = high;
-					break;
-				}
-				high = mid-1;
+			if (s.inTop(mid, target)) {
+				highRow = mid;
 			} else {
-				if (s.inLeft(high, target)) {
-					row = high;
-					break;
-				}
-				low = mid+1;
+				lowRow = mid + 1;
 			}
 		}
 
-		System.out.println("row: " + row);
-
-		low = 0;
-		high = row-1;
-
-		while (low <= high) {
-			int mid = (low + high) / 2;
-
-			if ((low + high) % 2 == 0) {
-				if (s.inTop(mid, target)) {
-					column = high;
-					break;
-				}
-				high = mid-1;
+		int lowColumn= 0;
+		int highColumn = s.N-1;
+		while (lowColumn <= highColumn) {
+			int mid = (lowColumn + highColumn) / 2;
+			if (lowColumn == highColumn) {
+				return new Coordinate(highRow, highColumn);
+			}
+			if (s.inLeft(mid, target)) {
+				highColumn = mid;
 			} else {
-				if (s.inTop(high, target)) {
-					column = high;
-					break;
-				}
-				low = mid+1;
+				lowColumn = mid + 1;
 			}
 		}
 
-		System.out.println("column: " + column);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// find row
-		//int row = findRow(s, low, high, target);
-		//int column = findColumn(s, low, high, target);
-
-		int column = 0;
-		int row = 0;
-
-		// ASK ABOUT NULL
-
-		for (int i = 0; i < s.N; i++) {
-			if (s.inLeft(i, target)) {
-				column = i;
-				break;
-			}
-		}
-
-		for (int i = 0; i < s.N; i++) {
-			if (s.inTop(i, target)) {
-				row = i;
-				break;
-			}
-		}
-
-		return new Coordinate(row, column);
-		//throw new RuntimeException("to be completed by student.");
+		return null;
 	}
 
 	// You do not need to modify below this line.

@@ -2,7 +2,7 @@
 HW1
 Written Questions
 
-Q1. Stack Experiments(30 pts.):
+Q1. Stack Experiments:
 
     1.1. Run Evaluate on input "( 5 8 * / 4 )"
         (a) The observed output is: 2.0
@@ -32,32 +32,43 @@ Q1. Stack Experiments(30 pts.):
     1.6. Modified in Evaluate class.
 
     1.7. Run your modified Evaluate Evaluate on input "( 2 exp ( 17 log 4 ) )"
-        (a) The observed output is: 4.1231056256176615. This is the output because it is the same as 2^log2(17) is
-            2 to the power of log base 2 of 17. This then equals to 4.1231056256176615 which we would have to do on a
-            calculator or a computer like this program.
-        (b) The state of the ops stack when the program completes is: ["exp", "log"]
-        (c) The state of the vals stack when the program completes is: ["4.1231056256176615", "2.04373142062517", "4.0"]
+        (a) The observed output is: 4.1231056256176615. This is the output because it is the same as 2^log4(17) is
+            2 to the power of log base 4 of 17. This then equals to 4.1231056256176615 which we would have to do on a
+            calculator or a computer like this program. When it reaches a ')' in the program it evaluates the input
+            within the parentheses.
+        (b) The state of the ops stack when the program completes is: []
+        (c) The state of the vals stack when the program completes is: []
 
 
-Q4.1. Produce Normalized Table for Average probe/request cost(5 pts.):
-     _______________________________________________________________________________________________________
-    |   N   |   Manhattan   |  Heisenberg   |    Slicer     |  Heisenberg   |  FuzzySquare  |  FuzzerSquare |
-    |       |    Square     |     Best      |     Best      |     First     |     Best      |     First     |
-    |-------+---------------+---------------+---------------+---------------+---------------+---------------|
-    |   3   |      3.4	    |      2	    |      3.3	    |      2.9	    |      1.2	    |      1.5      |
-    |   4   |      3.1	    |      2.5	    |      4	    |      3.9	    |      2.2	    |      4.3      |
-    |   5   |      2.8	    |      2.7	    |      4.8	    |      4.8	    |      5.5	    |      9.1      |
-    |   6   |      2.7	    |      2.9	    |      5.3	    |      5.8	    |      5.8	    |      15.7     |
-    |   7   |      2.6	    |      2.9	    |      5.7	    |      6.7	    |      5.8	    |      24.1     |
-    |   8   |      2.5	    |      3.4	    |      6	    |      7.7	    |      5.9	    |      34.5     |
-    |   9   |      2.5	    |      3.5	    |      6.4	    |      8.6	    |      6	    |      46.8     |
-    |   10  |      2.4	    |      3.6	    |      6.8	    |      9.6	    |      7.9	    |      60.9     |
-    |   11  |      2.4	    |      3.7	    |      7.1	    |      10.5     |      11.1     |      77       |
-    |   12  |      2.3	    |      3.8	    |      7.3	    |      11.5     |      12.4	    |      95       |
-    |   13  |      2.3	    |      3.8	    |      7.5	    |      12.4     |      13.8	    |      114.8    |
-    |   14  |      2.3	    |      3.9	    |      7.7	    |      13.4     |      14.1	    |      136.6    |
-    |   15  |      2.3	    |      3.9	    |      7.9	    |      14.3     |      14.2	    |      160.2    |
-    |   16  |      2.3	    |      4.3	    |      8	    |      15.3     |      14.3	    |      185.8    |
-    |   17  |      2.2	    |      4.4	    |      8.2	    |      16.2     |      14.5	    |      213.2    |
-    |   18  |      2.2	    |      4.5	    |      8.4	    |      17.2     |      14.5	    |      242.6    |
-    |-------+---------------+---------------+---------------+---------------+---------------+---------------|
+Q4 Big O Notation:
+
+    4.1. Produce Normalized Table for Average probe/request cost:
+         _______________________________________________________________________________________________________
+        |   N   |   Manhattan   |  Heisenberg   |    Slicer     |  Heisenberg   |  FuzzySquare  |  FuzzerSquare |
+        |       |    Square     |     Best      |     Best      |     First     |     Best      |     First     |
+        |-------+---------------+---------------+---------------+---------------+---------------+---------------|
+        |   3   |      3.4	    |      2	    |      3.3	    |      2.9	    |      1.2	    |      1.5      |
+        |   4   |      3.1	    |      2.5	    |      4	    |      3.9	    |      2.2	    |      4.3      |
+        |   5   |      2.8	    |      2.7	    |      4.8	    |      4.8	    |      5.5	    |      9.1      |
+        |   6   |      2.7	    |      2.9	    |      5.3	    |      5.8	    |      5.8	    |      15.7     |
+        |   7   |      2.6	    |      2.9	    |      5.7	    |      6.7	    |      5.8	    |      24.1     |
+        |   8   |      2.5	    |      3.4	    |      6	    |      7.7	    |      5.9	    |      34.5     |
+        |   9   |      2.5	    |      3.5	    |      6.4	    |      8.6	    |      6	    |      46.8     |
+        |   10  |      2.4	    |      3.6	    |      6.8	    |      9.6	    |      7.9	    |      60.9     |
+        |   11  |      2.4	    |      3.7	    |      7.1	    |      10.5     |      11.1     |      77       |
+        |   12  |      2.3	    |      3.8	    |      7.3	    |      11.5     |      12.4	    |      95       |
+        |   13  |      2.3	    |      3.8	    |      7.5	    |      12.4     |      13.8	    |      114.8    |
+        |   14  |      2.3	    |      3.9	    |      7.7	    |      13.4     |      14.1	    |      136.6    |
+        |   15  |      2.3	    |      3.9	    |      7.9	    |      14.3     |      14.2	    |      160.2    |
+        |   16  |      2.3	    |      4.3	    |      8	    |      15.3     |      14.3	    |      185.8    |
+        |   17  |      2.2	    |      4.4	    |      8.2	    |      16.2     |      14.5	    |      213.2    |
+        |   18  |      2.2	    |      4.5	    |      8.4	    |      17.2     |      14.5	    |      242.6    |
+        |-------+---------------+---------------+---------------+---------------+---------------+---------------|
+
+    4.2 Classify these different algorithm implementations from empirical data:
+         _______________________________________________________________________________________________
+        |   Manhattan   |  Heisenberg   |    Slicer     |  Heisenberg   |  FuzzySquare  |  FuzzerSquare |
+        |    Square     |     Best      |     Best      |     First     |     Best      |     First     |
+        |---------------+---------------+---------------+---------------+---------------+---------------|
+        |      O(1)	    |   O(log n)	|    O(log n)	|      O(n)     |   O(n log n)  |    O(n^2)     |
+        |---------------+---------------+---------------+---------------+---------------+---------------|
