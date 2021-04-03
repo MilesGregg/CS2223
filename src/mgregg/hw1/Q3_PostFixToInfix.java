@@ -53,7 +53,7 @@ public class Q3_PostFixToInfix {
 			if (input.equals("+") || input.equals("-") || input.equals("*") || input.equals("/")) {
 				String rightExpression = exprs.pop();
 				String leftExpression = exprs.pop();
-				exprs.push("(" + leftExpression + input + rightExpression + ")");
+				exprs.push("(" + leftExpression + " " + input + " " + rightExpression + ")");
 				double rightValue = vals.pop();
 				double leftValue = vals.pop();
 				vals.push(evaluate(input, leftValue, rightValue));
