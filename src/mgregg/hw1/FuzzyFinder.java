@@ -9,50 +9,18 @@ import algs.hw1.api.IFuzzySquareFinder;
  */
 public class FuzzyFinder implements IFuzzySquareFinder {
 
-	public int getRowCoordinate(FuzzySquare fs,
+	public int getCoordinate(FuzzySquare fs,
 							 int target,
 							 int maxPosition,
 							 int row,
-							 int column) {
-		int output = row;
-		if (maxPosition == fs.N) {
-			for (int i = row; i < fs.N; i++) {
-				if (fs.probe3x3(i, column, target) != FuzzySquare.FOUND) {
-					output = i-2;
-					break;
-				}
-			}
-		} else {
-			for (int i = row; i > 0; i--) {
-				if (fs.probe3x3(i, column, target) != FuzzySquare.FOUND) {
-					output = i+2;
-					break;
-				}
-			}
-		}
-
-		return output;
-	}
-
-	public int getColumnCoordinate(FuzzySquare fs,
-								int target,
-								int maxPosition,
-								int row,
-								int column) {
-		int output = column;
-		if (maxPosition == fs.N) {
-			for (int i = column; i < fs.N; i++) {
-				if (fs.probe3x3(row, i, target) != FuzzySquare.FOUND) {
-					output = i-2;
-					break;
-				}
-			}
-		} else {
-			for (int i = column; i > 0; i--) {
-				if (fs.probe3x3(row, i, target) != FuzzySquare.FOUND) {
-					output = i+2;
-					break;
-				}
+							 int column,
+							 boolean rowCoordinate) {
+		int direction = maxPosition == fs.N ? 1 : -1;
+		int output = rowCoordinate ? row : column;
+		for (int i = output; maxPosition == fs.N ? i < fs.N : i > 0; i += direction) {
+			if (fs.probe3x3(rowCoordinate ? i : row, rowCoordinate ? column : i, target) != FuzzySquare.FOUND) {
+				output = maxPosition == fs.N ? i - 2 : i + 2;
+				break;
 			}
 		}
 
@@ -67,15 +35,14 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 	 */
 	public Coordinate find(FuzzySquare fs, int target) {
 		int mid = fs.N / 2;
-
 		for (int column = 0; column < fs.N; column += 2) {
 			for (int row = 0; row < fs.N; row += 2) {
 				int output = fs.probe3x3(row, column, target);
 				if (output == FuzzySquare.FOUND) {
 					int rowPositionToGoTo = mid > row ? fs.N : 0;
 					int columnPositionToGoTo = mid > column ? fs.N : 0;
-					int rowOutput = getRowCoordinate(fs, target, rowPositionToGoTo, row, column);
-					int columnOutput = getColumnCoordinate(fs, target, columnPositionToGoTo, row, column);
+					int rowOutput = getCoordinate(fs, target, rowPositionToGoTo, row, column, true);
+					int columnOutput = getCoordinate(fs, target, columnPositionToGoTo, row, column, false);
 
 					return new Coordinate(rowOutput, columnOutput);
 				}
