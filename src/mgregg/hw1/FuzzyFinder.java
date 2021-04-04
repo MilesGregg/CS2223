@@ -35,6 +35,7 @@ public class FuzzyFinder implements IFuzzySquareFinder {
 	 */
 	public Coordinate find(FuzzySquare fs, int target) {
 		int mid = fs.N / 2;
+
 		for (int column = 0; column < fs.N; column += 2) {
 			for (int row = 0; row < fs.N; row += 2) {
 				int output = fs.probe3x3(row, column, target);

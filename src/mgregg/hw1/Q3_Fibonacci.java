@@ -36,12 +36,10 @@ public class Q3_Fibonacci {
 		if (n == 3) { return 2; }  // THIS NEEDS TO BE HERE. BONUS QUESTION ASKS WHY!
 
 		// COMPLETE THIS IMPLEMENTATION
-
 		long x = n / 2;
 		long y = n-x;
 
 		return ((fibonacci_improved(x) * lucas_improved(y)) + (fibonacci_improved(y) * lucas_improved(x))) / 2;
-		//throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
 	}
 
 	/**
@@ -59,7 +57,6 @@ public class Q3_Fibonacci {
 
 		// COMPLETE THIS IMPLEMENTATION
 		return fibonacci_improved(n-1) + fibonacci_improved(n+1);
-		//throw new RuntimeException("STUDENT MUST REPLACE AND FIX.");
 	}
 
 	// ---------------------------------------------------------------------------------

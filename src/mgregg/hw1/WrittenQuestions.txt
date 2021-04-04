@@ -39,12 +39,28 @@ Q1. Stack Experiments:
         (b) The state of the ops stack when the program completes is: []
         (c) The state of the vals stack when the program completes is: []
 
+Q2. Searching Programming Exercise:
 
-Q4 Big O Notation:
+    Q2.2:
+
+        2.1.1. Bonus: Did in SlicerFinder class
+
+        2.1.2. Bonus:
+            C(N) = ((32N^2)/3) - 48N + 256/3
+
+    Q2.3:
+
+        2.3.1. Bonus:
+            HF(N) = ((19N^2)/2) + (3N/2)
+
+        2.3.2. Bonus:
+            BHF(N) = ((9N^2)/14) + (214N/7) - 73/2
+
+Q4. Big O Notation:
 
     4.1. Produce Normalized Table for Average probe/request cost:
          _______________________________________________________________________________________________________
-        |   N   |   Manhattan   |  Heisenberg   |    Slicer     |  Heisenberg   |  FuzzySquare  |  FuzzerSquare |
+        |   N   |   Manhattan   |  Heisenberg   |    Slicer     |  Heisenberg   |  FuzzySquare  |  FuzzySquare  |
         |       |    Square     |     Best      |     Best      |     First     |     Best      |     First     |
         |-------+---------------+---------------+---------------+---------------+---------------+---------------|
         |   3   |      3.4	    |      2	    |      3.3	    |      2.9	    |      1.2	    |      1.5      |
@@ -66,8 +82,16 @@ Q4 Big O Notation:
         |-------+---------------+---------------+---------------+---------------+---------------+---------------|
 
     4.2 Classify these different algorithm implementations from empirical data:
+
+        Manhattan Square: This is O(1) because the Manhattan data points are decreasing therefore it is constant time.
+        Heisenberg Best: This is O(log n) because when we go from N = 4 to N = 8 to N = 16 it increases by a fixed amount.
+        Slicer Best: This is O(log n) because when we go from N = 4 to N = 8 to N = 16 it increases by a fixed amount.
+        Heisenberg First: This is O(n) because when we go from N = 4 to N = 8 to N = 16 the average number doubles.
+        FuzzySquare Best: This is O(n log n) because when we go from N = 4 to N = 8 to N = 16 the average number more
+                          than doubles with a graceful slope.
+        FuzzySquare First: This is O(n^2) because when we go from N = 4 to N = 8 to N = 16 the average number quadruples.
          _______________________________________________________________________________________________
-        |   Manhattan   |  Heisenberg   |    Slicer     |  Heisenberg   |  FuzzySquare  |  FuzzerSquare |
+        |   Manhattan   |  Heisenberg   |    Slicer     |  Heisenberg   |  FuzzySquare  |  FuzzySquare  |
         |    Square     |     Best      |     Best      |     First     |     Best      |     First     |
         |---------------+---------------+---------------+---------------+---------------+---------------|
         |      O(1)	    |   O(log n)	|    O(log n)	|      O(n)     |   O(n log n)  |    O(n^2)     |
