@@ -1,3 +1,5 @@
+import mgregg.hw2.MyDeck;
+
 import java.util.Arrays;
 
 public class Test {
@@ -20,12 +22,16 @@ public class Test {
             }
         }*/
 
-        long x = 81;
+        /*long x = 81;
         long y = x / 2;
         long z = x % 2;
 
         System.out.println("x: " + y);
-        System.out.println("other value: " + (y+z));
+        System.out.println("other value: " + (y+z));*/
+
+        MyDeck deck = new MyDeck(13);
+
+        System.out.println("Top Card: " + deck.peekTop());
 
         /*for (int i = 0; i < 6; i += 3) {
             System.out.println(i);
