@@ -39,8 +39,24 @@ Q1. Stack Experiments:
         (b) The state of the ops stack when the program completes is: []
         (c) The state of the vals stack when the program completes is: []
 
+Q2. Searching Programming Exercise:
 
-Q4 Big O Notation:
+    Q2.2:
+
+        2.1.1. Bonus: Did in SlicerFinder class
+
+        2.1.2. Bonus:
+            C(N) = ((32N^2)/3) - 48N + 256/3
+
+    Q2.3:
+
+        2.3.1. Bonus:
+            HF(N) = ((19N^2)/2) + (3N/2)
+
+        2.3.2. Bonus:
+            BHF(N) = ((9N^2)/14) + (214N/7) - 73/2
+
+Q4. Big O Notation:
 
     4.1. Produce Normalized Table for Average probe/request cost:
          _______________________________________________________________________________________________________

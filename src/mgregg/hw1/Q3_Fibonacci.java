@@ -37,7 +37,7 @@ public class Q3_Fibonacci {
 
 		// COMPLETE THIS IMPLEMENTATION
 		long x = n / 2;
-		long y = n-x;
+		long y = n - x;
 
 		return ((fibonacci_improved(x) * lucas_improved(y)) + (fibonacci_improved(y) * lucas_improved(x))) / 2;
 	}
