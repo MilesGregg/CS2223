@@ -11,7 +11,6 @@ import algs.hw2.Suit;
  *
  */
 public class MyDeck extends Deck {
-
 	private enum HonorCards {
 		ACE(1)    { public String getCharacter() { return "A"; } },
 		JACK(11)  { public String getCharacter() { return "J"; } },
@@ -26,6 +25,8 @@ public class MyDeck extends Deck {
 
 		public abstract String getCharacter();
 	}
+
+	private int N = 0;
 
 	/**
 	 * Ensure that no one OUTSIDE of this class invokes the no-argument constructor. You will find
@@ -60,7 +61,7 @@ public class MyDeck extends Deck {
 				for (HonorCards unique : HonorCards.values()) {
 					if (card == unique.position) beginning = unique.getCharacter();
 				}
-				System.out.println("Representation: " + (beginning + suit.abbreviation()));
+				//System.out.println("Representation: " + (beginning + suit.abbreviation()));
 				Node newNode = new Node(new Card(beginning + suit.abbreviation()));
 				if (first == null) {
 					first = newNode;
@@ -68,8 +69,12 @@ public class MyDeck extends Deck {
 					last.next = newNode;
 				}
 				last = newNode;
+				N++;
 			}
 		}
+
+		System.out.println("First: " + first.card);
+		System.out.println("Last: " + last.card );
 
 		//throw new RuntimeException("To Be Completed By Student");
 	}
@@ -82,7 +87,8 @@ public class MyDeck extends Deck {
 
 	@Override
 	public Card peekBottom() {
-		throw new RuntimeException("To Be Completed By Student");
+		return first.card;
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -92,12 +98,16 @@ public class MyDeck extends Deck {
 
 	@Override
 	public Deck copy() {
+		for (Node node = first; node != null; node = node.next) {
+
+		}
 		throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public int size() {
-		throw new RuntimeException("To Be Completed By Student");
+		return N;
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -117,7 +127,12 @@ public class MyDeck extends Deck {
 
 	@Override
 	public String representation() {
-		throw new RuntimeException("To Be Completed By Student");
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Node node = first; node != null; node = node.next) {
+			if (node.next == null) stringBuilder.append(node.card);
+			else stringBuilder.append(node.card).append(" ");
+		}
+		return stringBuilder.toString();
 	}
 
 	@Override

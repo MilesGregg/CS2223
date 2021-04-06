@@ -29,7 +29,7 @@ public class Test {
         System.out.println("x: " + y);
         System.out.println("other value: " + (y+z));*/
 
-        MyDeck deck = new MyDeck(13);
+        MyDeck deck = new MyDeck(3);
 
         System.out.println("Top Card: " + deck.peekTop());
 
