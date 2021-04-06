@@ -26,7 +26,7 @@ public class MyDeck extends Deck {
 		public abstract String getCharacter();
 	}
 
-	private int N = 0;
+	private int N = 1;
 
 	/**
 	 * Ensure that no one OUTSIDE of this class invokes the no-argument constructor. You will find
@@ -73,9 +73,6 @@ public class MyDeck extends Deck {
 			}
 		}
 
-		System.out.println("First: " + first.card);
-		System.out.println("Last: " + last.card );
-
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
@@ -93,7 +90,18 @@ public class MyDeck extends Deck {
 
 	@Override
 	public boolean match(Card c, int n) {
-		throw new RuntimeException("To Be Completed By Student");
+		int currentIndex = 1;
+		int targetIndex = N-n;
+		boolean output = false;
+		for (Node node = first; node != null; node = node.next) {
+			if (currentIndex == targetIndex) {
+				output = node.card.equals(c);
+				break;
+			}
+			currentIndex++;
+		}
+		//throw new RuntimeException("To Be Completed By Student");
+		return output;
 	}
 
 	@Override
@@ -117,7 +125,11 @@ public class MyDeck extends Deck {
 
 	@Override
 	public void out() {
-		throw new RuntimeException("To Be Completed By Student");
+		int mid = N/2;
+		for (Node node = first; node != null; node = node.next) {
+
+		}
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
