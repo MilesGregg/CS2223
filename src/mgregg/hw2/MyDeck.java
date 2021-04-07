@@ -106,10 +106,18 @@ public class MyDeck extends Deck {
 
 	@Override
 	public Deck copy() {
+		MyDeck newDeck = new MyDeck();
 		for (Node node = first; node != null; node = node.next) {
-
+			if (newDeck.first == null) {
+				newDeck.first = node;
+			} else {
+				last.next = node.next;
+			}
+			last = node.next;
 		}
-		throw new RuntimeException("To Be Completed By Student");
+
+		return newDeck;
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -120,15 +128,30 @@ public class MyDeck extends Deck {
 
 	@Override
 	protected Node cutInHalf() {
-		throw new RuntimeException("To Be Completed By Student");
+		//System.out.println(size()-1);
+		//if (N % 2 != 0) throw new RuntimeException("Deck is a odd length!");
+
+		Node fast = first;
+		Node current = first;
+		while (fast.next.next != null) {
+			fast = fast.next.next;
+			current = current.next;
+		}
+		System.out.println(current.card.toString());
+		last = current;
+		last.next = null;
+
+		return current;
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public void out() {
-		int mid = N/2;
+		cutInHalf();
+		/*int mid = N/2;
 		for (Node node = first; node != null; node = node.next) {
 
-		}
+		}*/
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
@@ -149,7 +172,23 @@ public class MyDeck extends Deck {
 
 	@Override
 	public boolean isInOrder() {
-		throw new RuntimeException("To Be Completed By Student");
+		Node node = first;
+		for (Suit suit : Suit.values()) {
+			for (int card = Card.ACE; card <= size()/4; card++) {
+				String beginning = String.valueOf(card);
+				for (HonorCards unique : HonorCards.values()) {
+					if (card == unique.position) beginning = unique.getCharacter();
+				}
+				if (!node.card.toString().equals(beginning + suit.abbreviation())) {
+					return false;
+				}
+
+				node = node.next;
+			}
+		}
+
+		return true;
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
