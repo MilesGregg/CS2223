@@ -11,21 +11,6 @@ import algs.hw2.Suit;
  *
  */
 public class MyDeck extends Deck {
-	private enum HonorCards {
-		ACE(1)    { public String getCharacter() { return "A"; } },
-		JACK(11)  { public String getCharacter() { return "J"; } },
-		QUEEN(12) { public String getCharacter() { return "Q"; } },
-		KING(13)  { public String getCharacter() { return "K"; } };
-
-		private final int position;
-
-		HonorCards(int position) {
-			this.position = position;
-		}
-
-		public abstract String getCharacter();
-	}
-
 	private int N = 1;
 
 	/**
@@ -53,26 +38,21 @@ public class MyDeck extends Deck {
 	 * Performance must be O(N) where N is max_rank.
 	 */
 	public MyDeck(int max_rank) {
-		if (max_rank < Card.ACE || max_rank > Card.KING) { throw new IllegalArgumentException("max_rank must be between " + Card.ACE + " and " + Card.KING + " respectively"); }
+		if (max_rank < Card.ACE) throw new IllegalArgumentException("max_rank must be above " + Card.ACE);
+		//if (max_rank < Card.ACE || max_rank > Card.KING) { throw new IllegalArgumentException("max_rank must be between " + Card.ACE + " and " + Card.KING + " respectively"); }
 
 		for (Suit suit : Suit.values()) {
 			for (int card = Card.ACE; card <= max_rank; card++) {
-				String beginning = String.valueOf(card);
-				for (HonorCards unique : HonorCards.values()) {
-					if (card == unique.position) beginning = unique.getCharacter();
-				}
-				//System.out.println("Representation: " + (beginning + suit.abbreviation()));
-				Node newNode = new Node(new Card(beginning + suit.abbreviation()));
+				Node newNode = new Node(new Card(suit, card));
 				if (first == null) {
 					first = newNode;
 				} else {
 					last.next = newNode;
 				}
 				last = newNode;
-				N++;
+				this.N++;
 			}
 		}
-
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
@@ -129,17 +109,24 @@ public class MyDeck extends Deck {
 
 	@Override
 	protected Node cutInHalf() {
-		//System.out.println(size()-1);
-		//if (N % 2 != 0) throw new RuntimeException("Deck is a odd length!");
+		if ((size()*4) % 2 != 0) throw new RuntimeException("Deck is a odd length!");
 
 		Node fast = first;
-		while (fast.next.next != null) {
-			fast = fast.next.next;
-			first = first.next;
+		Node slow = first;
+		while (fast != null) {
+			//fast = fast.next.next;
+			slow = slow.next;
+			if (slow == null || slow.next == null) {
+				Node secondHalf = fast.next;
+				fast.next = null;
+				this.N /= 2;
+				return secondHalf;
+			}
+			fast = fast.next;
+			slow = slow.next;
 		}
-		//last.next = null;
 
-		return first;
+		return null;
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
@@ -149,38 +136,68 @@ public class MyDeck extends Deck {
 
 	@Override
 	public void out() {
-		//System.out.println("Cut in half node: " + cutInHalf().card);
-		//Node secondNode = cutInHalf();
-		Node second = cutInHalf();
-		System.out.println("Half: " + second.card);
-		last = null;
-		while (second != null) {
-			if (last == null) {
-				last = second;
+		Node firstNode = first;
+		Node secondNode = cutInHalf();
+
+		System.out.println("FirstNode: " + firstNode.card);
+		System.out.println("secondNode: " + secondNode.card);
+
+		Node combined = null;
+		Node tail = null;
+
+		while (firstNode != null) {
+			if (combined == null) {
+				combined = firstNode;
+				firstNode = firstNode.next;
+				combined.next = secondNode;
 			} else {
-				last.next = second;
+				tail.next = firstNode;
+				firstNode = firstNode.next;
+				tail = tail.next;
+				tail.next = secondNode;
 			}
-
-			Node next = second.next;
-			second.next = first;
-			second = next;
-			last = first;
-
-			next = first.next;
-			first.next = null;
-			first = next;
+			tail = secondNode;
+			secondNode = secondNode.next;
 		}
 
-		/*int mid = N/2;
-		for (Node node = first; node != null; node = node.next) {
+		first = combined;
+		last = tail;
+		this.N *= 2;
 
-		}*/
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public void in() {
-		throw new RuntimeException("To Be Completed By Student");
+		Node firstNode = first;
+		Node secondNode = cutInHalf();
+
+		System.out.println("FirstNode: " + firstNode.card);
+		System.out.println("secondNode: " + secondNode.card);
+
+		Node combined = null;
+		Node tail = null;
+
+		while (firstNode != null) {
+			if (combined == null) {
+				combined = secondNode;
+				secondNode = secondNode.next;
+				combined.next = firstNode;
+			} else {
+				tail.next = secondNode;
+				secondNode = secondNode.next;
+				tail = tail.next;
+				tail.next = firstNode;
+			}
+			tail = firstNode;
+			firstNode = firstNode.next;
+		}
+
+		first = combined;
+		last = tail;
+		this.N *= 2;
+
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -198,14 +215,9 @@ public class MyDeck extends Deck {
 		Node node = first;
 		for (Suit suit : Suit.values()) {
 			for (int card = Card.ACE; card <= size()/4; card++) {
-				String beginning = String.valueOf(card);
-				for (HonorCards unique : HonorCards.values()) {
-					if (card == unique.position) beginning = unique.getCharacter();
-				}
-				if (!node.card.toString().equals(beginning + suit.abbreviation())) {
+				if (node.card.suit != suit || node.card.rank != card) {
 					return false;
 				}
-
 				node = node.next;
 			}
 		}
@@ -216,9 +228,15 @@ public class MyDeck extends Deck {
 
 	@Override
 	public boolean isInReverseOrder() {
-		for (int i = Suit.values().length; i > 0; i--) {
-
-		}
+		Node node = first;
+		/*for (int i = Suit.values().length; i > 0; i--) {
+			for (int card = size()/4; card ; card++) {
+				if (node.card.suit != suit || node.card.rank != card) {
+					return false;
+				}
+				node = node.next;
+			}
+		}*/
 		throw new RuntimeException("To Be Completed By Student");
 	}
 }

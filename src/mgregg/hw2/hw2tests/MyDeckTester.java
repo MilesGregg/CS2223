@@ -50,9 +50,25 @@ public class MyDeckTester {
 
     @Test
     public void outTest() {
-        MyDeck myDeck = new MyDeck(3);
-        System.out.println(myDeck.representation());
+        System.out.println("out() Test --------------------------------------------------------" + "\n");
+        MyDeck myDeck = new MyDeck(2);
+        System.out.println("Before out() Deck Shuffle: " + myDeck.representation());
         myDeck.out();
-        System.out.println(myDeck.representation());
+        String representationOutput = myDeck.representation();
+        assertEquals("AC AH 2C 2H AD AS 2D 2S", representationOutput);
+        System.out.println("Before out() Deck Shuffle: " + myDeck.representation());
+        System.out.println("\n" + "-------------------------------------------------------------------");
+    }
+
+    @Test
+    public void inTest() {
+        System.out.println("in() Test ---------------------------------------------------------" + "\n");
+        MyDeck myDeck = new MyDeck(2);
+        System.out.println("Before in() Deck Shuffle: " + myDeck.representation());
+        myDeck.in();
+        String representationOutput = myDeck.representation();
+        assertEquals("AH AC 2H 2C AS AD 2S 2D", representationOutput);
+        System.out.println("After in() Deck Shuffle: " + representationOutput);
+        System.out.println("\n" + "-------------------------------------------------------------------");
     }
 }
