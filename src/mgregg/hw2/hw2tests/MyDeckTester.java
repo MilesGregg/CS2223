@@ -11,12 +11,10 @@ public class MyDeckTester {
         MyDeck myDeck = new MyDeck(3);
         String output = "AC 2C 3C AD 2D 3D AH 2H 3H AS 2S 3S";
 
-        String test = myDeck.representation();
-        System.out.println(test);
-        assertEquals(test, output);
+        assertEquals(myDeck.representation(), output);
         assertEquals(myDeck.size(), 13);
-        assertEquals(myDeck.peekTop().toString(), "3S"); // FLIP
-        assertEquals(myDeck.peekBottom().toString(), "AC"); // FLIP
+        assertEquals(myDeck.peekTop().toString(), "AC");
+        assertEquals(myDeck.peekBottom().toString(), "3S");
     }
 
     @Test
@@ -29,8 +27,9 @@ public class MyDeckTester {
     @Test
     public void cutInHalfTest() {
         MyDeck myDeck = new MyDeck(3);
-        myDeck.out();
-        System.out.println(myDeck.representation());
+        System.out.println("Before Cut: " + myDeck.representation());
+        myDeck.cutTest();
+        System.out.println("After Cut: " + myDeck.representation());
     }
 
     @Test
@@ -39,11 +38,21 @@ public class MyDeckTester {
         Deck newDeck = myDeck.copy();
         System.out.println(newDeck.size());
         System.out.println(newDeck.representation());
+        assertEquals(myDeck.representation(), newDeck.representation());
+        assertEquals(myDeck.size(), newDeck.size());
     }
 
     @Test
     public void isInOrder() {
         MyDeck myDeck = new MyDeck(3);
         assertTrue(myDeck.isInOrder());
+    }
+
+    @Test
+    public void outTest() {
+        MyDeck myDeck = new MyDeck(3);
+        System.out.println(myDeck.representation());
+        myDeck.out();
+        System.out.println(myDeck.representation());
     }
 }

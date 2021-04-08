@@ -78,13 +78,13 @@ public class MyDeck extends Deck {
 
 	@Override
 	public Card peekTop() {
-		return last.card;
+		return first.card;
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public Card peekBottom() {
-		return first.card;
+		return last.card;
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
@@ -114,6 +114,7 @@ public class MyDeck extends Deck {
 				last.next = node.next;
 			}
 			last = node.next;
+			newDeck.N++;
 		}
 
 		return newDeck;
@@ -132,22 +133,44 @@ public class MyDeck extends Deck {
 		//if (N % 2 != 0) throw new RuntimeException("Deck is a odd length!");
 
 		Node fast = first;
-		Node current = first;
 		while (fast.next.next != null) {
 			fast = fast.next.next;
-			current = current.next;
+			first = first.next;
 		}
-		System.out.println(current.card.toString());
-		last = current;
-		last.next = null;
+		//last.next = null;
 
-		return current;
+		return first;
 		//throw new RuntimeException("To Be Completed By Student");
+	}
+
+	public void cutTest() {
+		System.out.println("Output: " + cutInHalf().card);
 	}
 
 	@Override
 	public void out() {
-		cutInHalf();
+		//System.out.println("Cut in half node: " + cutInHalf().card);
+		//Node secondNode = cutInHalf();
+		Node second = cutInHalf();
+		System.out.println("Half: " + second.card);
+		last = null;
+		while (second != null) {
+			if (last == null) {
+				last = second;
+			} else {
+				last.next = second;
+			}
+
+			Node next = second.next;
+			second.next = first;
+			second = next;
+			last = first;
+
+			next = first.next;
+			first.next = null;
+			first = next;
+		}
+
 		/*int mid = N/2;
 		for (Node node = first; node != null; node = node.next) {
 
@@ -193,6 +216,9 @@ public class MyDeck extends Deck {
 
 	@Override
 	public boolean isInReverseOrder() {
+		for (int i = Suit.values().length; i > 0; i--) {
+
+		}
 		throw new RuntimeException("To Be Completed By Student");
 	}
 }
