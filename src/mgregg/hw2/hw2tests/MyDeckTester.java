@@ -49,6 +49,20 @@ public class MyDeckTester {
     }
 
     @Test
+    public void isReverseOrder() {
+        MyDeck myDeck = new MyDeck(3);
+        System.out.println("Representation Before: " + myDeck.representation());
+        int index = 0;
+        while (!myDeck.isInReverseOrder()) {
+            myDeck.in();
+            index++;
+        }
+        System.out.println("Representation After: " + myDeck.representation());
+        System.out.println("Index: " + index);
+        //assertTrue(myDeck.isInReverseOrder());
+    }
+
+    @Test
     public void outTest() {
         System.out.println("out() Test --------------------------------------------------------" + "\n");
         MyDeck myDeck = new MyDeck(2);

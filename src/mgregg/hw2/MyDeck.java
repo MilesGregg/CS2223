@@ -109,12 +109,9 @@ public class MyDeck extends Deck {
 
 	@Override
 	protected Node cutInHalf() {
-		if ((size()*4) % 2 != 0) throw new RuntimeException("Deck is a odd length!");
-
 		Node fast = first;
 		Node slow = first;
 		while (fast != null) {
-			//fast = fast.next.next;
 			slow = slow.next;
 			if (slow == null || slow.next == null) {
 				Node secondHalf = fast.next;
@@ -131,7 +128,7 @@ public class MyDeck extends Deck {
 	}
 
 	public void cutTest() {
-		System.out.println("Output: " + cutInHalf().card);
+		System.out.println("Mid: " + cutInHalf().card);
 	}
 
 	@Override
@@ -139,8 +136,8 @@ public class MyDeck extends Deck {
 		Node firstNode = first;
 		Node secondNode = cutInHalf();
 
-		System.out.println("FirstNode: " + firstNode.card);
-		System.out.println("secondNode: " + secondNode.card);
+		//System.out.println("FirstNode: " + firstNode.card);
+		//System.out.println("secondNode: " + secondNode.card);
 
 		Node combined = null;
 		Node tail = null;
@@ -172,8 +169,8 @@ public class MyDeck extends Deck {
 		Node firstNode = first;
 		Node secondNode = cutInHalf();
 
-		System.out.println("FirstNode: " + firstNode.card);
-		System.out.println("secondNode: " + secondNode.card);
+		//System.out.println("FirstNode: " + firstNode.card);
+		//System.out.println("secondNode: " + secondNode.card);
 
 		Node combined = null;
 		Node tail = null;
@@ -229,14 +226,15 @@ public class MyDeck extends Deck {
 	@Override
 	public boolean isInReverseOrder() {
 		Node node = first;
-		/*for (int i = Suit.values().length; i > 0; i--) {
-			for (int card = size()/4; card ; card++) {
-				if (node.card.suit != suit || node.card.rank != card) {
+		for (int suit = Suit.values().length-1; suit > 0; suit--) {
+			for (int card = size()/4; card > 0; card--) {
+				if (node.card.suit != Suit.values()[suit] || node.card.rank != card) {
 					return false;
 				}
 				node = node.next;
 			}
-		}*/
-		throw new RuntimeException("To Be Completed By Student");
+		}
+		return true;
+		//throw new RuntimeException("To Be Completed By Student");
 	}
 }
