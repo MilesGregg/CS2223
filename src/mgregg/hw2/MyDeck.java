@@ -87,14 +87,14 @@ public class MyDeck extends Deck {
 	@Override
 	public Deck copy() {
 		MyDeck newDeck = new MyDeck();
-		System.out.println("First Card New: " + newDeck.first);
 		for (Node node = first; node != null; node = node.next) {
+			Node newNode = new Node(node.card);
 			if (newDeck.first == null) {
-				newDeck.first = node;
+				newDeck.first = newNode;
 			} else {
-				newDeck.last.next = node;
+				newDeck.last.next = newNode;
 			}
-			newDeck.last = node;
+			newDeck.last = newNode;
 			newDeck.N++;
 		}
 
@@ -110,46 +110,40 @@ public class MyDeck extends Deck {
 
 	@Override
 	protected Node cutInHalf() {
-		/*Node fast = first;
+		Node fast = first;
 		Node slow = first;
 		while (fast != null) {
 			slow = slow.next;
 			if (slow == null || slow.next == null) {
 				Node secondHalf = fast.next;
 				fast.next = null;
+				Node output = first;
+				first = secondHalf;
 				this.N /= 2;
-				return secondHalf;
+				return output;
 			}
 			fast = fast.next;
 			slow = slow.next;
 		}
 
-		return null;*/
-
-		Node firstNode = first;
-		Node fast = first;
-		while (fast.next.next != null) {
-			fast = fast.next.next;
-			firstNode = firstNode.next;
-		}
-
-		Node secondHalf = firstNode.next;
-		firstNode.next = null;
-		this.N /= 2;
-		return secondHalf;
+		return null;
 
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	public void cutTest() {
-		System.out.println("Mid: " + cutInHalf().card);
+		System.out.println("Cutting Deck");
+		System.out.println("Returned Node: " + cutInHalf().card);
+		System.out.println("First Node: " + first.card);
+		System.out.println("First Next Node: " + first.next.card);
+		System.out.println("Last Node: " + last.card);
 	}
 
 	@Override
 	public void out() {
-		Node firstNode = first;
-		Node secondNode = cutInHalf();
-		System.out.println("Half Way Point for out(): " + secondNode.card.toString());
+		Node firstNode = cutInHalf();
+		Node secondNode = first;
+		//System.out.println("Half Way Point for out(): " + secondNode.card.toString());
 
 		//System.out.println("FirstNode: " + firstNode.card);
 		//System.out.println("secondNode: " + secondNode.card);
@@ -181,9 +175,10 @@ public class MyDeck extends Deck {
 
 	@Override
 	public void in() {
-		Node firstNode = first;
-		Node secondNode = cutInHalf();
-		System.out.println("Half Way Point for in(): " + secondNode.card.toString());
+		Node firstNode = cutInHalf();
+		Node secondNode = first;
+		//System.out.println("Half Way Point for in(): " + secondNode.card.toString());
+		//System.out.println("First Node: " + firstNode.card);
 
 		//System.out.println("FirstNode: " + firstNode.card);
 		//System.out.println("secondNode: " + secondNode.card);

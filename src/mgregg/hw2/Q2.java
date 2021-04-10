@@ -56,8 +56,8 @@ public class Q2 {
 				output.append(currentState.shuffle);
 
 				if (currentState.deck.match(currentCard, 1)) {
-					shuffles.put(currentCard, output.toString());
-					System.out.println("HERE");
+					shuffles.put(currentState.deck.peekTop(), output.toString());
+					ordered.put(currentState.deck.peekTop(), currentState.deck);
 					break;
 				}
 

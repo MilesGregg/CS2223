@@ -26,7 +26,7 @@ public class MyDeckTester {
 
     @Test
     public void cutInHalfTest() {
-        MyDeck myDeck = new MyDeck(3);
+        MyDeck myDeck = new MyDeck(2);
         System.out.println("Before Cut: " + myDeck.representation());
         myDeck.cutTest();
         System.out.println("After Cut: " + myDeck.representation());
@@ -84,7 +84,7 @@ public class MyDeckTester {
         System.out.println("\n" + "-------------------------------------------------------------------");
 
         System.out.println("\nout() Test --------------------------------------------------------" + "\n");
-        MyDeck myDeck1 = new MyDeck(13);
+        MyDeck myDeck1 = new MyDeck(2);
         System.out.println("Before out() Deck Shuffle: " + myDeck1.representation());
         Deck newDeck1 = myDeck1.copy();
         Deck newDeck2 = myDeck1.copy();
@@ -95,10 +95,12 @@ public class MyDeckTester {
         System.out.println("New Deck Copy 1: " + newDeck1.representation());
         System.out.println("New Deck Copy 2: " + newDeck2.representation());
 
-        newDeck2.out();
-        newDeck1.in();
+        newDeck1.out();
+        System.out.println("New Deck 2 Rep: " + newDeck2.representation());
+        newDeck2.in();
 
-        System.out.println("After out() Deck Shuffle:  " + newDeck1.representation());
+        System.out.println("After out() Deck 1 Shuffle:  " + newDeck1.representation());
+        System.out.println("After in() Deck 2 Shuffle:  " + newDeck2.representation());
 
         /*String representationOutput1 = myDeck1.representation();
         assertEquals("AC AH AD AS", representationOutput1);
