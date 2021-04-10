@@ -9,6 +9,8 @@ import algs.hw2.State;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.SequentialSearchST;
 
+import java.util.Iterator;
+
 /**
  * For this assignment, you should only have to modify the part where it says
  *
@@ -37,9 +39,40 @@ public class Q2 {
 		Queue<State> queue = new Queue<>();
 		queue.enqueue(state);
 
+		AllCards allCards = new AllCards();
+		Iterator<Card> iterator = allCards.iterator();
+
+		StringBuilder output = new StringBuilder();
+
 		// Until you have an entry for every possible card, continue your search
 		while (ordered.size() < deck.size()) {
 			// HERE IS WHERE YOUR LOGIC GOES.....
+			Card currentCard = iterator.next();
+			queue.enqueue(state);
+			while (true) {
+				System.out.println("Size: " + queue.size());
+				State currentState = queue.dequeue();
+
+				output.append(currentState.shuffle);
+
+				if (currentState.deck.match(currentCard, 1)) {
+					shuffles.put(currentCard, output.toString());
+					System.out.println("HERE");
+					break;
+				}
+
+				Deck deck1 = currentState.deck.copy();
+				Deck deck2 = currentState.deck.copy();
+
+				System.out.println("Deck 1 rep: " + deck1.representation());
+				System.out.println("Deck 2 rep: " + deck2.representation());
+
+				deck1.in();
+				deck2.out();
+
+				queue.enqueue(new State(deck1, "I"));
+				queue.enqueue(new State(deck2, "O"));
+			}
 		}
 
 		for (Card c : new AllCards()) {

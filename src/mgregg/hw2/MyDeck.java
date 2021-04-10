@@ -11,7 +11,7 @@ import algs.hw2.Suit;
  *
  */
 public class MyDeck extends Deck {
-	private int N = 1;
+	private int N = 0;
 
 	/**
 	 * Ensure that no one OUTSIDE of this class invokes the no-argument constructor. You will find
@@ -21,6 +21,7 @@ public class MyDeck extends Deck {
 	 *
 	 */
 	protected MyDeck() {
+		this.N = 0;
 		// You do not need to modify this method. This constructor exists to ensure that
 		// within this class, you can construct an empty MyDeck whose first and last are null.
 	}
@@ -71,10 +72,9 @@ public class MyDeck extends Deck {
 	@Override
 	public boolean match(Card c, int n) {
 		int currentIndex = 1;
-		int targetIndex = N-n;
 		boolean output = false;
 		for (Node node = first; node != null; node = node.next) {
-			if (currentIndex == targetIndex) {
+			if (currentIndex == n) {
 				output = node.card.equals(c);
 				break;
 			}
@@ -87,13 +87,14 @@ public class MyDeck extends Deck {
 	@Override
 	public Deck copy() {
 		MyDeck newDeck = new MyDeck();
+		System.out.println("First Card New: " + newDeck.first);
 		for (Node node = first; node != null; node = node.next) {
 			if (newDeck.first == null) {
 				newDeck.first = node;
 			} else {
-				last.next = node.next;
+				newDeck.last.next = node;
 			}
-			last = node.next;
+			newDeck.last = node;
 			newDeck.N++;
 		}
 
@@ -109,7 +110,7 @@ public class MyDeck extends Deck {
 
 	@Override
 	protected Node cutInHalf() {
-		Node fast = first;
+		/*Node fast = first;
 		Node slow = first;
 		while (fast != null) {
 			slow = slow.next;
@@ -123,7 +124,20 @@ public class MyDeck extends Deck {
 			slow = slow.next;
 		}
 
-		return null;
+		return null;*/
+
+		Node firstNode = first;
+		Node fast = first;
+		while (fast.next.next != null) {
+			fast = fast.next.next;
+			firstNode = firstNode.next;
+		}
+
+		Node secondHalf = firstNode.next;
+		firstNode.next = null;
+		this.N /= 2;
+		return secondHalf;
+
 		//throw new RuntimeException("To Be Completed By Student");
 	}
 
@@ -135,18 +149,19 @@ public class MyDeck extends Deck {
 	public void out() {
 		Node firstNode = first;
 		Node secondNode = cutInHalf();
+		System.out.println("Half Way Point for out(): " + secondNode.card.toString());
 
 		//System.out.println("FirstNode: " + firstNode.card);
 		//System.out.println("secondNode: " + secondNode.card);
 
-		Node combined = null;
+		Node head = null;
 		Node tail = null;
 
 		while (firstNode != null) {
-			if (combined == null) {
-				combined = firstNode;
+			if (head == null) {
+				head = firstNode;
 				firstNode = firstNode.next;
-				combined.next = secondNode;
+				head.next = secondNode;
 			} else {
 				tail.next = firstNode;
 				firstNode = firstNode.next;
@@ -157,7 +172,7 @@ public class MyDeck extends Deck {
 			secondNode = secondNode.next;
 		}
 
-		first = combined;
+		first = head;
 		last = tail;
 		this.N *= 2;
 
@@ -168,18 +183,19 @@ public class MyDeck extends Deck {
 	public void in() {
 		Node firstNode = first;
 		Node secondNode = cutInHalf();
+		System.out.println("Half Way Point for in(): " + secondNode.card.toString());
 
 		//System.out.println("FirstNode: " + firstNode.card);
 		//System.out.println("secondNode: " + secondNode.card);
 
-		Node combined = null;
+		Node head = null;
 		Node tail = null;
 
 		while (firstNode != null) {
-			if (combined == null) {
-				combined = secondNode;
+			if (head == null) {
+				head = secondNode;
 				secondNode = secondNode.next;
-				combined.next = firstNode;
+				head.next = firstNode;
 			} else {
 				tail.next = secondNode;
 				secondNode = secondNode.next;
@@ -190,7 +206,7 @@ public class MyDeck extends Deck {
 			firstNode = firstNode.next;
 		}
 
-		first = combined;
+		first = head;
 		last = tail;
 		this.N *= 2;
 

@@ -12,7 +12,7 @@ public class MyDeckTester {
         String output = "AC 2C 3C AD 2D 3D AH 2H 3H AS 2S 3S";
 
         assertEquals(myDeck.representation(), output);
-        assertEquals(myDeck.size(), 13);
+        assertEquals(myDeck.size(), 12);
         assertEquals(myDeck.peekTop().toString(), "AC");
         assertEquals(myDeck.peekBottom().toString(), "3S");
     }
@@ -21,7 +21,7 @@ public class MyDeckTester {
     public void matchTest() {
         MyDeck myDeck = new MyDeck(3);
 
-        assertTrue(myDeck.match(new Card("3H"), 4));
+        assertTrue(myDeck.match(new Card("2S"), 11));
     }
 
     @Test
@@ -40,6 +40,16 @@ public class MyDeckTester {
         System.out.println(newDeck.representation());
         assertEquals(myDeck.representation(), newDeck.representation());
         assertEquals(myDeck.size(), newDeck.size());
+
+        System.out.println("\n-----------------------------------------------------\n");
+
+        MyDeck myDeck1 = new MyDeck(3);
+        myDeck1.out();
+        Deck newDeck1 = myDeck1.copy();
+        System.out.println(newDeck1.size());
+        System.out.println(newDeck1.representation());
+        assertEquals(myDeck1.representation(), newDeck1.representation());
+        assertEquals(myDeck1.size(), newDeck1.size());
     }
 
     @Test
@@ -70,7 +80,29 @@ public class MyDeckTester {
         myDeck.out();
         String representationOutput = myDeck.representation();
         assertEquals("AC AH 2C 2H AD AS 2D 2S", representationOutput);
-        System.out.println("Before out() Deck Shuffle: " + myDeck.representation());
+        System.out.println("After out() Deck Shuffle: " + myDeck.representation());
+        System.out.println("\n" + "-------------------------------------------------------------------");
+
+        System.out.println("\nout() Test --------------------------------------------------------" + "\n");
+        MyDeck myDeck1 = new MyDeck(13);
+        System.out.println("Before out() Deck Shuffle: " + myDeck1.representation());
+        Deck newDeck1 = myDeck1.copy();
+        Deck newDeck2 = myDeck1.copy();
+
+        assertEquals(myDeck1.representation(), newDeck1.representation());
+        assertEquals(myDeck1.representation(), newDeck2.representation());
+
+        System.out.println("New Deck Copy 1: " + newDeck1.representation());
+        System.out.println("New Deck Copy 2: " + newDeck2.representation());
+
+        newDeck2.out();
+        newDeck1.in();
+
+        System.out.println("After out() Deck Shuffle:  " + newDeck1.representation());
+
+        /*String representationOutput1 = myDeck1.representation();
+        assertEquals("AC AH AD AS", representationOutput1);
+        System.out.println("After out() Deck Shuffle: " + myDeck1.representation());*/
         System.out.println("\n" + "-------------------------------------------------------------------");
     }
 

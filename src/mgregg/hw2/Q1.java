@@ -21,7 +21,7 @@ public class Q1 {
     }
 
     private static void Q1_2() {
-        System.out.println("\n" + "Q1.2. How many in() shuffles to return deck to original position[10 points]");
+        System.out.println("\n" + "Q1.2. How many out() shuffles to return deck to original position[10 points]");
         for (int i = 1; i <= MAX_RANK; i++) {
             MyDeck myDeck = new MyDeck(i);
             int times = 0;
@@ -33,7 +33,7 @@ public class Q1 {
             }
 
             String output = String.valueOf(i);
-            System.out.println("max_rank = " + output + (output.length() == 1 ? " " : "") + "      #in() = " + times);
+            System.out.println("max_rank = " + output + (output.length() == 1 ? " " : "") + "      #out() = " + times);
         }
     }
 
