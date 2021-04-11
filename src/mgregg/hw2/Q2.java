@@ -42,21 +42,20 @@ public class Q2 {
 		AllCards allCards = new AllCards();
 		Iterator<Card> iterator = allCards.iterator();
 
-		StringBuilder output = new StringBuilder();
-
 		// Until you have an entry for every possible card, continue your search
 		while (ordered.size() < deck.size()) {
 			// HERE IS WHERE YOUR LOGIC GOES.....
 			Card currentCard = iterator.next();
+			while (!queue.isEmpty()) {
+				queue.dequeue();
+			}
 			queue.enqueue(state);
 			while (true) {
-				System.out.println("Size: " + queue.size());
+				//System.out.println("Size: " + queue.size());
 				State currentState = queue.dequeue();
 
-				output.append(currentState.shuffle);
-
 				if (currentState.deck.match(currentCard, 1)) {
-					shuffles.put(currentState.deck.peekTop(), output.toString());
+					shuffles.put(currentState.deck.peekTop(), currentState.shuffle);
 					ordered.put(currentState.deck.peekTop(), currentState.deck);
 					break;
 				}
@@ -64,14 +63,14 @@ public class Q2 {
 				Deck deck1 = currentState.deck.copy();
 				Deck deck2 = currentState.deck.copy();
 
-				System.out.println("Deck 1 rep: " + deck1.representation());
-				System.out.println("Deck 2 rep: " + deck2.representation());
-
 				deck1.in();
 				deck2.out();
 
-				queue.enqueue(new State(deck1, "I"));
-				queue.enqueue(new State(deck2, "O"));
+				String newString1 = currentState.shuffle + "I";
+				String newString2 = currentState.shuffle + "O";
+
+				queue.enqueue(new State(deck1, newString1));
+				queue.enqueue(new State(deck2, newString2));
 			}
 		}
 
