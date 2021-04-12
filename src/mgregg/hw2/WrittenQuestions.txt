@@ -1,4 +1,16 @@
-<<Your Name Here>>
+<<Miles Gregg>>
 HW2
 Written Questions
 
+
+Q1.0 Linked Lists:
+
+    Q1.1. How many in() shuffles to return deck to original position:
+
+        Did in Q1.java file. Just run the main() method to see the output.
+
+    Q1.2. How many out() shuffles to return deck to original position:
+
+        Did in Q1.java file. Just run the main() method to see the output.
+
+    Q1.3. How many in() shuffles to reverse the state of a deck

@@ -4,36 +4,24 @@ import java.util.Arrays;
 
 public class Test {
 
-    static long power(int base, int exp) {
-        return (long) Math.pow(base, exp);
-    }
-    public static long proc(int[] a, int lo, int hi) {
-        if (lo == hi) {
-            return power(a[lo], 2) + power(a[hi],2);
-        }
+    public static void main(String[] args) {
+
+        int len = 16;
+
+        int lo = 0;
+        int hi = len-1;
         int m = (lo + hi) / 2;
-        long total = proc(a, lo, m);
+        int count = 0;
+
         while (hi > lo) {
+            count++;
+            System.out.println("HERE: " + count);
             m = (lo + hi) / 2;
-            total += power(a[m], 2);
             hi = m;
         }
-        return total;
-    }
 
-    static double proc2(int[] a, int lo, int hi) {
-        if (lo == hi) { return Math.sqrt(a[lo]) + Math.sqrt(a[hi]);}
 
-        int m = lo + (hi-lo) / 2;
-        double total= Math.sqrt(proc2(a, lo, m) + proc2(a, m+1, hi));
 
-        for(int i= lo; i <= hi; i++) {
-            total+= Math.sqrt(a[i]);
-        }
-        return total;
-    }
-
-    public static void main(String[] args) {
         /*int[][] array = {
                 {0, 1, 2, 3, 4},
                 {1, 2, 3, 4, 5},
@@ -58,16 +46,16 @@ public class Test {
         System.out.println("x: " + y);
         System.out.println("other value: " + (y+z));*/
 
-        int[] a = new int[10];
-        for (int i = 0; i < 10; i++) { a[i] = i; }
+        //int[] a = new int[10];
+        //for (int i = 0; i < 10; i++) { a[i] = i; }
 
         // initiate the request on an array of size n, containing values from 0 to n-1
         // using indices of lo=0 and hi=n-1
-        long val = proc(a, 0, 10-1);
-        double val2 = proc2(a, 0, 10-1);
+        //long val = proc(a, 0, 10-1);
+        //double val2 = proc2(a, 0, 10-1);
 
-        System.out.println(val);
-        System.out.println(val2);
+        //System.out.println(val);
+        //System.out.println(val2);
 
 
         /*for (int i = 0; i < 6; i += 3) {

@@ -46,10 +46,13 @@ Your task is to modify the program so it produces the following
  */
 public class Q3 {
 
+	private static int count = 0;
+
 	/**
 	 * Helper method to compute base^exp as a long.
 	 */
 	static long power(int base, int exp) {
+		count++;
 		return (long) Math.pow(base, exp);
 	}
 
@@ -58,12 +61,14 @@ public class Q3 {
 	 */
 	public static long proc(int[] a, int lo, int hi) {
 		if (lo == hi) {
+			//System.out.println("In base case");
 			return power(a[lo], 2) + power(a[hi],2);
 		}
 
 		int m = (lo + hi) / 2;
 		long total = proc(a, lo, m);
 		while (hi > lo) {
+			System.out.println("HERE");
 			m = (lo + hi) / 2;
 			total += power(a[m], 2);
 			hi = m;
@@ -78,7 +83,8 @@ public class Q3 {
 	 */
 	static long model(int n) {
 		// FIX ME
-		return 0;
+		double output = Math.log(n)/Math.log(2) + n - 1;
+		return (long) output;
 	}
 
 	/**
@@ -94,7 +100,7 @@ public class Q3 {
 	public static void main(String[] args) {
 		System.out.println("    N          Value            Actual     Predicted");
 		for (int n = 2; n <= 4096; n *= 2) {
-
+			count = 0;
 			int[] a = new int[n];
 			for (int i = 0; i < n; i++) { a[i] = i; }
 
@@ -103,7 +109,7 @@ public class Q3 {
 			long val = proc(a, 0, n-1);
 
 			// WILL NEED TO FIX BELOW
-			System.out.println(String.format("%6d\t%12d", n, val, 0, model(n)));
+			System.out.println(String.format("%6d\t%12d\t%14d\t%12d", n, val, count, model(n)));
 		}
 	}
 }
