@@ -7,7 +7,9 @@ Q1.0 Linked Lists:
 
     Q1.1. How many in() shuffles to return deck to original position:
 
-        Did in Q1.java file. Just run the main() method to see the output.
+        Did in Q1.java file. Just run the main() method to see the output. Also here is the output tables:
+
+
 
     Q1.2. How many out() shuffles to return deck to original position:
 

@@ -7,17 +7,69 @@ Q1.0 Linked Lists:
 
     Q1.1. How many in() shuffles to return deck to original position:
 
-        Did in Q1.java file. Just run the main() method to see the output.
+        Did in Q1.java file. Just run the main() method to see the output. The outputted table is below:
+
+            max_rank          #in()
+                   1	          4
+                   2	          6
+                   3	         12
+                   4	          8
+                   5	          6
+                   6	         20
+                   7	         28
+                   8	         10
+                   9	         36
+                  10	         20
+                  11	         12
+                  12	         21
+                  13	         52
+                  14	         18
+                  15	         60
+                  16	         12
+                  17	         22
+                  18	          9
+                  19	         30
+                  20	         54
 
     Q1.2. How many out() shuffles to return deck to original position:
 
+        Did in Q1.java file. Just run the main() method to see the output. The outputted table is below:
+
+            max_rank          #in()
+                   1	          2
+                   2	          3
+                   3	         10
+                   4	          4
+                   5	         18
+                   6	         11
+                   7	         18
+                   8	          5
+                   9	         12
+                  10	         12
+                  11	         14
+                  12	         23
+                  13	          8
+                  14	         20
+                  15	         58
+                  16	          6
+                  17	         66
+                  18	         35
+                  19	         20
+                  20	         39
+
+    Q1.3. How many in() shuffles to reverse the state of a deck?
+
         Did in Q1.java file. Just run the main() method to see the output.
 
-    Q1.3. How many in() shuffles to reverse the state of a deck
+        Answer: It takes 26 in shuffles to reverse the state of a deck of 52 cards.
 
+    Q1.3.1. What is the smallest max_rank for which no amount of in() shuffles produce the reversed ordering?
 
+        Did in Q1.java file. Just run the main() method to see the output.
 
-Q3.0:
+        Answer: The smallest max_rank for which no amount of in() shuffles produce the reversed ordering is 5.
+
+Q3.0 Mathematical Analysis:
 
     Q3.1. Identify the Base Case for S() and the Recursive Case for S(N):
 

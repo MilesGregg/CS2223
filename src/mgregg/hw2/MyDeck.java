@@ -245,6 +245,7 @@ public class MyDeck extends Deck {
 				node = node.next;
 			}
 		}
+
 		return true;
 		//throw new RuntimeException("To Be Completed By Student");
 	}

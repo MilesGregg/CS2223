@@ -20,8 +20,12 @@ public class MyDeckTester {
     @Test
     public void matchTest() {
         MyDeck myDeck = new MyDeck(3);
+        MyDeck myDeck2 = new MyDeck(13);
+        System.out.println(myDeck2.representation());
 
         assertTrue(myDeck.match(new Card("2S"), 11));
+        assertTrue(myDeck2.match(new Card("AC"), 1));
+        assertTrue(myDeck2.match(new Card("KS"), 52));
     }
 
     @Test
