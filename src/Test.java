@@ -6,18 +6,29 @@ public class Test {
 
     public static void main(String[] args) {
 
-        int len = 16;
+        for (int n = 2; n <= 4096; n *= 2) {
 
-        int lo = 0;
-        int hi = len-1;
-        int m = (lo + hi) / 2;
-        int count = 0;
+            int len = n;
 
-        while (hi > lo) {
-            count++;
-            System.out.println("HERE: " + count);
-            m = (lo + hi) / 2;
-            hi = m;
+            int lo = 0;
+            int hi = len - 1;
+            int m = (lo + hi) / 2;
+            int count = 0;
+
+            System.out.println("--------------");
+            System.out.println("size of n: " + n);
+
+            count = 0;
+            lo = 0;
+
+            System.out.println("      ");
+
+            while (hi > lo) {
+                count++;
+                System.out.println("count: " + count);
+                m = (lo + hi) / 2;
+                hi = m;
+            }
         }
 
 

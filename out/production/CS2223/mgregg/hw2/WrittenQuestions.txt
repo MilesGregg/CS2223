@@ -14,3 +14,30 @@ Q1.0 Linked Lists:
         Did in Q1.java file. Just run the main() method to see the output.
 
     Q1.3. How many in() shuffles to reverse the state of a deck
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
