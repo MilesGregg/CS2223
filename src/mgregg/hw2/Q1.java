@@ -39,12 +39,30 @@ public class Q1 {
 
     private static void Q1_3() {
         System.out.println("\n" + "Q1.3. How many in() shuffles to reverse the state of a deck[8 points]");
+        MyDeck myDeck = new MyDeck(13);
+        int times = 0;
+        while (!myDeck.isInReverseOrder()) {
+            myDeck.in();
+            times++;
+        }
+
+        System.out.println("max_rank = 13" + "      #in() = " + times);
+    }
+
+    private static void Q1_3_1() {
+        System.out.println("\n" + "Q1.3.1. What is the smallest max_rank for" +
+                " which no amount of in() shuffles produce the reversed ordering?");
         for (int i = 1; i <= MAX_RANK; i++) {
             MyDeck myDeck = new MyDeck(i);
             int times = 0;
+            long time = System.currentTimeMillis();
             while (!myDeck.isInReverseOrder()) {
                 myDeck.in();
                 times++;
+
+                if (System.currentTimeMillis() > time+15000) {
+                    throw new RuntimeException("Taking WAY TO LONG!");
+                }
             }
 
             String output = String.valueOf(i);
@@ -56,5 +74,7 @@ public class Q1 {
         Q1_1();
         Q1_2();
         Q1_3();
+
+        Q1_3_1();
     }
 }

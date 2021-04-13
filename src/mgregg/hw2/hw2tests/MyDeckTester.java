@@ -26,9 +26,11 @@ public class MyDeckTester {
 
     @Test
     public void cutInHalfTest() {
-        MyDeck myDeck = new MyDeck(2);
+        final int max_rank = 2;
+        MyDeck myDeck = new MyDeck(max_rank);
         System.out.println("Before Cut: " + myDeck.representation());
         myDeck.cutTest();
+        assertEquals(myDeck.size(), (max_rank*4)/2);
         System.out.println("After Cut: " + myDeck.representation());
     }
 

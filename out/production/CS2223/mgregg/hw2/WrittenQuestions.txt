@@ -17,27 +17,25 @@ Q1.0 Linked Lists:
 
 
 
+Q3.0:
 
+    Q3.1. Identify the Base Case for S() and the Recursive Case for S(N):
 
+        Base case: S(0) = 2
+                   S(1) = 2
 
+        Recursive case: S(N) = S(N/2) + Log(N)
 
+    Q3.2. Derive an exact solution to the recurrence for S(N) when N is a power of 2:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        S(N) = S(N/2) + log(N)
+        	 = [S(N/4) + log(N/2)] + log(N)
+        	 = [[S(N/8) + log(N/4)] + log(N/2)] + log(N)
+        	 = S(N/8) + (log(N) - log(4)) + (log(N) - log(2)) + log(N)
+        	 = S(N/8) + (log(N) - 2) + (log(N) - 1) - log(N)                 N = 2^k
+        	 = S(N/8) + 3*(log(N)) - (2 + 1 + 0)							 k = log N
+        	 = S(N/2^3) + 3*(log(N)) - (2 + 1 + 0)
+        	 = S(N/2^k) + k*(log(N)) - sum(1 to k-1)
+        	 = S(N/2^k) + k*(log(N)) - ((k-1)*k/2)
+        	 = S(N/N) + log(N)*Log(N) - (((log(N)-1)*log(N))/2)
+        	 = 2 + log(N)*Log(N) - (((log(N)-1)*log(N))/2)
