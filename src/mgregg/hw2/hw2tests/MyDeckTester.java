@@ -30,7 +30,7 @@ public class MyDeckTester {
 
     @Test
     public void cutInHalfTest() {
-        final int max_rank = 2;
+        final int max_rank = 3;
         MyDeck myDeck = new MyDeck(max_rank);
         System.out.println("Before Cut: " + myDeck.representation());
         myDeck.cutTest();
@@ -108,9 +108,9 @@ public class MyDeckTester {
         System.out.println("After out() Deck 1 Shuffle:  " + newDeck1.representation());
         System.out.println("After in() Deck 2 Shuffle:  " + newDeck2.representation());
 
-        /*String representationOutput1 = myDeck1.representation();
-        assertEquals("AC AH AD AS", representationOutput1);
-        System.out.println("After out() Deck Shuffle: " + myDeck1.representation());*/
+        String representationOutput1 = myDeck1.representation();
+        assertEquals("AC 2C AD 2D AH 2H AS 2S", representationOutput1);
+        System.out.println("After out() Deck Shuffle: " + myDeck1.representation());
         System.out.println("\n" + "-------------------------------------------------------------------");
     }
 
