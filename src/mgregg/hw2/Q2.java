@@ -40,18 +40,17 @@ public class Q2 {
 		queue.enqueue(state);
 
 		AllCards allCards = new AllCards();
-		Iterator<Card> iterator = allCards.iterator();
+		Iterator<Card> cardIterator = allCards.iterator();
 
 		// Until you have an entry for every possible card, continue your search
 		while (ordered.size() < deck.size()) {
 			// HERE IS WHERE YOUR LOGIC GOES.....
-			Card currentCard = iterator.next();
+			Card currentCard = cardIterator.next();
 			while (!queue.isEmpty()) {
 				queue.dequeue();
 			}
 			queue.enqueue(state);
 			while (true) {
-				//System.out.println("Size: " + queue.size());
 				State currentState = queue.dequeue();
 
 				if (currentState.deck.match(currentCard, 1)) {

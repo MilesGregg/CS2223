@@ -73,9 +73,7 @@ Q3.0 Mathematical Analysis:
 
     Q3.1. Identify the Base Case for S() and the Recursive Case for S(N):
 
-        Base case: S(0) = 2
-                   S(1) = 2
-
+        Base case: S(1) = 2
         Recursive case: S(N) = S(N/2) + Log(N)
 
     Q3.2. Derive an exact solution to the recurrence for S(N) when N is a power of 2:

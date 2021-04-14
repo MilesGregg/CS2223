@@ -46,13 +46,13 @@ Your task is to modify the program so it produces the following
  */
 public class Q3 {
 
-	private static int count = 0;
+	private static int powerCount = 0;
 
 	/**
 	 * Helper method to compute base^exp as a long.
 	 */
 	static long power(int base, int exp) {
-		count++;
+		powerCount++;
 		return (long) Math.pow(base, exp);
 	}
 
@@ -75,53 +75,17 @@ public class Q3 {
 		return total;
 	}
 
-	/*
-	  S(N) = S(N/2) + log(N)
-	       = [S(N/4) + log(N/2)] + log(N)
-	       = [[S(N/8) + log(N/4)] + log(N/2)] + log(N)
-	       = S(N/8) + (log(N) - log(4)) + (log(N) - log(2)) + log(N)
-	       = S(N/8) + (log(N) - 2) + (log(N) - 1) - log(N)                 N = 2^k
-	       = S(N/8) + 3*(log(N)) - (2 + 1 + 0)							   k = log N
-	       = S(N/2^3) + 3*(log(N)) - (2 + 1 + 0)
-	       = S(N/2^k) + k*(log(N)) - sum(1 to k-1)
-	       = S(N/2^k) + k*(log(N)) - ((k-1)*k/2)
-	       = S(N/N) + log(N)*Log(N) - (((log(N)-1)*log(N))/2)
-	       = 2 + log(N)*Log(N) - (((log(N)-1)*log(N))/2)
-
-
-
-
-
-
-	       1 + 2 + 3 + 4 = 10 = 4 * 5 / 2 = (p*(p+1)/2)
-
-	       								  = ((k-1)*((k-1)+1)/2)
-
-
-	       = S(N/2^n) + (log(2^n) - 2) + (log(2^n) - 1) - log(2^n)
-	       = S(N/N) + (log(N) - 2) + (log(N) - 1) - log(N)
-	       =
-	 */
-
 	/**
 	 * Complete your analysis of the code and modify this function to return the prediction
 	 * of how many times Math.power() is called for an initial problem of size n.
 	 */
 	static long model(int n) {
-		// FIX ME
-		//double output = Math.log(n)/Math.log(2) + n - 1;
-		//double output = Math.log(n)/Math.log(2);
+		// FIX ME\
 
 		// calculating the log of n in base 2
 		double log_of_n = Math.log(n)/Math.log(2);
 
 		return (long) (2 + log_of_n * log_of_n - ((log_of_n - 1) * log_of_n) / 2);
-
-
-		//(((Math.pow(output, 2) + output) / 2) + 2);
-
-		// another way to write the model
-		//(2 + output * output - output * ((output - 1) / 2));
 	}
 
 	/**
@@ -137,7 +101,7 @@ public class Q3 {
 	public static void main(String[] args) {
 		System.out.println("    N          Value            Actual     Predicted");
 		for (int n = 2; n <= 4096; n *= 2) {
-			count = 0;
+			powerCount = 0;
 			int[] a = new int[n];
 			for (int i = 0; i < n; i++) { a[i] = i; }
 
@@ -146,7 +110,7 @@ public class Q3 {
 			long val = proc(a, 0, n-1);
 
 			// WILL NEED TO FIX BELOW
-			System.out.println(String.format("%6d\t%12d\t%14d\t%12d", n, val, count, model(n)));
+			System.out.println(String.format("%6d\t%12d\t%14d\t%12d", n, val, powerCount, model(n)));
 		}
 	}
 }

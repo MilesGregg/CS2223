@@ -28,7 +28,7 @@ public class MyDeckTester {
         assertTrue(myDeck2.match(new Card("KS"), 52));
     }
 
-    @Test
+    /*@Test
     public void cutInHalfTest() {
         final int max_rank = 3;
         MyDeck myDeck = new MyDeck(max_rank);
@@ -36,7 +36,7 @@ public class MyDeckTester {
         myDeck.cutTest();
         assertEquals(myDeck.size(), (max_rank*4)/2);
         System.out.println("After Cut: " + myDeck.representation());
-    }
+    }*/
 
     @Test
     public void copyTest() {

@@ -54,19 +54,16 @@ public class MyDeck extends Deck {
 				this.N++;
 			}
 		}
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public Card peekTop() {
 		return first.card;
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public Card peekBottom() {
 		return last.card;
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -80,7 +77,6 @@ public class MyDeck extends Deck {
 			}
 			currentIndex++;
 		}
-		//throw new RuntimeException("To Be Completed By Student");
 		return output;
 	}
 
@@ -99,13 +95,11 @@ public class MyDeck extends Deck {
 		}
 
 		return newDeck;
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public int size() {
 		return N;
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -127,26 +121,12 @@ public class MyDeck extends Deck {
 		}
 
 		return null;
-
-		//throw new RuntimeException("To Be Completed By Student");
-	}
-
-	public void cutTest() {
-		System.out.println("Cutting Deck");
-		System.out.println("Returned Node: " + cutInHalf().card);
-		System.out.println("First Node: " + first.card);
-		System.out.println("First Next Node: " + first.next.card);
-		System.out.println("Last Node: " + last.card);
 	}
 
 	@Override
 	public void out() {
 		Node firstNode = cutInHalf();
 		Node secondNode = first;
-		//System.out.println("Half Way Point for out(): " + secondNode.card.toString());
-
-		//System.out.println("FirstNode: " + firstNode.card);
-		//System.out.println("secondNode: " + secondNode.card);
 
 		Node head = null;
 		Node tail = null;
@@ -169,19 +149,12 @@ public class MyDeck extends Deck {
 		first = head;
 		last = tail;
 		this.N *= 2;
-
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
 	public void in() {
 		Node firstNode = cutInHalf();
 		Node secondNode = first;
-		//System.out.println("Half Way Point for in(): " + secondNode.card.toString());
-		//System.out.println("First Node: " + firstNode.card);
-
-		//System.out.println("FirstNode: " + firstNode.card);
-		//System.out.println("secondNode: " + secondNode.card);
 
 		Node head = null;
 		Node tail = null;
@@ -204,8 +177,6 @@ public class MyDeck extends Deck {
 		first = head;
 		last = tail;
 		this.N *= 2;
-
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -231,7 +202,6 @@ public class MyDeck extends Deck {
 		}
 
 		return true;
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 
 	@Override
@@ -247,6 +217,5 @@ public class MyDeck extends Deck {
 		}
 
 		return true;
-		//throw new RuntimeException("To Be Completed By Student");
 	}
 }
