@@ -4,9 +4,32 @@ import java.util.Arrays;
 
 public class Test {
 
+    boolean contains(int[] collection, int target) {
+        int low = 0;
+        int high = collection.length-1;
+
+        while (low <= high) {
+            //Calculate the mid element of the collection.
+            int mid = (low+high)/2;
+            // Compare the key items with the mid element.
+            int rc = collection[mid] - target;
+            if (rc < 0) {
+                // If target < 0, then the key is in the upper half of the collection.
+                low = mid+1;
+            } else if (rc > 0) {
+                //Else If target > 0, then the key lies in the right half of the collection.
+                high = mid-1;
+            } else {
+                // If key = middle element, then we return the mid index position for the key found.
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 
-        for (int n = 2; n <= 4096; n *= 2) {
+       /* for (int n = 2; n <= 4096; n *= 2) {
 
             int len = n;
 
