@@ -1,10 +1,13 @@
+import algs.days.day04.FixedCapacityStack;
+import algs.days.day05.FixedCapacityQueue;
 import mgregg.hw2.MyDeck;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class Test {
 
-    boolean contains(int[] collection, int target) {
+    /*boolean contains(int[] collection, int target) {
         int low = 0;
         int high = collection.length-1;
 
@@ -25,9 +28,63 @@ public class Test {
             }
         }
         return false;
+    }*/
+
+    public static int findGap(int[] a) {
+        int low = 1;
+        int high = a.length-2;
+
+        System.out.println("High: " + high);
+
+        while (low<=high) {
+            int mid = (low+high)/2;
+            if (a[mid] > mid) {
+                high = mid-1;
+            } else {
+                low = mid+1;
+            }
+        }
+
+        return low;
+    }
+
+    public static FixedCapacityStack<Integer> copy(FixedCapacityStack<Integer> stack) {
+        FixedCapacityStack<Integer> extra = new FixedCapacityStack<>(100);
+        FixedCapacityQueue<Integer> queue = new FixedCapacityQueue<>(100);
+
+        while (!stack.isEmpty()) {
+            extra.push(stack.pop());
+        }
+        FixedCapacityStack<Integer> copy = new FixedCapacityStack<>(100);
+
+        while (!extra.isEmpty()) {
+            int x = extra.pop();
+            stack.push(x);
+            copy.push(x);
+        }
+
+        return copy;
     }
 
     public static void main(String[] args) {
+
+        FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
+        stack.push(2);
+        stack.push(8);
+        stack.push(7);
+        stack.push(5);
+        FixedCapacityStack<Integer> copy = copy(stack);
+        Iterator<Integer> iterator = copy.iterator();
+        int index = 0;
+        while (iterator.hasNext()) {
+            index++;
+            System.out.println(index + ": " + copy.pop().toString());
+            iterator.next();
+        }
+
+        //int[] a = new int[]{0, 1, 2, 3, 5, 6};
+
+        //System.out.println(findGap(a));
 
        /* for (int n = 2; n <= 4096; n *= 2) {
 
