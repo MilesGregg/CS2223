@@ -82,9 +82,7 @@ public class Test {
             iterator.next();
         }
 
-        //int[] a = new int[]{0, 1, 2, 3, 5, 6};
 
-        //System.out.println(findGap(a));
 
        /* for (int n = 2; n <= 4096; n *= 2) {
 
