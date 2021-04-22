@@ -68,7 +68,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-        FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
+        /*FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
         stack.push(2);
         stack.push(8);
         stack.push(7);
@@ -80,6 +80,16 @@ public class Test {
             index++;
             System.out.println(index + ": " + copy.pop().toString());
             iterator.next();
+        }*/
+
+        for (int i = 1048576; i <= 16777216; i *= 2) {
+            System.out.println(i);
+        }
+
+        System.out.println("\nDivided: \n");
+
+        for (int i = 16777216; i >= 1048576; i/=2) {
+            System.out.println(i);
         }
 
 

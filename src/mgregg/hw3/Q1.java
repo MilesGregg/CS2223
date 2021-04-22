@@ -6,6 +6,8 @@ import algs.days.day16.ComparableTimSort;
 import algs.hw3.CountedItem;
 import algs.hw3.PrimitiveTimSort;
 
+import java.util.Arrays;
+
 /**
  *
  * Use the existing SortTrial class, and write your own for your implementation
@@ -153,27 +155,42 @@ public class Q1 {
 
 	public static void trial1_2() {
 		System.out.println("Q1.2");
-		System.out.println("N" + "\t\t\tTimSort" + "\tMerge" + "\tPrimTS" + "\tQuick" + "\tHeap");
+
+		System.out.println("\tN" + "\t\t\tTimSort" + "\tMerge" + "\tPrimTS" + "\tQuick" + "\tHeap");
 
 		for (int i = 1048576; i <= 16777216; i *= 2) {
-			Comparable[] builtinSortArray = new Comparable[i];
-			Comparable[] mergeSortArray = new Comparable[i];
-			Comparable[] primitiveTimeSortArray = new Comparable[i];
-			Comparable[] quickSortArray = new Comparable[i];
-			Comparable[] heapSortArray = new Comparable[i];
+			Integer[] A = new Integer[i];
 			for (int j = 0; j < i; j++) {
-				builtinSortArray[j] = StdRandom.uniform(i);
-				mergeSortArray[j] = StdRandom.uniform(i);
-				primitiveTimeSortArray[j] = StdRandom.uniform(i);
-				quickSortArray[j] = StdRandom.uniform(i);
-				heapSortArray[j] = StdRandom.uniform(i);
+				A[j] = StdRandom.uniform(i);
 			}
+			// Time Sort
+			Comparable[] builtinSortArray = new Comparable[i];
+			System.arraycopy(A, 0, builtinSortArray, 0, A.length);
+			double builtinSortTime = builtinSort(builtinSortArray);
+			// Merge Sort
+			Comparable[] mergeSortArray = new Comparable[i];
+			System.arraycopy(A, 0, mergeSortArray, 0, A.length);
+			double mergeSortTime = mergeSort(mergeSortArray);
+			// Primitive Tim Sort
+			Comparable[] primitiveTimeSortArray = new Comparable[i];
+			System.arraycopy(A, 0, primitiveTimeSortArray, 0, A.length);
+			double primitiveTimeSortTime = primitiveTimSort(primitiveTimeSortArray);
+			// Quick Sort
+			Comparable[] quickSortArray = new Comparable[i];
+			System.arraycopy(A, 0, quickSortArray, 0, A.length);
+			double quickSortTime = quickSort(quickSortArray);
+			// Heap Sort
+			Comparable[] heapSortArray = new Comparable[i];
+			System.arraycopy(A, 0, heapSortArray, 0, A.length);
+			double heapSortTime = heapSort(heapSortArray);
 
-			System.out.format("\n%d " + "\t"+"%.3f"+"\t", i, builtinSort(builtinSortArray));
-			System.out.format("%.3f"+"\t", mergeSort(mergeSortArray));
-			System.out.format("%.3f"+"\t", primitiveTimSort(primitiveTimeSortArray));
-			System.out.format("%.3f"+"\t", quickSort(quickSortArray));
-			System.out.format("%.3f", heapSort(heapSortArray));
+			System.out.println(String.format("%10d\t\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f",
+					i,
+					builtinSortTime,
+					mergeSortTime,
+					primitiveTimeSortTime,
+					quickSortTime,
+					heapSortTime));
 		}
 
 		// completed by student
@@ -183,16 +200,100 @@ public class Q1 {
 	public static void trial1_3() {
 		System.out.println("Q1.3");
 
+		System.out.println("\tN" + "\t\t\tTimSort" + "\tMerge" + "\tPrimTS" + "\tQuick" + "\tHeap");
+
+		for (int i = 1048576; i <= 16777216; i *= 2) {
+			Integer[] A = new Integer[i];
+			for (int j = 0; j < i; j++) {
+				A[j] = StdRandom.uniform(i / 512);
+			}
+			// Time Sort
+			Comparable[] builtinSortArray = new Comparable[i];
+			System.arraycopy(A, 0, builtinSortArray, 0, A.length);
+			double builtinSortTime = builtinSort(builtinSortArray);
+			// Merge Sort
+			Comparable[] mergeSortArray = new Comparable[i];
+			System.arraycopy(A, 0, mergeSortArray, 0, A.length);
+			double mergeSortTime = mergeSort(mergeSortArray);
+			// Primitive Tim Sort
+			Comparable[] primitiveTimeSortArray = new Comparable[i];
+			System.arraycopy(A, 0, primitiveTimeSortArray, 0, A.length);
+			double primitiveTimeSortTime = primitiveTimSort(primitiveTimeSortArray);
+			// Quick Sort
+			Comparable[] quickSortArray = new Comparable[i];
+			System.arraycopy(A, 0, quickSortArray, 0, A.length);
+			double quickSortTime = quickSort(quickSortArray);
+			// Heap Sort
+			Comparable[] heapSortArray = new Comparable[i];
+			System.arraycopy(A, 0, heapSortArray, 0, A.length);
+			double heapSortTime = heapSort(heapSortArray);
+
+			System.out.println(String.format("%10d\t\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f",
+					i,
+					builtinSortTime,
+					mergeSortTime,
+					primitiveTimeSortTime,
+					quickSortTime,
+					heapSortTime));
+		}
+
 		// completed by student
 	}
 
 	public static void trial1_4() {
 		System.out.println("Q1.4");
 
-		System.out.println("N" + "\t\t\tTimSort" + "\tMerge" + "\tPrimTS" + "\tQuick" + "\tHeap");
+		System.out.println("\tN" + "\t\t\tTimSort" + "\tMerge" + "\tPrimTS" + "\tQuick" + "\tHeap");
 
-		for (int i = 16777216; i >= 1048576; i/=2) {
+		for (int i = 1048576; i <= 16777216; i *= 2) {
+			Integer[] A = new Integer[i];
+			for (int j = i-1; j >= 0; j--) {
+				A[j] = StdRandom.uniform(i);
+			}
+			// Tim Sort
+			Comparable[] builtinSortArray = new Comparable[i];
+			System.arraycopy(A, 0, builtinSortArray, 0, A.length);
+			double builtinSortTime = builtinSort(builtinSortArray);
+			// Merge Sort
+			Comparable[] mergeSortArray = new Comparable[i];
+			System.arraycopy(A, 0, mergeSortArray, 0, A.length);
+			double mergeSortTime = mergeSort(mergeSortArray);
+			// Primitive Tim Sort
+			Comparable[] primitiveTimeSortArray = new Comparable[i];
+			System.arraycopy(A, 0, primitiveTimeSortArray, 0, A.length);
+			double primitiveTimeSortTime = primitiveTimSort(primitiveTimeSortArray);
+			// Quick Sort
+			Comparable[] quickSortArray = new Comparable[i];
+			System.arraycopy(A, 0, quickSortArray, 0, A.length);
+			double quickSortTime = quickSort(quickSortArray);
+			// Heap Sort
+			Comparable[] heapSortArray = new Comparable[i];
+			System.arraycopy(A, 0, heapSortArray, 0, A.length);
+			double heapSortTime = heapSort(heapSortArray);
+
+			System.out.println(String.format("%10d\t\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f",
+					i,
+					builtinSortTime,
+					mergeSortTime,
+					primitiveTimeSortTime,
+					quickSortTime,
+					heapSortTime));
+		}
+
+
+
+		/*for (int i = 16777216; i >= 1048576; i/=2) {
+
 			Comparable[] A = new Comparable[i];
+			System.out.println("Size: " + A.length);
+			for (int j = i-1; j > 0; j--) {
+				A[j] = StdRandom.uniform(i);
+			}
+			// Time Sort
+			Comparable[] builtinSortArray = new Comparable[i];
+			System.arraycopy(A, 0, builtinSortArray, 0, A.length);
+			double builtinSortTime = builtinSort(builtinSortArray);
+			/*Comparable[] A = new Comparable[i];
 			for (int j = i-1; j > 0; j--) {
 				A[j] = StdRandom.uniform(i);
 			}
@@ -201,15 +302,15 @@ public class Q1 {
 			System.out.format("%.3f"+"\t" ,primitiveTimSort(A));
 			System.out.format("%.3f"+"\t",heapSort(A));
 			System.out.format("%.3f"+"\t",mergeSort(A));
-			System.out.format("%.3f",quickSort(A));
-		}
+			System.out.format("%.3f",quickSort(A));*/
+		//}
 		// completed by student
 	}
 
 	public static void main(String[] args) {
-		trial1_1();
-		trial1_2();
+		//trial1_1();
+		//trial1_2();
 		//trial1_3();
-		//trial1_4();
+		trial1_4();
 	}
 }

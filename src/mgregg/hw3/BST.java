@@ -164,13 +164,27 @@ public class BST {
 	 * Helper method for copy()
 	 */
 	int depthCount(Node n, int depth) {
-		if (n == null || depth < 0) {
+		/*if (n == null || depth < 0) {
 			return 0;
 		} else if (n.left == null && n.right == null) {
 			return depth;
 		} else {
 			return depthCount(n.left, depth + 1) + depthCount(n.right, depth + 1);
+		}*/
+		if (n == null) {
+			return 0;
 		}
+
+		if (depth == 0) {
+			return 1;
+		}
+
+		int nodeCount = 0;
+
+		nodeCount += depthCount(n.left, depth - 1);
+		nodeCount += depthCount(n.right, depth - 1);
+
+		return nodeCount;
 	}
 
 	/**
@@ -188,8 +202,7 @@ public class BST {
 	 */
 	public BST copy() {
 		BST bst = new BST();
-		bst.root = root;
-		bst.root = copy(bst.root);
+		bst.root = copy(root);
 
 		return bst;
 	}
@@ -200,10 +213,12 @@ public class BST {
 	Node copy(Node n) {
 		if (n == null) { return null; }
 
-		n.left = copy(n.left);
-		n.right = copy(n.right);
+		Node newNode = new Node(n.key, n.count, n.N);
 
-		return new Node(n.key, n.count, n.N);
+		newNode.left = copy(n.left);
+		newNode.right = copy(n.right);
+
+		return newNode;
 	}
 
 	/**
@@ -237,14 +252,14 @@ public class BST {
 
 	/** Helper method for truncate. */
 	Node truncate(Node n, int depth) {
-		if (n == null) { return null; }
-		n.left = truncate(n.left, depth);
-		n.right = truncate(n.right, depth);
-
-		if (depthCount(n, depth) == depth) {
-			n.left = null;
-			n.right = null;
+		if (n == null || depth < 0) {
+			return null;
 		}
+
+		n.left = truncate(n.left, depth - 1);
+		n.right = truncate(n.right, depth - 1);
+
+		n.N = 1 + size(n.left) + size(n.right);
 
 		return n;
 
@@ -259,7 +274,9 @@ public class BST {
 	 * Note: YOU NEED TO PROPERLY UPDATE COUNT FOR N
 	 */
 	public void truncate(int depth) {
-		truncate(root, depth);
+		if (root != null) {
+			root = truncate(root, depth);
+		}
 		//throw new RuntimeException("STUDENT COMPLETES");
 	}
 
