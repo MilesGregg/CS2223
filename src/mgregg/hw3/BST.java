@@ -164,7 +164,13 @@ public class BST {
 	 * Helper method for copy()
 	 */
 	int depthCount(Node n, int depth) {
-		throw new RuntimeException("STUDENT COMPLETES");
+		if (n == null || depth < 0) {
+			return 0;
+		} else if (n.left == null && n.right == null) {
+			return depth;
+		} else {
+			return depthCount(n.left, depth + 1) + depthCount(n.right, depth + 1);
+		}
 	}
 
 	/**
@@ -172,7 +178,7 @@ public class BST {
 	 * where root has depth of 0.
 	 */
 	public int depthCount(int depth) {
-		throw new RuntimeException("STUDENT COMPLETES");
+		return depthCount(root, depth);
 	}
 
 
@@ -181,14 +187,23 @@ public class BST {
 	 * tree are used in the subsequent copy.
 	 */
 	public BST copy() {
-		throw new RuntimeException("STUDENT COMPLETES");
+		BST bst = new BST();
+		bst.root = root;
+		bst.root = copy(bst.root);
+
+		return bst;
 	}
 
 	/**
 	 * Helper method for copy()
 	 */
 	Node copy(Node n) {
-		throw new RuntimeException("STUDENT COMPLETES");
+		if (n == null) { return null; }
+
+		n.left = copy(n.left);
+		n.right = copy(n.right);
+
+		return new Node(n.key, n.count, n.N);
 	}
 
 	/**
@@ -197,7 +212,8 @@ public class BST {
 	 * then any of them can be returned as the most frequent.
 	 */
 	public String mostFrequent() {
-		throw new RuntimeException("STUDENT COMPLETES");
+		if (root == null) { return null; }
+		return mostFrequent(root, root).key;
 	}
 
 	/**
@@ -206,12 +222,33 @@ public class BST {
 	 * in the tree found so far.
 	 */
 	Node mostFrequent(Node n, Node best) {
-		throw new RuntimeException("STUDENT COMPLETES");
+		if (n == null) { return best; }
+		if (n.count > best.count) { best = n; }
+
+		Node leftNode = mostFrequent(n.left, best);
+		Node rightNode = mostFrequent(n.right, best);
+
+		if (leftNode.count > rightNode.count) {
+			return leftNode;
+		} else {
+			return rightNode;
+		}
 	}
 
 	/** Helper method for truncate. */
 	Node truncate(Node n, int depth) {
-		throw new RuntimeException("STUDENT COMPLETES");
+		if (n == null) { return null; }
+		n.left = truncate(n.left, depth);
+		n.right = truncate(n.right, depth);
+
+		if (depthCount(n, depth) == depth) {
+			n.left = null;
+			n.right = null;
+		}
+
+		return n;
+
+		//throw new RuntimeException("STUDENT COMPLETES");
 	}
 
 	/**
@@ -222,7 +259,8 @@ public class BST {
 	 * Note: YOU NEED TO PROPERLY UPDATE COUNT FOR N
 	 */
 	public void truncate(int depth) {
-		throw new RuntimeException("STUDENT COMPLETES");
+		truncate(root, depth);
+		//throw new RuntimeException("STUDENT COMPLETES");
 	}
 
 }
