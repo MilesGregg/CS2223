@@ -248,7 +248,7 @@ public class Q1 {
 		for (int i = 1048576; i <= 16777216; i *= 2) {
 			Integer[] A = new Integer[i];
 			for (int j = i-1; j >= 0; j--) {
-				A[j] = StdRandom.uniform(i);
+				A[j] = i;
 			}
 			// Tim Sort
 			Comparable[] builtinSortArray = new Comparable[i];
