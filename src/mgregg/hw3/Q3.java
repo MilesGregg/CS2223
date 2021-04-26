@@ -6,54 +6,11 @@ import java.util.Arrays;
 
 public class Q3 {
 
-    private static String mostCommon;
-
-    /*private static void findMostCommonInAll() {
-        BST bst = new BST();
-        for (int i = 1; i <= 38; i++) {
-            ShakespearePlay shakespearePlay = new ShakespearePlay(i);
-            for (String s : shakespearePlay) {
-                if (bst.get(s) != null) {
-                    bst.put(s, bst.get(s) + 1);
-                } else {
-                    bst.put(s, 1);
-                }
-            }
-        }
-        mostCommon = bst.mostFrequent();
-        System.out.println("The most common word in all 38 plays is: " + mostCommon);
-    }*/
-
-    /*private static void part3() {
-        System.out.println("\nTop 5 without the most common word " + mostCommon + ": ");
-        for (int i = 1; i <= 38; i++) {
-            ShakespearePlay shakespearePlay = new ShakespearePlay(i);
-            BST bst = new BST();
-            for (String s : shakespearePlay) {
-                if (bst.get(s) != null) {
-                    bst.put(s, bst.get(s) + 1);
-                } else {
-                    bst.put(s, 1);
-                }
-            }
-            StringBuilder outputString = new StringBuilder();
-            for (int j = 0; j < 5; j++) {
-                String mostFrequent = bst.mostFrequent();
-                if (mostFrequent.equals(mostCommon)) { break; }
-                else if (j == 4) { outputString.append(String.format("%-10s\t", shakespearePlay.getTitle()));
-                    System.out.println(outputString); }
-                outputString.append(String.format("%-10s\t", mostFrequent));
-                bst.delete(mostFrequent);
-            }
-        }
-    }*/
-
     private static void question3() {
         BST mostCommonBst = new BST();
         System.out.println("Please wait loading.....................\n");
         for (int i = 1; i <= 38; i++) {
-            ShakespearePlay shakespearePlay = new ShakespearePlay(i);
-            for (String s : shakespearePlay) {
+            for (String s : new ShakespearePlay(i)) {
                 if (mostCommonBst.get(s) != null) {
                     mostCommonBst.put(s, mostCommonBst.get(s) + 1);
                 } else {
@@ -61,9 +18,10 @@ public class Q3 {
                 }
             }
         }
-        mostCommon = mostCommonBst.mostFrequent();
-        System.out.println("The most common word in all 38 plays is: " + mostCommon + "\n");
-        System.out.println("The top 5 most common words in each play is: ");
+        String mostCommon = mostCommonBst.mostFrequent();
+        System.out.println("Q3: ");
+        System.out.println("\tThe most common word in all 38 plays is: " + mostCommon + "\n");
+        System.out.println("\tThe top 5 most common words in each play is: ");
 
         StringBuilder notMostCommon = new StringBuilder();
         for (int i = 1; i <= 38; i++) {
@@ -76,42 +34,36 @@ public class Q3 {
                     bst.put(s, 1);
                 }
             }
-            StringBuilder outputString = new StringBuilder().append("\t");
-            StringBuilder outputString2 = new StringBuilder();
-            boolean test = false;
+            StringBuilder outputMostCommon = new StringBuilder().append("\t\t");
+            StringBuilder outputWithoutTop = new StringBuilder();
+            boolean mostCommonHere = false;
             for (int j = 0; j < 5; j++) {
                 String mostFrequent = bst.mostFrequent();
+                outputMostCommon.append(String.format("%-10s\t", mostFrequent));
                 if (j == 4) {
-                    outputString.append(String.format("%-10s\t", mostFrequent));
-                    outputString.append(String.format("%-10s\t", shakespearePlay.getTitle()));
-                    System.out.println(outputString);
-                } else {
-                    outputString.append(String.format("%-10s\t", mostFrequent));
+                    outputMostCommon.append(String.format("%-10s\t", shakespearePlay.getTitle()));
+                    System.out.println(outputMostCommon);
                 }
-                if (mostFrequent.equals(mostCommon) && !test) {
-                    outputString2 = new StringBuilder();
-                    test = true;
-                } else if (j == 4  && !test) {
-                    outputString2.append(String.format("%-10s\t", mostFrequent));
-                    notMostCommon.append(outputString2).append(String.format("%-10s\t", shakespearePlay.getTitle()));
+                if (mostFrequent.equals(mostCommon) && !mostCommonHere) {
+                    outputWithoutTop = new StringBuilder();
+                    mostCommonHere = true;
+                } else if (j == 4  && !mostCommonHere) {
+                    outputWithoutTop.append(String.format("%-10s\t", mostFrequent));
+                    notMostCommon.append(outputWithoutTop).append(String.format("%-10s\t", shakespearePlay.getTitle()));
                 } else {
-                    outputString2.append(String.format("%-10s\t", mostFrequent));
+                    outputWithoutTop.append(String.format("%-10s\t", mostFrequent));
                 }
                 bst.delete(mostFrequent);
             }
-            //outputString.append(String.format("%-10s\t", shakespearePlay.getTitle()));
-            //System.out.println(outputString);
         }
-        //System.out.println(notMostCommon + "\n");
-        System.out.println("\nTop 5 without the most common word " + mostCommon + ": ");
-        System.out.println("\t" + notMostCommon);
+        System.out.println("\n\tTop 5 without the most common word " + mostCommon + ": ");
+        System.out.println("\t\t" + notMostCommon);
     }
 
-    private static void findLongestNonHyphenated() {
+    private static void shakespeareLongissimum() {
         String longestWord = "";
         for (int i = 1; i <= 38; i++) {
-            ShakespearePlay shakespearePlay = new ShakespearePlay(i);
-            for (String s : shakespearePlay) {
+            for (String s : new ShakespearePlay(i)) {
                 if (s.length() > longestWord.length()) {
                     for (int j = 0; j < s.length(); j++) {
                         if (s.charAt(j) == '-') {
@@ -123,23 +75,24 @@ public class Q3 {
                 }
             }
         }
-
-        System.out.println("\nLongest Word: " + longestWord);
+        System.out.println("\n(BONUS QUESTION)Q3.1: ");
+        System.out.println("\tLongest Word: " + longestWord);
     }
 
     public static String[] addWord(String[] words, String newWord, int position) {
-        String[] result = new String[words.length];
+        String[] output = new String[words.length];
         for (int i = 0; i < position; i++)
-            result[i] = words[i];
-        result[position] = newWord;
+            output[i] = words[i];
+        output[position] = newWord;
         for (int i = position - 1; i >= 0; i--)
-            result[i] = words[i + 1];
-        return result;
+            output[i] = words[i + 1];
+        return output;
     }
 
-    private static void shakespeareNumerorum(int[] pattern) {
+    private static void shakespeareNumerorumMysteria(int[] pattern) {
         String[] past = new String[pattern.length];
         int counter = 0;
+        System.out.println("\nQ3.2(BONUS QUESTION): ");
         for (int i = 1; i <= 38; i++) {
             ShakespearePlay shakespearePlay = new ShakespearePlay(i);
             for (String s : shakespearePlay) {
@@ -149,21 +102,19 @@ public class Q3 {
                         if (past[k].length() != pattern[k]) {
                             break;
                         } else if (k == pattern.length-1) {
-                            System.out.println(Arrays.toString(past));
+                            System.out.println("\t" + Arrays.toString(past) + ": " + shakespearePlay.getTitle());
                             counter++;
                         }
                     }
                 }
             }
         }
-        System.out.println(counter);
+        System.out.println("\n\tShakespeare uses this pattern: " + counter + " times");
     }
 
     public static void main(String[] args) {
-        shakespeareNumerorum(new int[]{ 3, 1, 4, 1, 5 });
-        //question3();
-        //findLongestNonHyphenated();
-        //findMostCommonInAll();
-        //part2();
+        question3();
+        shakespeareLongissimum();
+        shakespeareNumerorumMysteria(new int[]{ 3, 1, 4, 1, 5 });
     }
 }
