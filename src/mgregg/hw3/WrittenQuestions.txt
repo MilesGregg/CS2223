@@ -1,0 +1,134 @@
+<<Miles Gregg>>
+HW3
+Written Questions
+
+
+Q1. Evaluating Sorting Algorithms:
+    Q1.1:
+        Heap Sort: false
+        Insertion Sort: true
+        Merge Sort: true
+        Quick Sort: false
+        Selection Sort: false
+        Tim Primitive Sort: true
+        Tim Optimized Sort: true
+
+    Q1.2:
+    	N			TimSort	Merge	PrimTS	Quick	Heap
+       1048576		0.465	0.355	0.360	0.414	0.803
+       2097152		0.688	0.640	0.732	0.891	1.913
+       4194304		1.470	1.526	1.765	2.052	4.324
+       8388608		3.380	3.552	4.082	4.948	10.230
+      16777216		7.637	8.075	9.160	13.258	25.642
+
+    Q1.3:
+    	N			TimSort	Merge	PrimTS	Quick	Heap
+       1048576		0.221	0.242	0.264	0.328	0.671
+       2097152		0.403	0.558	0.618	0.843	1.642
+       4194304		0.874	1.305	1.462	2.051	3.887
+       8388608		2.127	3.091	3.410	5.111	9.838
+      16777216		4.691	7.220	9.154	13.681	24.757
+
+    Q1.4:
+    	N			TimSort	Merge	PrimTS	Quick	Heap
+       1048576		0.002	0.113	0.102	0.288	0.014
+       2097152		0.010	0.233	0.213	0.675	0.027
+       4194304		0.009	0.498	0.475	1.635	0.055
+       8388608		0.018	1.025	1.018	4.105	0.109
+      16777216		0.036	2.267	2.307	9.969	0.234
+
+Q2. Working with Binary Search Trees:
+    Completed in BST.java.
+
+Q3. Shakespeare plays:
+    The most common word in all 38 plays is: and
+
+    The top 5 most common words in each play is:
+    	i         	the       	and       	to        	you       	All's Well That Ends Well
+    	and       	the       	i         	to        	you       	A Midsummer Night's Dream
+    	and       	to        	i         	the       	of        	Antony and Cleopatra
+    	and       	the       	i         	you       	to        	As You Like It
+    	the       	to        	you       	i         	and       	Coriolanus
+    	the       	and       	i         	to        	of        	Cymbeline
+    	and       	to        	of        	i         	you       	Hamlet
+    	the       	and       	a         	to        	in        	Henry IV, Part I
+    	the       	and       	to        	you       	a         	Henry IV, Part 2
+    	the       	and       	to        	i         	in        	Henry V
+    	the       	and       	to        	of        	you       	Henry VIII
+    	and       	the       	of        	to        	i         	Henry VI, Part 1
+    	the       	and       	to        	of        	i         	Henry VI, Part 2
+    	and       	the       	to        	i         	of        	Henry VI, Part 3
+    	and       	the       	i         	to        	you       	Julius Caesar
+    	and       	to        	that      	my        	this      	King John
+    	the       	and       	i         	to        	you       	King Lear
+    	the       	and       	to        	a         	i         	Love's Labor's Lost
+    	the       	to        	of        	i         	that      	Macbeth
+    	the       	to        	and       	you       	i         	Measure for Measure
+    	i         	and       	the       	you       	to        	Much Ado About Nothing
+    	i         	and       	the       	to        	you       	Othello
+    	the       	to        	and       	i         	you       	Pericles, Prince of Tyre
+    	the       	and       	to        	my        	i         	Richard II
+    	the       	and       	to        	i         	my        	Richard III
+    	and       	i         	to        	of        	my        	Romeo and Juliet
+    	i         	the       	and       	to        	you       	The Comedy of Errors
+    	the       	i         	and       	to        	you       	The Merchant of Venice
+    	i         	and       	the       	you       	to        	The Merry Wives of Windsor
+    	and       	to        	you       	as        	my        	The Taming of the Shrew
+    	and       	the       	i         	to        	a         	The Tempest
+    	i         	to        	and       	the       	you       	The Two Gentlemen of Verona
+    	and       	to        	of        	you       	that      	The Two Noble Kinsmen
+    	the       	to        	and       	i         	of        	The Winter's Tale
+    	to        	i         	of        	you       	and       	Timon of Athens
+    	and       	the       	to        	i         	my        	Titus Andronicus
+    	the       	and       	to        	of        	you       	Troilus and Cressida
+    	i         	the       	and       	you       	to        	Twelfth Night
+
+    Top 5 without the most common word and:
+    	the       	to        	of        	i         	that      	Macbeth
+
+
+    Q3.1. Shakespeare Longissimum:
+        The longest word is honorificabilitudinitatibus.
+
+Q4. AVL Binary Search Trees:
+    N	Largest Height		Number Found
+    1	0		            10000
+    2	1		            10000
+    3	1		            10000
+    4	2		            10000
+    5	2		            10000
+    6	2		            10000
+    7	3		             5683
+    8	3		            10000
+    9	3		            10000
+    10	3		            10000
+    11	3		            10000
+    12	4		             1931
+    13	4		             5080
+    14	4		             7907
+    15	4		             9586
+    16	4		            10000
+    17	4		            10000
+    18	4		            10000
+    19	4		            10000
+    20	5		              207
+    21	5		              966
+    22	5		             2247
+    23	5		             3702
+    24	5		             5446
+    25	5		             7020
+    26	5		             8244
+    27	5		             9163
+    28	5		             9678
+    29	5		             9896
+    30	5		             9976
+    31	5		             9998
+    32	5		            10000
+    33	6		                9
+    34	6		               34
+    35	6		              128
+    36	6		              325
+    37	6		              662
+    38	6		             1174
+    39	6		             1762
+    40	6		             2485

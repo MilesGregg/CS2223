@@ -4,20 +4,8 @@ import algs.days.day18.AVL;
 import edu.princeton.cs.algs4.StdRandom;
 
 public class Q4 {
-    /*
-    AVL<Double> avl = new AVL<Double>();
-
-		for (int i = 0; i < 100000; i++) {
-			double r = StdRandom.uniform();   // random value between 0 and 1.
-			bt.insert(r);
-			avl.insert(r);
-		}
-
-		System.out.println("BST for random has height of " + bt.height());
-		System.out.println("AVL for random has height of " + avl.height());
-     */
     public static void main(String[] args) {
-        System.out.println("N" + "\t\tLargest Height" + "\tNumber Found");
+        System.out.println("N" + "\tLargest Height" + "\t\tNumber Found");
         for (int i = 1; i <= 40; i++) {
             int largestHeight = 0;
             int numberFound = 0;
@@ -35,7 +23,9 @@ public class Q4 {
                     numberFound += 1;
                 }
             }
-            System.out.println(i + "\t\t" + largestHeight + "\t\t" + numberFound);
+
+            System.out.println(String.format("%d\t%d\t\t%17d", i, largestHeight, numberFound));
+            //System.out.println(i + "\t\t" + largestHeight + "\t\t" + numberFound);
         }
     }
 }

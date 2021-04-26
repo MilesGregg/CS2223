@@ -66,7 +66,19 @@ public class Test {
         return copy;
     }
 
+    public static String[] addPos(String[] a, int pos, String string) {
+        String[] result = new String[a.length];
+        for (int i = 0; i < pos; i++)
+            result[i] = a[i];
+        result[pos] = string;
+        for (int i = pos - 1; i >= 0; i--)
+            result[i] = a[i + 1];
+        return result;
+    }
+
     public static void main(String[] args) {
+        String[] past = {  "a", "b", "d", "f" };
+        System.out.println(Arrays.toString(addPos(past, past.length-1, "z")));
 
         /*FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
         stack.push(2);
@@ -82,7 +94,7 @@ public class Test {
             iterator.next();
         }*/
 
-        for (int i = 1048576; i <= 16777216; i *= 2) {
+        /*for (int i = 1048576; i <= 16777216; i *= 2) {
             System.out.println(i);
         }
 
@@ -90,7 +102,7 @@ public class Test {
 
         for (int i = 16777216; i >= 1048576; i/=2) {
             System.out.println(i);
-        }
+        }*/
 
 
 
