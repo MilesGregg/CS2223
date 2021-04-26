@@ -2,6 +2,8 @@ package mgregg.hw3;
 
 import algs.hw3.ShakespearePlay;
 
+import java.util.Arrays;
+
 public class Q3 {
 
     private static String mostCommon;
@@ -125,31 +127,42 @@ public class Q3 {
         System.out.println("\nLongest Word: " + longestWord);
     }
 
-    public static String[] addWord(String[] a, int pos, String string) {
-        String[] result = new String[a.length];
-        for (int i = 0; i < pos; i++)
-            result[i] = a[i];
-        result[pos] = string;
-        for (int i = pos - 1; i >= 0; i--)
-            result[i] = a[i + 1];
+    public static String[] addWord(String[] words, String newWord, int position) {
+        String[] result = new String[words.length];
+        for (int i = 0; i < position; i++)
+            result[i] = words[i];
+        result[position] = newWord;
+        for (int i = position - 1; i >= 0; i--)
+            result[i] = words[i + 1];
         return result;
     }
 
-    private static void shakespeareNumerorum() {
-        int[] pattern = { 3, 1, 4, 1, 5 };
-        String[] past = new String[5];
+    private static void shakespeareNumerorum(int[] pattern) {
+        String[] past = new String[pattern.length];
+        int counter = 0;
         for (int i = 1; i <= 38; i++) {
             ShakespearePlay shakespearePlay = new ShakespearePlay(i);
-            for (int j = 0; j < shakespearePlay.size(); j++) {
-                //past = addWord(past, past.length-1, shakespearePlay.);
+            for (String s : shakespearePlay) {
+                past = addWord(past, s, past.length-1);
+                if (past[0] != null) {
+                    for (int k = 0; k < pattern.length; k++) {
+                        if (past[k].length() != pattern[k]) {
+                            break;
+                        } else if (k == pattern.length-1) {
+                            System.out.println(Arrays.toString(past));
+                            counter++;
+                        }
+                    }
+                }
             }
         }
+        System.out.println(counter);
     }
 
     public static void main(String[] args) {
-        //findMostCommonInAll();
-        question3();
-        findLongestNonHyphenated();
+        shakespeareNumerorum(new int[]{ 3, 1, 4, 1, 5 });
+        //question3();
+        //findLongestNonHyphenated();
         //findMostCommonInAll();
         //part2();
     }
