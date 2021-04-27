@@ -164,13 +164,6 @@ public class BST {
 	 * Helper method for copy()
 	 */
 	int depthCount(Node n, int depth) {
-		/*if (n == null || depth < 0) {
-			return 0;
-		} else if (n.left == null && n.right == null) {
-			return depth;
-		} else {
-			return depthCount(n.left, depth + 1) + depthCount(n.right, depth + 1);
-		}*/
 		if (n == null) {
 			return 0;
 		}

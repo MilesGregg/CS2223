@@ -5,13 +5,14 @@ Written Questions
 
 Q1. Evaluating Sorting Algorithms:   <- ("Please run Q1.java to get these similar results for Q1")
     Q1.1:
-        Heap Sort: false
-        Insertion Sort: true
-        Merge Sort: true
-        Quick Sort: false
-        Selection Sort: false
-        Tim Primitive Sort: true
-        Tim Optimized Sort: true
+        Algorithm				Stable Sort
+        HeapSort: 	            false
+        InsertionSort: 	        true
+        MergeSort: 	            true
+        QuickSort: 	            false
+        SelectionSort: 	        false
+        TimSort Primitive: 	    true
+        TimSort Optimized: 	    true
 
     Q1.2:
     	N			TimSort	Merge	PrimTS	Quick	Heap
@@ -29,6 +30,9 @@ Q1. Evaluating Sorting Algorithms:   <- ("Please run Q1.java to get these simila
        8388608		2.127	3.091	3.410	5.111	9.838
       16777216		4.691	7.220	9.154	13.681	24.757
 
+      Answer: The runtimes seem to be faster for 3 out of the 5 sorting algorithms when we add more duplicate values
+              in the random.
+
     Q1.4:
     	N			TimSort	Merge	PrimTS	Quick	Heap
        1048576		0.002	0.113	0.102	0.288	0.014
@@ -38,7 +42,7 @@ Q1. Evaluating Sorting Algorithms:   <- ("Please run Q1.java to get these simila
       16777216		0.036	2.267	2.307	9.969	0.234
 
       Answer: These results are much faster than 1.2 and 1.3 which is really surprising.TimSort is really fast in 1.4
-              because of it's 
+              because of it's unique sorting based off of Insertion Sort and Merge Sort.
 
 Q2. Working with Binary Search Trees:
     Completed in BST.java.

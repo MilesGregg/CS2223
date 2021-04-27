@@ -5,43 +5,43 @@ Written Questions
 
 Q1. Evaluating Sorting Algorithms:   <- ("Please run Q1.java to get these similar results for Q1")
     Q1.1:
-        Heap Sort: false
-        Insertion Sort: true
-        Merge Sort: true
-        Quick Sort: false
-        Selection Sort: false
-        Tim Primitive Sort: true
-        Tim Optimized Sort: true
+        Algorithm				Stable Sort
+        HeapSort: 	            false
+        InsertionSort: 	        true
+        MergeSort: 	            true
+        QuickSort: 	            false
+        SelectionSort: 	        false
+        TimSort Primitive: 	    true
+        TimSort Optimized: 	    true
 
-    Q1.2:
+    Q1.2
     	N			TimSort	Merge	PrimTS	Quick	Heap
-       1048576		0.465	0.355	0.360	0.414	0.803
-       2097152		0.688	0.640	0.732	0.891	1.913
-       4194304		1.470	1.526	1.765	2.052	4.324
-       8388608		3.380	3.552	4.082	4.948	10.230
-      16777216		7.637	8.075	9.160	13.258	25.642
+       1048576		0.467	0.433	0.385	0.441	0.743
+       2097152		0.653	0.686	0.677	0.914	1.840
+       4194304		1.371	1.602	1.751	1.873	4.433
+       8388608		3.130	3.584	3.887	5.292	10.458
+      16777216		7.245	8.396	9.199	12.204	25.632
 
-    Q1.3:
+    Q1.3
     	N			TimSort	Merge	PrimTS	Quick	Heap
-       1048576		0.221	0.242	0.264	0.328	0.671
-       2097152		0.403	0.558	0.618	0.843	1.642
-       4194304		0.874	1.305	1.462	2.051	3.887
-       8388608		2.127	3.091	3.410	5.111	9.838
-      16777216		4.691	7.220	9.154	13.681	24.757
+       1048576		0.203	0.241	0.253	0.324	0.691
+       2097152		0.443	0.571	0.617	0.821	1.715
+       4194304		0.833	1.305	1.392	1.951	4.029
+       8388608		1.833	2.779	3.292	4.606	10.004
+      16777216		4.340	7.264	7.901	11.967	23.484
 
-      Answer: The runtimes seem to be faster for 3 out of the 5 sorting algorithms when we add more duplicate values
-              in the random.
+      Answer: The runtimes are faster in all 5 of the sorting algorithms when we add more duplicate values at random.
 
-    Q1.4:
+    Q1.4
     	N			TimSort	Merge	PrimTS	Quick	Heap
-       1048576		0.002	0.113	0.102	0.288	0.014
-       2097152		0.010	0.233	0.213	0.675	0.027
-       4194304		0.009	0.498	0.475	1.635	0.055
-       8388608		0.018	1.025	1.018	4.105	0.109
-      16777216		0.036	2.267	2.307	9.969	0.234
+       1048576		0.002	0.120	0.098	0.267	0.015
+       2097152		0.008	0.255	0.202	0.646	0.031
+       4194304		0.008	0.533	0.453	1.456	0.059
+       8388608		0.017	1.101	0.929	3.853	0.119
+      16777216		0.034	2.389	2.109	9.561	0.230
 
       Answer: These results are much faster than 1.2 and 1.3 which is really surprising.TimSort is really fast in 1.4
-              because of it's unique sorting based off of Insertion Sort and Merge Sort.
+              because of it's unique sorting based off of Insertion Sort and Merge Sort. Heap sort is also really fast.
 
 Q2. Working with Binary Search Trees:
     Completed in BST.java.
