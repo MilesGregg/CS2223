@@ -54,5 +54,6 @@ public class Q1 {
 		}
 		Expression exp = exprs.pop();
 		System.out.println(exp.format() + " = " + exp.eval());
+		System.out.println("Height: " + exp.height());
 	}
 }

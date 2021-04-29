@@ -1,7 +1,9 @@
 package mgregg.hw4;
 
+import algs.hw4.map.HighwayMap;
 import algs.hw4.map.Information;
 import edu.princeton.cs.algs4.Graph;
+import edu.princeton.cs.algs4.Queue;
 
 /**
  * The goal of this question is to:
@@ -56,7 +58,17 @@ public class Q2 {
 	 *
 	 */
 	public static int westernMostVertex(Information info) {
-		throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
+		double lowestPoint = info.positions.get(0).longitude;
+		int index = 0;
+		for (int id : info.labels.keys()) {
+			if (info.positions.get(id).longitude < lowestPoint) {
+				lowestPoint = info.positions.get(id).longitude;
+				index = id;
+			}
+		}
+		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		return index;
+		//throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
 	}
 
 	/**
@@ -68,7 +80,17 @@ public class Q2 {
 	 *
 	 */
 	public static int easternMostVertex(Information info) {
-		throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
+		double highestPoint = info.positions.get(0).longitude;
+		int index = 0;
+		for (int id : info.labels.keys()) {
+			if (info.positions.get(id).longitude > highestPoint) {
+				highestPoint = info.positions.get(id).longitude;
+				index = id;
+			}
+		}
+		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		return index;
+		//throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
 	}
 
 	/**
@@ -80,7 +102,16 @@ public class Q2 {
 	 *
 	 */
 	public static int southernMostVertex(Information info) {
-		throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
+		double lowestPoint = info.positions.get(0).latitude;
+		int index = 0;
+		for (int id : info.labels.keys()) {
+			if (info.positions.get(id).latitude < lowestPoint) {
+				lowestPoint = info.positions.get(id).latitude;
+				index = id;
+			}
+		}
+		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		return index;
 	}
 
 	/**
@@ -92,11 +123,33 @@ public class Q2 {
 	 *
 	 */
 	public static int northernMostVertex(Information info) {
-		throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
+		double highestPoint = info.positions.get(0).latitude;
+		int index = 0;
+		for (int id : info.labels.keys()) {
+			if (info.positions.get(id).latitude > highestPoint) {
+				highestPoint = info.positions.get(id).latitude;
+				index = id;
+			}
+		}
+		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		return index;
+ 		//throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
 	}
 
 	public static void main(String[] args) {
+		Information info = HighwayMap.undirectedGraph();
+
+		northernMostVertex(info);
+		southernMostVertex(info);
+		easternMostVertex(info);
+		westernMostVertex(info);
 
 
+
+
+
+		/*for (int id : info.labels.keys()) {
+			System.out.println(info.positions.get(id));
+		}*/
 	}
 }

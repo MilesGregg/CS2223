@@ -37,6 +37,6 @@ public class Add extends Expression {
 
 	@Override
 	public int height() {
-		return 0;
+		return left.height() + right.height();
 	}
 }

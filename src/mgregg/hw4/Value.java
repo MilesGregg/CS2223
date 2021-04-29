@@ -28,4 +28,9 @@ public class Value extends Expression {
 	public String format() {
 		return Double.toString(value);
 	}
+
+	@Override
+	public int height() {
+		return 0;
+	}
 }

@@ -17,6 +17,11 @@ public class Divide extends Expression {
 
     @Override
     public String format() {
-        return String.format("(%s+%s)", left.format(), right.format());
+        return String.format("(%s/%s)", left.format(), right.format());
+    }
+
+    @Override
+    public int height() {
+        return left.height() + right.height();
     }
 }
