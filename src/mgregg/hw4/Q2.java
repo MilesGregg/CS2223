@@ -1,7 +1,9 @@
 package mgregg.hw4;
 
+import algs.hw4.map.GPS;
 import algs.hw4.map.HighwayMap;
 import algs.hw4.map.Information;
+import edu.princeton.cs.algs4.BreadthFirstPaths;
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.Queue;
 
@@ -40,7 +42,24 @@ public class Q2 {
 	 * 		I-90@123B&I-95@24&MA128@24(95)  ==> vertex #1785
 	 */
 	static Information remove_I90_segments(Information info) {
-		Graph copy = null;
+		Graph copy = new Graph(info.graph.V());
+		Queue<Integer> queue = new Queue<>();
+		boolean[] visited = new boolean[info.graph.V()];
+		visited[0] = true;
+		queue.enqueue(0);
+
+		while (!queue.isEmpty()) {
+			Integer u = queue.dequeue();
+			for (int v : info.graph.adj(u)) {
+				if (!visited[v]) {
+					if (!info.labels.get(v).startsWith("I-90")) {
+						copy.addEdge(u, v);
+					}
+					visited[v] = true;
+					queue.enqueue(v);
+				}
+			}
+		}
 
 		// DO YOUR WORK HERE...
 
@@ -58,17 +77,17 @@ public class Q2 {
 	 *
 	 */
 	public static int westernMostVertex(Information info) {
-		double lowestPoint = info.positions.get(0).longitude;
-		int index = 0;
-		for (int id : info.labels.keys()) {
-			if (info.positions.get(id).longitude < lowestPoint) {
-				lowestPoint = info.positions.get(id).longitude;
+		double highestPoint = Integer.MAX_VALUE;
+		int index = -1;
+		for (int id : info.positions.keys()) {
+			GPS currentPose = info.positions.get(id);
+			if (currentPose.longitude < highestPoint) {
+				highestPoint = currentPose.longitude;
 				index = id;
 			}
 		}
-		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		//System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
 		return index;
-		//throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
 	}
 
 	/**
@@ -80,17 +99,17 @@ public class Q2 {
 	 *
 	 */
 	public static int easternMostVertex(Information info) {
-		double highestPoint = info.positions.get(0).longitude;
-		int index = 0;
-		for (int id : info.labels.keys()) {
-			if (info.positions.get(id).longitude > highestPoint) {
-				highestPoint = info.positions.get(id).longitude;
+		double highestPoint = Integer.MIN_VALUE;
+		int index = -1;
+		for (int id : info.positions.keys()) {
+			GPS currentPose = info.positions.get(id);
+			if (currentPose.longitude > highestPoint) {
+				highestPoint = currentPose.longitude;
 				index = id;
 			}
 		}
-		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		//System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
 		return index;
-		//throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
 	}
 
 	/**
@@ -102,15 +121,16 @@ public class Q2 {
 	 *
 	 */
 	public static int southernMostVertex(Information info) {
-		double lowestPoint = info.positions.get(0).latitude;
-		int index = 0;
-		for (int id : info.labels.keys()) {
-			if (info.positions.get(id).latitude < lowestPoint) {
-				lowestPoint = info.positions.get(id).latitude;
+		double highestPoint = Integer.MAX_VALUE;
+		int index = -1;
+		for (int id : info.positions.keys()) {
+			GPS currentPose = info.positions.get(id);
+			if (currentPose.latitude < highestPoint) {
+				highestPoint = currentPose.latitude;
 				index = id;
 			}
 		}
-		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		//System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
 		return index;
 	}
 
@@ -123,26 +143,59 @@ public class Q2 {
 	 *
 	 */
 	public static int northernMostVertex(Information info) {
-		double highestPoint = info.positions.get(0).latitude;
-		int index = 0;
-		for (int id : info.labels.keys()) {
-			if (info.positions.get(id).latitude > highestPoint) {
-				highestPoint = info.positions.get(id).latitude;
+		double highestPoint = Integer.MIN_VALUE;
+		int index = -1;
+		for (int id : info.positions.keys()) {
+			GPS currentPose = info.positions.get(id);
+			if (currentPose.latitude > highestPoint) {
+				highestPoint = currentPose.latitude;
 				index = id;
 			}
 		}
-		System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
+		//System.out.println(info.labels.get(index) + "   ->    " + info.positions.get(index));
 		return index;
- 		//throw new RuntimeException ("TO BE COMPLETED BY STUDENT");
 	}
 
 	public static void main(String[] args) {
 		Information info = HighwayMap.undirectedGraph();
 
-		northernMostVertex(info);
-		southernMostVertex(info);
-		easternMostVertex(info);
-		westernMostVertex(info);
+		System.out.println(easternMostVertex(info));
+		System.out.println(westernMostVertex(info));
+		System.out.println(northernMostVertex(info));
+		System.out.println(southernMostVertex(info));
+		System.out.println();
+
+		BreadthFirstPaths bfs = new BreadthFirstPaths(info.graph, easternMostVertex(info));
+		Iterable<Integer> paths = bfs.pathTo(westernMostVertex(info));
+		int count = 0;
+		for (int i : paths) {
+			count++;
+		}
+		System.out.println("East to West: " + count);
+
+		BreadthFirstPaths bfs2 = new BreadthFirstPaths(info.graph, southernMostVertex(info));
+		Iterable<Integer> paths2 = bfs2.pathTo(northernMostVertex(info));
+		int count2 = 0;
+		for (int i : paths2) {
+			count2++;
+		}
+		System.out.println("South to North: " + count2);
+
+		Information newInfo = remove_I90_segments(info);
+
+		BreadthFirstPaths bfs3 = new BreadthFirstPaths(newInfo.graph, southernMostVertex(newInfo));
+		Iterable<Integer> paths3 = bfs3.pathTo(northernMostVertex(newInfo));
+		int count3 = 0;
+		for (int i : paths3) {
+			count3++;
+		}
+		System.out.println("South to North: " + count3);
+
+
+
+		//BFS bfs = new BFS(info.graph, easternMostVertex(info), westernMostVertex(info));
+		//BFS bfs2 = new BFS(info.graph, westernMostVertex(info), easternMostVertex(info));
+
 
 
 

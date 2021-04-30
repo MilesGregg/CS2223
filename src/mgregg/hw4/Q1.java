@@ -49,7 +49,7 @@ public class Q1 {
 				Expression leftExpression = exprs.pop();
 				exprs.push(expression(input, leftExpression, rightExpression));
 			} else {
-				exprs.push(new Value(Integer.parseInt(input)));
+				exprs.push(new Value(Double.parseDouble(input)));
 			}
 		}
 		Expression exp = exprs.pop();

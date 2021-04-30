@@ -78,10 +78,13 @@ public class Test {
 
     public static void main(String[] args) {
         //String[] past = {  "a", "b", "d", "f" };
-        String[] past = new String[5];
+        /*String[] past = new String[5];
         past = addPos(past, past.length-1, "z");
         past = addPos(past, past.length-1, "a");
-        System.out.println(Arrays.toString(past));
+        System.out.println(Arrays.toString(past));*/
+
+        String string = "+-*/";
+        System.out.println(string.contains("2"));
 
         /*FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
         stack.push(2);

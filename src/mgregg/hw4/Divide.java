@@ -22,6 +22,6 @@ public class Divide extends Expression {
 
     @Override
     public int height() {
-        return left.height() + right.height();
+        return 1 + Math.max(left.height(), right.height());
     }
 }
