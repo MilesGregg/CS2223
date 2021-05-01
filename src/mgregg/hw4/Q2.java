@@ -4,8 +4,8 @@ import algs.hw4.map.GPS;
 import algs.hw4.map.HighwayMap;
 import algs.hw4.map.Information;
 import edu.princeton.cs.algs4.BreadthFirstPaths;
+import edu.princeton.cs.algs4.DepthFirstPaths;
 import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.Queue;
 
 /**
  * The goal of this question is to:
@@ -43,20 +43,12 @@ public class Q2 {
 	 */
 	static Information remove_I90_segments(Information info) {
 		Graph copy = new Graph(info.graph.V());
-		Queue<Integer> queue = new Queue<>();
-		boolean[] visited = new boolean[info.graph.V()];
-		visited[0] = true;
-		queue.enqueue(0);
 
-		while (!queue.isEmpty()) {
-			Integer u = queue.dequeue();
+		for (int u = 0; u < info.graph.V(); u++) {
 			for (int v : info.graph.adj(u)) {
-				if (!visited[v]) {
-					if (!info.labels.get(v).startsWith("I-90")) {
-						copy.addEdge(u, v);
-					}
-					visited[v] = true;
-					queue.enqueue(v);
+				if (!info.labels.get(u).startsWith("I-90") &&
+						!info.labels.get(v).startsWith("I-90")) {
+					copy.addEdge(u, v);
 				}
 			}
 		}
@@ -159,7 +151,7 @@ public class Q2 {
 	public static void main(String[] args) {
 		Information info = HighwayMap.undirectedGraph();
 
-		System.out.println(easternMostVertex(info));
+		/*System.out.println(easternMostVertex(info));
 		System.out.println(westernMostVertex(info));
 		System.out.println(northernMostVertex(info));
 		System.out.println(southernMostVertex(info));
@@ -181,10 +173,20 @@ public class Q2 {
 		}
 		System.out.println("South to North: " + count2);
 
+		DepthFirstPaths dfs = new DepthFirstPaths(info.graph, easternMostVertex(info));
+		Iterable<Integer> paths3 = dfs.pathTo(westernMostVertex(info));
+		int count3 = 0;
+		for (int i : paths3) {
+			count3++;
+		}
+		System.out.println("DFS East to West: " + count3);*/
+
 		Information newInfo = remove_I90_segments(info);
 
-		BreadthFirstPaths bfs3 = new BreadthFirstPaths(newInfo.graph, southernMostVertex(newInfo));
-		Iterable<Integer> paths3 = bfs3.pathTo(northernMostVertex(newInfo));
+		BreadthFirstPaths bfs3 = new BreadthFirstPaths(newInfo.graph, southernMostVertex(info));
+		int mostNorth = northernMostVertex(info);
+		Iterable<Integer> paths3 = bfs3.pathTo(mostNorth);
+		System.out.println("Path: " + paths3);
 		int count3 = 0;
 		for (int i : paths3) {
 			count3++;
@@ -195,11 +197,6 @@ public class Q2 {
 
 		//BFS bfs = new BFS(info.graph, easternMostVertex(info), westernMostVertex(info));
 		//BFS bfs2 = new BFS(info.graph, westernMostVertex(info), easternMostVertex(info));
-
-
-
-
-
 
 		/*for (int id : info.labels.keys()) {
 			System.out.println(info.positions.get(id));
