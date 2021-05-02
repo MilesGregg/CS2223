@@ -19,12 +19,9 @@ public class Q3 {
 			int cycleSum = 0;
 			for (int j = 0; j < 10000; j++) {
 				Digraph digraph = new Digraph(i);
-				for (int v = 0; v <= digraph.V(); v++) {
-					double random = Math.random();
-					if (random < 0.5) {
-						int u = (int) random;
-						int w = (int) random;
-						digraph.addEdge(u, w);
+				for (int v = 2; v < i; v++) {
+					if (Math.random() < 0.5) {
+						digraph.addEdge(v, v*v-1);
 					}
 				}
 				DirectedCycle cycleDetector = new DirectedCycle(digraph);

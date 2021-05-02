@@ -41,7 +41,7 @@ public class Q2 {
 	 * 		I-95(23)/MA128	                ==> vertex #705
 	 * 		I-90@123B&I-95@24&MA128@24(95)  ==> vertex #1785
 	 */
-	static Information remove_I90_segments(Information info) {
+	public static Information remove_I90_segments(Information info) {  // TODO: remove public
 		Graph copy = new Graph(info.graph.V());
 
 		for (int u = 0; u < info.graph.V(); u++) {
@@ -148,13 +148,58 @@ public class Q2 {
 		return index;
 	}
 
+	private static int sum(Iterable<Integer> integerIterator) {
+		int sum = 0;
+		for (int i : integerIterator) {
+			sum++;
+		}
+		return sum;
+	}
+
 	public static void main(String[] args) {
 		Information info = HighwayMap.undirectedGraph();
 
-		/*System.out.println(easternMostVertex(info));
-		System.out.println(westernMostVertex(info));
-		System.out.println(northernMostVertex(info));
-		System.out.println(southernMostVertex(info));
+		int mostNorthernVertex = northernMostVertex(info);
+		int mostSouthernVertex = southernMostVertex(info);
+		int mostEasternVertex = easternMostVertex(info);
+		int mostWesternVertex = westernMostVertex(info);
+
+		System.out.println("Q2.1 Standard Paths: ");
+		BreadthFirstPaths bfsWestToEast = new BreadthFirstPaths(info.graph, mostWesternVertex);
+		Iterable<Integer> pathBfsWestToEast = bfsWestToEast.pathTo(mostEasternVertex);
+		System.out.println("\tBFS West to East: " + sum(pathBfsWestToEast));
+
+		BreadthFirstPaths bfsSouthToNorth = new BreadthFirstPaths(info.graph, mostSouthernVertex);
+		Iterable<Integer> pathBfsSouthToNorth = bfsSouthToNorth.pathTo(mostNorthernVertex);
+		System.out.println("\tBFS South to North: " + sum(pathBfsSouthToNorth));
+
+		System.out.println("\nQ2.2 Demonstrate why Depth First Search is inappropriate here: ");
+		DepthFirstPaths dfsWestToEast = new DepthFirstPaths(info.graph, mostWesternVertex);
+		Iterable<Integer> pathDfsWestToEast = dfsWestToEast.pathTo(mostEasternVertex);
+		System.out.println("\tDFS West to East: " + sum(pathDfsWestToEast));
+
+		DepthFirstPaths dfsSouthToNorth = new DepthFirstPaths(info.graph, mostSouthernVertex);
+		Iterable<Integer> pathDfsSouthToNorth = dfsSouthToNorth.pathTo(mostNorthernVertex);
+		System.out.println("\tDFS South to North: " + sum(pathDfsSouthToNorth));
+
+		System.out.println("\nQ2.3 Eliminate Mass Pike from consideration: ");
+		Information newInfo = remove_I90_segments(info);
+		BreadthFirstPaths newInfoBfsWestToEast = new BreadthFirstPaths(newInfo.graph, mostWesternVertex);
+		Iterable<Integer> newInfoPathBfsWestToEast = newInfoBfsWestToEast.pathTo(mostEasternVertex);
+		System.out.println("\tBFS West to East: " + sum(newInfoPathBfsWestToEast));
+
+		BreadthFirstPaths newInfoBfsSouthToNorth = new BreadthFirstPaths(newInfo.graph, mostSouthernVertex);
+		Iterable<Integer> newInfoPathBfsSouthToNorth = newInfoBfsSouthToNorth.pathTo(mostNorthernVertex);
+		System.out.println("\tBFS South to North: " + sum(newInfoPathBfsSouthToNorth));
+
+
+
+
+
+		/*System.out.println("Eastern Most Vertex: " + easternMostVertex(info));
+		System.out.println("Western Most Vertex: " + westernMostVertex(info));
+		System.out.println("Northern Most Vertex: " + northernMostVertex(info));
+		System.out.println("Southern Most Vertex: " + southernMostVertex(info));
 		System.out.println();
 
 		BreadthFirstPaths bfs = new BreadthFirstPaths(info.graph, easternMostVertex(info));
@@ -163,7 +208,7 @@ public class Q2 {
 		for (int i : paths) {
 			count++;
 		}
-		System.out.println("East to West: " + count);
+		System.out.println("BFS East to West: " + count);
 
 		BreadthFirstPaths bfs2 = new BreadthFirstPaths(info.graph, southernMostVertex(info));
 		Iterable<Integer> paths2 = bfs2.pathTo(northernMostVertex(info));
@@ -171,7 +216,7 @@ public class Q2 {
 		for (int i : paths2) {
 			count2++;
 		}
-		System.out.println("South to North: " + count2);
+		System.out.println("BFS South to North: " + count2);
 
 		DepthFirstPaths dfs = new DepthFirstPaths(info.graph, easternMostVertex(info));
 		Iterable<Integer> paths3 = dfs.pathTo(westernMostVertex(info));
@@ -179,19 +224,37 @@ public class Q2 {
 		for (int i : paths3) {
 			count3++;
 		}
-		System.out.println("DFS East to West: " + count3);*/
+		System.out.println("DFS East to West: " + count3);
+
+		DepthFirstPaths dfsNorthToSouth = new DepthFirstPaths(info.graph, northernMostVertex(info));
+		Iterable<Integer> pathss = dfsNorthToSouth.pathTo(southernMostVertex(info));
+		int count9 = 0;
+		for (int i : pathss) {
+			count9++;
+		}
+		System.out.println("DFS North to South: " + count9);
 
 		Information newInfo = remove_I90_segments(info);
 
 		BreadthFirstPaths bfs3 = new BreadthFirstPaths(newInfo.graph, southernMostVertex(info));
 		int mostNorth = northernMostVertex(info);
-		Iterable<Integer> paths3 = bfs3.pathTo(mostNorth);
-		System.out.println("Path: " + paths3);
-		int count3 = 0;
-		for (int i : paths3) {
-			count3++;
+		Iterable<Integer> paths4 = bfs3.pathTo(mostNorth);
+		//System.out.println("Path: " + paths3);
+		int count4 = 0;
+		for (int i : paths4) {
+			count4++;
 		}
-		System.out.println("South to North: " + count3);
+		System.out.println("BFS Without Mass Pike South to North: " + count4);
+
+		BreadthFirstPaths bfs4 = new BreadthFirstPaths(newInfo.graph, westernMostVertex(info));
+		int mostEast = easternMostVertex(info);
+		Iterable<Integer> paths5 = bfs4.pathTo(mostEast);
+		//System.out.println("Path: " + paths3);
+		int count5 = 0;
+		for (int i : paths5) {
+			count5++;
+		}
+		System.out.println("BFS Without Mass Pike East to West: " + count5);*/
 
 
 
