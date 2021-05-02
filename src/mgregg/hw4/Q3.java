@@ -1,8 +1,8 @@
 package mgregg.hw4;
 
+import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.DirectedCycle;
-import edu.princeton.cs.algs4.StdRandom;
 
 /**
  * How many random directed graphs of V vertices have a cycle? and are connected?
@@ -14,24 +14,39 @@ import edu.princeton.cs.algs4.StdRandom;
  * of being present.
  */
 public class Q3 {
-	public static void main(String[] args) {
+	private static void calculate(boolean first) {
+		System.out.println((first ? "" : "\n") + "N" + "\t\t#Cycles" + "\t\t#Connected");
 		for (int i = 2; i <= 15; i++) {
 			int cycleSum = 0;
+			int connectedSum = 0;
 			for (int j = 0; j < 10000; j++) {
 				Digraph digraph = new Digraph(i);
-				for (int v = 2; v < i; v++) {
-					if (Math.random() < 0.5) {
-						digraph.addEdge(v, v*v-1);
+				for (int u = 0; u < i; u++) {
+					for (int v = 0; v < i; v++) {
+						if (Math.random() < (first ? 0.5 : 1.0/i) && !(u == v)) {
+							digraph.addEdge(u, v);
+						}
 					}
 				}
 				DirectedCycle cycleDetector = new DirectedCycle(digraph);
 				if (cycleDetector.hasCycle()) {
 					cycleSum++;
 				}
-
-				//digraph.addEdge();
+				DepthFirstDirectedPaths dfs = new DepthFirstDirectedPaths(digraph, 0);
+				for (int k = 0; k < digraph.V(); k++) {
+					if (!dfs.hasPathTo(k)) {
+						break;
+					} else if (k == digraph.V()-1) {
+						connectedSum++;
+					}
+				}
 			}
-			System.out.println(cycleSum);
+			System.out.println(String.format("%d\t\t%d\t\t%d", i, cycleSum, connectedSum));
 		}
+	}
+
+	public static void main(String[] args) {
+		calculate(true);
+		calculate(false);
 	}
 }

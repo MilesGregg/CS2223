@@ -164,7 +164,12 @@ public class Q2 {
 		int mostEasternVertex = easternMostVertex(info);
 		int mostWesternVertex = westernMostVertex(info);
 
-		System.out.println("Q2.1 Standard Paths: ");
+		System.out.println("Northern Most Vertex: " + mostNorthernVertex);
+		System.out.println("Southern Most Vertex: " + mostSouthernVertex);
+		System.out.println("Eastern Most Vertex: " + mostEasternVertex);
+		System.out.println("Western Most Vertex: " + mostWesternVertex);
+
+		System.out.println("\nQ2.1 Standard Paths: ");
 		BreadthFirstPaths bfsWestToEast = new BreadthFirstPaths(info.graph, mostWesternVertex);
 		Iterable<Integer> pathBfsWestToEast = bfsWestToEast.pathTo(mostEasternVertex);
 		System.out.println("\tBFS West to East: " + sum(pathBfsWestToEast));
