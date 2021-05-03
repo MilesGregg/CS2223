@@ -3,6 +3,7 @@ package mgregg.hw4;
 import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.DirectedCycle;
+import edu.princeton.cs.algs4.DirectedDFS;
 
 /**
  * How many random directed graphs of V vertices have a cycle? and are connected?
@@ -15,7 +16,7 @@ import edu.princeton.cs.algs4.DirectedCycle;
  */
 public class Q3 {
 	private static void calculate(boolean first) {
-		System.out.println((first ? "" : "\n") + "N" + "\t\t#Cycles" + "\t\t#Connected");
+		System.out.println("N" + "\t\t#Cycles" + "\t\t#Connected");
 		for (int i = 2; i <= 15; i++) {
 			int cycleSum = 0;
 			int connectedSum = 0;
@@ -23,7 +24,7 @@ public class Q3 {
 				Digraph digraph = new Digraph(i);
 				for (int u = 0; u < i; u++) {
 					for (int v = 0; v < i; v++) {
-						if (Math.random() < (first ? 0.5 : 1.0/i) && !(u == v)) {
+						if (Math.random() < (first ? 0.5 : 1.0/i) && u != v) {
 							digraph.addEdge(u, v);
 						}
 					}
@@ -32,21 +33,23 @@ public class Q3 {
 				if (cycleDetector.hasCycle()) {
 					cycleSum++;
 				}
-				DepthFirstDirectedPaths dfs = new DepthFirstDirectedPaths(digraph, 0);
-				for (int k = 0; k < digraph.V(); k++) {
-					if (!dfs.hasPathTo(k)) {
-						break;
-					} else if (k == digraph.V()-1) {
-						connectedSum++;
+				DirectedDFS dfs = new DirectedDFS(digraph, 0);
+				boolean connected = true;
+				for (int k = 1; k < digraph.V(); k++) {
+					if (!dfs.marked(k)) {
+						connected = false;
 					}
 				}
+				if (connected) connectedSum++;
 			}
 			System.out.println(String.format("%d\t\t%d\t\t%d", i, cycleSum, connectedSum));
 		}
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Graphs with probability 0.5");
 		calculate(true);
+		System.out.println("\nGraphs with probability 1/N");
 		calculate(false);
 	}
 }
