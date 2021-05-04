@@ -17,7 +17,7 @@ public class TestPopular {
 	/** Just count the number of entries in this Iterable. */
 	static int count(Iterable<Integer> result) {
 		int count = 0;
-		for (int _:result) { count++; }
+		for (int i:result) { count++; }
 		return count;
 	}
 
