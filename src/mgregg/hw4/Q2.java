@@ -164,18 +164,25 @@ public class Q2 {
 		int mostEasternVertex = easternMostVertex(info);
 		int mostWesternVertex = westernMostVertex(info);
 
-		System.out.println("Northern Most Vertex: " + mostNorthernVertex);
-		System.out.println("Southern Most Vertex: " + mostSouthernVertex);
-		System.out.println("Eastern Most Vertex: " + mostEasternVertex);
-		System.out.println("Western Most Vertex: " + mostWesternVertex);
-
-		System.out.println("\nWestern most point: " + info.positions.get(mostWesternVertex));
-		System.out.println("Eastern most point: " + info.positions.get(mostEasternVertex));
+		System.out.println("Northern Most Index: " + mostNorthernVertex);
+		System.out.println("Southern Most Index: " + mostSouthernVertex);
+		System.out.println("Eastern Most Index: " + mostEasternVertex);
+		System.out.println("Western Most Index: " + mostWesternVertex);
 
 		System.out.println("\nQ2.1 Standard Paths: ");
+		System.out.println("\tNorthern Most Vertex: " + info.positions.get(mostNorthernVertex));
+		System.out.println("\tSouthern Most Vertex: " + info.positions.get(mostSouthernVertex));
+		System.out.println("\tEastern Most Vertex: " + info.positions.get(mostEasternVertex));
+		System.out.println("\tWestern Most Vertex: " + info.positions.get(mostWesternVertex));
+
+		System.out.println("\n\tNorthern Most Point: " + info.labels.get(mostNorthernVertex));
+		System.out.println("\tSouthern Most Point: " + info.labels.get(mostSouthernVertex));
+		System.out.println("\tEastern Most Point: " + info.labels.get(mostEasternVertex));
+		System.out.println("\tWestern Most Point: " + info.labels.get(mostWesternVertex));
+
 		BreadthFirstPaths bfsWestToEast = new BreadthFirstPaths(info.graph, mostWesternVertex);
 		Iterable<Integer> pathBfsWestToEast = bfsWestToEast.pathTo(mostEasternVertex);
-		System.out.println("\tBFS West to East: " + sum(pathBfsWestToEast));
+		System.out.println("\n\tBFS West to East: " + sum(pathBfsWestToEast));
 
 		BreadthFirstPaths bfsSouthToNorth = new BreadthFirstPaths(info.graph, mostSouthernVertex);
 		Iterable<Integer> pathBfsSouthToNorth = bfsSouthToNorth.pathTo(mostNorthernVertex);

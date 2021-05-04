@@ -1,0 +1,85 @@
+<<Miles Gregg>>
+HW4
+Written Questions
+
+
+Q1. Expression Trees:   <- ("Please run Q1.java to get the results for Q1")
+
+    Q1.1 Complete new type of nodes for the expression tree:
+        Updated Subtract, Divide, and Multiply.
+
+    Q1.2 Complete Q1 class:
+        Finished Q1.java class.
+
+    Q1.3 Define a new operation to perform:
+        Added height() to all classes and Expression abstract class. Also implemented functionality.
+
+Q2. Learn to work with graphs and Breadth First Search:   <- ("To get these results for Q3 please run Q2.java")
+    Northern Most Vertex: 247
+    Southern Most Vertex: 1446
+    Eastern Most Vertex: 698
+    Western Most Vertex: 188
+
+    Q2.1 Standard Paths:
+    	Northern most point: MA150/NH150@MA/NH
+    	Southern most point: MA88@CheWebbLn
+    	Eastern most point: MA28@ShoRd
+    	Western most point: MA23/NY23@NY/MA
+
+    	BFS West to East: 99
+    	BFS South to North: 68
+
+    Q2.2 Demonstrate why Depth First Search is inappropriate here:
+    	DFS West to East: 735
+    	DFS South to North: 188
+
+
+
+    Q2.3 Eliminate Mass Pike from consideration:
+    	BFS West to East: 114
+    	BFS South to North: 68
+
+
+    	Answer: We can clearly see that Depth First Search is really inefficient in terms of getting
+            	        the shortest path to the target node.
+
+    	Answer: Taking out the Mass Pike only affected the BFS on West to East Path by 15 edges. It didn't
+    	        affect the South to North path because there are roads that go on top or under the Mass pike. The
+    	        West to East path was effected because the Mass Pike is the main highway from West to East of Massachusetts.
+
+
+Q3. Exploring Random Directed Graphs:   <- ("To get these similar results for Q3 please run Q3.java")
+
+    Graphs with probability 0.5
+    N		#Cycles		#Connected
+    2		2450		4950
+    3		6037		4973
+    4		8656		5913
+    5		9722		7132
+    6		9968		8134
+    7		9998		8874
+    8		10000		9355
+    9		10000		9671
+    10		10000		9786
+    11		10000		9897
+    12		10000		9935
+    13		10000		9965
+    14		10000		9987
+    15		10000		9991
+
+    Graphs with probability 1/N
+    N		#Cycles		#Connected
+    2		2430		4967
+    3		3167		2587
+    4		3563		1416
+    5		4020		785
+    6		4242		458
+    7		4395		268
+    8		4612		174
+    9		4788		100
+    10		4930		58
+    11		5070		35
+    12		5196		24
+    13		5210		11
+    14		5338		6
+    15		5445		5
