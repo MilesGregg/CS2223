@@ -15,16 +15,21 @@ Q1. Expression Trees:   <- ("Please run Q1.java to get the results for Q1")
         Added height() to all classes and Expression abstract class. Also implemented functionality.
 
 Q2. Learn to work with graphs and Breadth First Search:   <- ("To get these results for Q3 please run Q2.java")
-    Northern Most Vertex: 247
-    Southern Most Vertex: 1446
-    Eastern Most Vertex: 698
-    Western Most Vertex: 188
+    Northern Most Index: 247
+    Southern Most Index: 1446
+    Eastern Most Index: 698
+    Western Most Index: 188
 
     Q2.1 Standard Paths:
-    	Northern most point: MA150/NH150@MA/NH
-    	Southern most point: MA88@CheWebbLn
-    	Eastern most point: MA28@ShoRd
-    	Western most point: MA23/NY23@NY/MA
+    	Northern Most Vertex: <42.884644,-70.93058>
+    	Southern Most Vertex: <41.51435,-71.06632>
+    	Eastern Most Vertex: <41.692795,-69.95497>
+    	Western Most Vertex: <42.172253,-73.47686>
+
+    	Northern Most Point: MA150/NH150@MA/NH
+    	Southern Most Point: MA88@CheWebbLn
+    	Eastern Most Point: MA28@ShoRd
+    	Western Most Point: MA23/NY23@NY/MA
 
     	BFS West to East: 99
     	BFS South to North: 68
@@ -33,20 +38,16 @@ Q2. Learn to work with graphs and Breadth First Search:   <- ("To get these resu
     	DFS West to East: 735
     	DFS South to North: 188
 
-
+    	Answer: We can clearly see that Depth First Search is really inefficient in terms of getting
+                the shortest path to the target node.
 
     Q2.3 Eliminate Mass Pike from consideration:
     	BFS West to East: 114
     	BFS South to North: 68
 
-
-    	Answer: We can clearly see that Depth First Search is really inefficient in terms of getting
-            	        the shortest path to the target node.
-
     	Answer: Taking out the Mass Pike only affected the BFS on West to East Path by 15 edges. It didn't
     	        affect the South to North path because there are roads that go on top or under the Mass pike. The
     	        West to East path was effected because the Mass Pike is the main highway from West to East of Massachusetts.
-
 
 Q3. Exploring Random Directed Graphs:   <- ("To get these similar results for Q3 please run Q3.java")
 
