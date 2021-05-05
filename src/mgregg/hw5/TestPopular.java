@@ -1,6 +1,7 @@
 package mgregg.hw5;
 
 import algs.iterator.ArrayIterator;
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StopwatchCPU;
 
 import java.util.Iterator;

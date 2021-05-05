@@ -2,6 +2,7 @@ package mgregg.hw5;
 
 // use any classes you want from Sedgewick
 
+import algs.days.day18.TreeMap;
 import edu.princeton.cs.algs4.Queue;
 
 /**
@@ -42,37 +43,70 @@ import edu.princeton.cs.algs4.Queue;
  *
  */
 public class PopularSymbolTable {
+	private int N;
+	private TreeMap<Integer, Integer> st;
 
 	public PopularSymbolTable () {
 		// fill in by student....
+		st = new TreeMap<>();
 	}
 
 	/** Return number of (key, value) pairs in the table. Performance must be O(1). */
 	public int size() {
-		throw new RuntimeException ("Student Must complete.");
+		return st.size();
+		//throw new RuntimeException ("Student Must complete.");
 	}
 
 	/** Might return an empty Queue object. */
 	public Queue<Integer> reverseMatch(Integer value) {
-		throw new RuntimeException ("Student Must complete.");
+		Queue<Integer> queue = new Queue<>();
+		for (int i = st.size()-1; i >= 0; i--) {
+			System.out.println(i);
+			Integer getValue = st.get(i);
+			if (getValue == null) return new Queue<>();
+			if (getValue.equals(value)) {
+				System.out.println("ENQUING: " + i);
+				queue.enqueue(i);
+			}
+		}
+		return queue;
+		/*for (int i : st.keySet()) {
+
+		}*/
+
+		//throw new RuntimeException ("Student Must complete.");
 	}
 
 	/** Return value associated with key. */
 	public Integer get(Integer key) {
-		throw new RuntimeException ("Student Must complete.");
+		if (key == null) throw new IllegalArgumentException("key is null");
+		return st.get(key);
 	}
 
 	/**
 	 * Return true if the key was newly added to the collection.
 	 */
 	public boolean put (Integer key, Integer value) {
-		throw new RuntimeException ("Student Must complete.");
+		//throw new RuntimeException ("Student Must complete.");
+		if (key == null) {
+			throw new IllegalArgumentException("calls put() with null key");
+		}
+		if (value == null) {
+			st.remove(key);
+		} else {
+			Integer val = st.put(key, value);
+			return val != null;
+		}
+
+		return false;
 	}
 
 	/**
 	 * Return true if the key was removed.
 	 */
 	public boolean remove (Integer key) {
-		throw new RuntimeException ("Student Must complete.");
+		if (key == null) throw new IllegalArgumentException("calls remove() with null key");
+		Integer oldValue = st.remove(key);
+		return oldValue != null;
 	}
 }
