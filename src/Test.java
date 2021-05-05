@@ -83,8 +83,12 @@ public class Test {
         past = addPos(past, past.length-1, "a");
         System.out.println(Arrays.toString(past));*/
 
-        String string = "+-*/";
-        System.out.println(string.contains("2"));
+        //String string = "+-*/";
+        //System.out.println(string.contains("2"));
+
+        int i = 25;
+        char test = (char) ('A' + i);
+        System.out.println(test);
 
         /*FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
         stack.push(2);

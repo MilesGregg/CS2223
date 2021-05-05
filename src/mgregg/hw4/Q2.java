@@ -156,6 +156,23 @@ public class Q2 {
 		return sum-1;
 	}
 
+	private static double distance(Information information, int vertex1, int vertex2) {
+		BreadthFirstPaths bfsWestToEast = new BreadthFirstPaths(information.graph, vertex1);
+		Iterable<Integer> pathBfsWestToEast = bfsWestToEast.pathTo(vertex2);
+		double sum = 0;
+		int index = 0;
+		GPS prev = null;
+		for (int i : pathBfsWestToEast) {
+			if (index != 0) {
+				sum += information.positions.get(i).distance(prev);
+			}
+			index++;
+			prev = information.positions.get(i);
+		}
+
+		return sum;
+	}
+
 	public static void main(String[] args) {
 		Information info = HighwayMap.undirectedGraph();
 
@@ -163,6 +180,12 @@ public class Q2 {
 		int mostSouthernVertex = southernMostVertex(info);
 		int mostEasternVertex = easternMostVertex(info);
 		int mostWesternVertex = westernMostVertex(info);
+
+		System.out.println("DISTANCE: " + distance(info, mostEasternVertex, mostWesternVertex));
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
 
 		System.out.println("Northern Most Index: " + mostNorthernVertex);
 		System.out.println("Southern Most Index: " + mostSouthernVertex);

@@ -2,10 +2,7 @@ package mgregg.hw5;
 
 import algs.days.day18.AVL;
 import algs.hw5.Dictionary;
-import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.SeparateChainingHashST;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -44,7 +41,20 @@ public class WordZipper {
 	 * the E is inserted between the E and the T).
 	 */
 	public static Queue<String> addOne(String three) {
-		throw new RuntimeException("To be completed by the student");
+		Queue<String> queue = new Queue<>();
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 26; j++) {
+				char newChar = (char) ('a' + j);
+				StringBuilder newWord = new StringBuilder(three);
+				newWord.insert(i, newChar);
+
+				if (map.contains(newWord.toString())) {
+					queue.enqueue(newWord.toString());
+				}
+			}
+		}
+
+		return queue;
 	}
 
 	/**
@@ -55,7 +65,18 @@ public class WordZipper {
 	 * be {"BEE", "BET", "BET"}
 	 */
 	public static Queue<String> removeOne(String four) {
-		throw new RuntimeException("To be completed by the student");
+		Queue<String> queue = new Queue<>();
+		for (int i = 0; i < four.length(); i++) {
+			StringBuilder newWord = new StringBuilder(four);
+			newWord.deleteCharAt(i);
+			//System.out.println(newWord.toString() + " : " + " map contains: " + map.contains(newWord.toString()));
+
+			if (map.contains(newWord.toString())) {
+				queue.enqueue(newWord.toString());
+			}
+		}
+
+		return queue;
 	}
 
 	/**
@@ -71,12 +92,37 @@ public class WordZipper {
 		// Construct AVL tree of all three- and four-letter words.
 		// Note: you will have to copy this file into your project to access it.
 		Scanner sc = Dictionary.words();
+		int i = 0;
+
+		while (sc.hasNext()) {
+			String currentWord = sc.next();
+			if (currentWord.length() == 4 || currentWord.length() == 3) {
+				avl.insert(currentWord);
+				map.put(currentWord, i);
+				reverse.put(i, currentWord);
+				i++;
+			}
+		}
+
+		for (String s : addOne("eat")) {
+			System.out.println(s);
+		}
+
+/*
 
 		// now construct graph, where each node represents a word, and an edge exists between
 		// two nodes if their respective words are off by a single letter. Hint: use the
 		// keys() method provided by the AVL tree. Your graph will be an undirected graph.
 
 		// TODO: FILL IN HERE
+		Graph words = new Graph(i);
+		for (int j = 0; j < i; j++) {
+			String currentWord = reverse.get(j);
+			for (String word : avl.keys()) {
+				//if ()
+				//words.addEdge(map.get(word), );
+			}
+		}
 
 		sc.close();  // once done, you can close this resource.
 
@@ -103,6 +149,6 @@ public class WordZipper {
 			// IF there is no word zipper possible, then output "NONE POSSIBLE."
 
 		}
-
+*/
 	}
 }

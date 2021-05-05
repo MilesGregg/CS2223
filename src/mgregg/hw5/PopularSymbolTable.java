@@ -56,7 +56,7 @@ public class PopularSymbolTable {
 	public Queue<Integer> reverseMatch(Integer value) {
 		throw new RuntimeException ("Student Must complete.");
 	}
-	
+
 	/** Return value associated with key. */
 	public Integer get(Integer key) {
 		throw new RuntimeException ("Student Must complete.");
