@@ -79,6 +79,13 @@ public class WordZipper {
 		return queue;
 	}
 
+	private static boolean hasPath(Graph graph, int start, int target) {
+		for (int i : graph.adj(start)) {
+			if (i == target) return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Main method to execute.
 	 *
@@ -104,25 +111,56 @@ public class WordZipper {
 			}
 		}
 
-		for (String s : addOne("eat")) {
-			System.out.println(s);
-		}
-
-/*
-
 		// now construct graph, where each node represents a word, and an edge exists between
 		// two nodes if their respective words are off by a single letter. Hint: use the
 		// keys() method provided by the AVL tree. Your graph will be an undirected graph.
 
 		// TODO: FILL IN HERE
 		Graph words = new Graph(i);
-		for (int j = 0; j < i; j++) {
-			String currentWord = reverse.get(j);
-			for (String word : avl.keys()) {
-				//if ()
-				//words.addEdge(map.get(word), );
+		for (String word : avl.keys()) {
+			if (word.length() == 4) {
+				Queue<String> queue = removeOne(word);
+				while (!queue.isEmpty()) {
+					String addedWord = queue.dequeue();
+					int start = map.get(word);
+					int end = map.get(addedWord);
+					if (!hasPath(words, start, end)) {
+						words.addEdge(map.get(word), map.get(addedWord));
+					}
+				}
+			} else {
+				Queue<String> queue = addOne(word);
+				while (!queue.isEmpty()) {
+					String addedWord = queue.dequeue();
+					int start = map.get(word);
+					int end = map.get(addedWord);
+					if (!hasPath(words, start, end)) {
+						words.addEdge(map.get(word), map.get(addedWord));
+					}
+				}
 			}
 		}
+		/*for (int j = 0; j < i; j++) {
+			String currentWord = reverse.get(j);
+			//System.out.println(currentWord);
+			for (String word : avl.keys()) {
+				if (word.length() == 4) {
+					Queue<String> queue = removeOne(currentWord);
+					while (!queue.isEmpty()) {
+						String addedWord = queue.dequeue();
+						words.addEdge(map.get(currentWord), map.get(addedWord));
+					}
+				} else {
+					Queue<String> queue = addOne(currentWord);
+					while (!queue.isEmpty()) {
+						String addedWord = queue.dequeue();
+						words.addEdge(map.get(currentWord), map.get(addedWord));
+					}
+				}
+			}
+		}*/
+
+		System.out.println("Edge Size: " + words.E());
 
 		sc.close();  // once done, you can close this resource.
 
@@ -147,8 +185,12 @@ public class WordZipper {
 			// that finds shortest distance (should it exist) between start and end.
 			// be sure to output the words in the word zipper, IN ORDER, from the start to end.
 			// IF there is no word zipper possible, then output "NONE POSSIBLE."
+			BreadthFirstPaths path = new BreadthFirstPaths(words, map.get(start));
+			for (int j : path.pathTo(map.get(end))) {
+				System.out.println(reverse.get(j));
+			}
 
 		}
-*/
+
 	}
 }
