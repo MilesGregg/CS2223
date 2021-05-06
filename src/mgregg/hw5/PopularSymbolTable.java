@@ -2,13 +2,9 @@ package mgregg.hw5;
 
 // use any classes you want from Sedgewick
 
+import algs.days.day18.AVL;
 import algs.days.day18.TreeMap;
-import algs.hw4.map.GPS;
 import edu.princeton.cs.algs4.*;
-
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * Your goal is to maintain a set of (key, value) pairs like a symbol table, with some
@@ -48,9 +44,8 @@ import java.util.LinkedList;
  *
  */
 public class PopularSymbolTable {
-	private int N;
-	private TreeMap<Integer, Integer> st;
-	private TreeMap<Integer, LinkedList<Integer>> reverse;
+	private final TreeMap<Integer, Integer> st;
+	private final TreeMap<Integer, AVL<Integer>> reverse;
 
 	public PopularSymbolTable () {
 		// fill in by student....
@@ -66,35 +61,15 @@ public class PopularSymbolTable {
 
 	/** Might return an empty Queue object. */
 	public Queue<Integer> reverseMatch(Integer value) {
-		//System.out.println("Find this value: " + value);
-		//System.out.println("Last entry: " + st.firstEntry().getKey());
-		/*Queue<Integer> queue = new Queue<>();
-		for (int i = st.firstEntry().getKey(); i <= st.lastEntry().getKey(); i++) {
-			Integer getValue = st.get(i);
-			//System.out.println(getValue);
-			if (getValue == null) continue;
-			if (getValue.equals(value)) {
-				//System.out.println("Enqueue: " + i);
-				queue.enqueue(i);
-			}
-		}
-		return queue;*/
-
 		Queue<Integer> queue = new Queue<>();
-		LinkedList<Integer> current = reverse.get(value);
+		AVL<Integer> current = reverse.get(value);
 		if (current == null) return new Queue<>();
-		//LinkedList<Integer> newLinked = current;
-		//newLinked.sort((Comparator<? super Integer>) current);
-		current.sort(Integer::compareTo);
-		Iterator<Integer> iterator = current.iterator();
-		for (Iterator<Integer> it = iterator; it.hasNext(); ) {
-			Integer integer = it.next();
-			//System.out.println("Val: " + integer);
-			queue.enqueue(integer);
+		Iterable<Integer> iterable = current.keys();
+		for (int i : iterable) {
+			queue.enqueue(i);
 		}
 
 		return queue;
-
 		//throw new RuntimeException ("Student Must complete.");
 	}
 
@@ -113,8 +88,8 @@ public class PopularSymbolTable {
 			throw new IllegalArgumentException("calls put() with null key");
 		}
 
-		LinkedList<Integer> current = reverse.get(value) == null ? new LinkedList<>() : reverse.get(value);
-		current.add(key);
+		AVL<Integer> current = reverse.get(value) == null ? new AVL<Integer>() : reverse.get(value);
+		current.insert(key);
 		reverse.put(value, current);
 
 		Integer val = st.put(key, value);
@@ -128,13 +103,11 @@ public class PopularSymbolTable {
 		if (key == null) throw new IllegalArgumentException("calls remove() with null key");
 
 		Integer currentValue = st.get(key);
-		System.out.println("Current Value: " + currentValue);
 		if (currentValue != null) {
-			LinkedList<Integer> current = reverse.get(currentValue) == null ? new LinkedList<>() : reverse.get(currentValue);
-			current.remove(key);
+			AVL<Integer> current = reverse.get(currentValue) == null ? new AVL<Integer>() : reverse.get(currentValue);
+			current.fastDelete(key);
 			reverse.put(currentValue, current);
 		}
-
 
 		Integer oldValue = st.remove(key);
 		return oldValue != null;

@@ -1,7 +1,10 @@
 import algs.days.day04.FixedCapacityStack;
 import algs.days.day05.FixedCapacityQueue;
+import algs.days.day18.AVL;
 import edu.princeton.cs.algs4.LinkedQueue;
+import edu.princeton.cs.algs4.MinPQ;
 import mgregg.hw2.MyDeck;
+import mgregg.hw5.MyLinkedList;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -91,14 +94,36 @@ public class Test {
 //        char test = (char) ('A' + i);
 //        System.out.println(test);
 
-        LinkedQueue<Integer> testing = new LinkedQueue<>();
-        testing.enqueue(5);
-        testing.enqueue(9);
-        testing.enqueue(2);
-        Iterable<Integer> iterable = testing;
+        for (int j = 0; j < 4; j++) {
+            System.out.println(j);
+        }
+
+        /*AVL<Integer> testing = new AVL<Integer>();
+        testing.insert(5);
+        testing.insert(3);
+        testing.insert(2);
+        testing.insert(-6);
+        testing.insert(8);
+        testing.insert(5);
+        Iterable<Integer> iterable = testing.keys();
         for (int i : iterable) {
             System.out.println(i);
         }
+
+        /*MyLinkedList testing = new MyLinkedList();
+        testing.addNode(5);
+        testing.addNode(4);
+        testing.addNode(8);
+        testing.addNode(6);
+        //testing.removeElement(6);
+        Iterator<Integer> iterator = testing.iterator();
+        for (Iterator<Integer> it = iterator; it.hasNext(); ) {
+            int i = it.next();
+
+            System.out.println(i);
+        }
+       // testing.display();
+       // testing.printHeadTail();
 
         /*FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
         stack.push(2);

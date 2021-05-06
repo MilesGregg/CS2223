@@ -42,7 +42,7 @@ public class WordZipper {
 	 */
 	public static Queue<String> addOne(String three) {
 		Queue<String> queue = new Queue<>();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 26; j++) {
 				char newChar = (char) ('a' + j);
 				StringBuilder newWord = new StringBuilder(three);
@@ -79,7 +79,7 @@ public class WordZipper {
 		return queue;
 	}
 
-	private static boolean hasPath(Graph graph, int start, int target) {
+	private static boolean alreadyHasPath(Graph graph, int start, int target) {
 		for (int i : graph.adj(start)) {
 			if (i == target) return true;
 		}
@@ -124,7 +124,7 @@ public class WordZipper {
 					String addedWord = queue.dequeue();
 					int start = map.get(word);
 					int end = map.get(addedWord);
-					if (!hasPath(words, start, end)) {
+					if (!alreadyHasPath(words, start, end)) {
 						words.addEdge(map.get(word), map.get(addedWord));
 					}
 				}
@@ -134,7 +134,7 @@ public class WordZipper {
 					String addedWord = queue.dequeue();
 					int start = map.get(word);
 					int end = map.get(addedWord);
-					if (!hasPath(words, start, end)) {
+					if (!alreadyHasPath(words, start, end)) {
 						words.addEdge(map.get(word), map.get(addedWord));
 					}
 				}

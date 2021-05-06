@@ -37,7 +37,7 @@ public class Q2 {
 		// THIS IS WHERE YOU MUST DO SOME WORK TO DETERMINE TWO VERTICES
 		// THAT HAVE THE GREATEST OF THE SHORTEST DISTANCES.
 		for (int u = 0; u < info.graph.V(); u++) {
-			for (int v = 0; v < info.graph.V(); v++) {
+			for (int v = u; v < info.graph.V(); v++) {
 				/*for (int i : fw.shortestPath(u, v)) {
 					GPS gps = info.positions.get(i);
 					double mileage = gps.distance(info.positions.get(i+1));
@@ -62,6 +62,7 @@ public class Q2 {
 					vertex1 = u;
 					vertex2 = v;
 				}
+				//System.out.println("Sum: " + sum);
 			}
 		}
 
