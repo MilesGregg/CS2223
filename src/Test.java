@@ -1,5 +1,6 @@
 import algs.days.day04.FixedCapacityStack;
 import algs.days.day05.FixedCapacityQueue;
+import edu.princeton.cs.algs4.LinkedQueue;
 import mgregg.hw2.MyDeck;
 
 import java.util.Arrays;
@@ -86,9 +87,18 @@ public class Test {
         //String string = "+-*/";
         //System.out.println(string.contains("2"));
 
-        int i = 25;
-        char test = (char) ('A' + i);
-        System.out.println(test);
+//        int i = 25;
+//        char test = (char) ('A' + i);
+//        System.out.println(test);
+
+        LinkedQueue<Integer> testing = new LinkedQueue<>();
+        testing.enqueue(5);
+        testing.enqueue(9);
+        testing.enqueue(2);
+        Iterable<Integer> iterable = testing;
+        for (int i : iterable) {
+            System.out.println(i);
+        }
 
         /*FixedCapacityStack<Integer> stack = new FixedCapacityStack<>(100);
         stack.push(2);
