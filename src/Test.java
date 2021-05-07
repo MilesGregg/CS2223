@@ -6,9 +6,6 @@ import edu.princeton.cs.algs4.MinPQ;
 import mgregg.hw2.MyDeck;
 import mgregg.hw5.MyLinkedList;
 
-import java.util.Arrays;
-import java.util.Iterator;
-
 public class Test {
 
     /*boolean contains(int[] collection, int target) {

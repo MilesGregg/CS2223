@@ -5,6 +5,8 @@ import algs.hw5.Dictionary;
 import edu.princeton.cs.algs4.*;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -42,11 +44,14 @@ public class BonusWordZipper {
 	 */
 	public static Queue<String> addOne(String three) {
 		Queue<String> queue = new Queue<>();
+		System.out.println("in add one");
 		for (int i = 0; i < three.length(); i++) {
 			for (int j = 0; j < 26; j++) {
 				char newChar = (char) ('a' + j);
 				StringBuilder newWord = new StringBuilder(three);
 				newWord.insert(i, newChar);
+
+				System.out.println("New Word: " + newWord.toString());
 
 				if (map.contains(newWord.toString())) {
 					queue.enqueue(newWord.toString());
@@ -64,22 +69,37 @@ public class BonusWordZipper {
 	 * For example, if the word is 'BEET' then the words returned could
 	 * be {"BEE", "BET", "BET"}
 	 */
-	public static Queue<String> removeOne(String four) {
+	public static Queue<String> masterQueue(String word) {
 		Queue<String> queue = new Queue<>();
-		for (int i = 0; i < four.length(); i++) {
+
+		/*for (int i = 0; i < word.length(); i++) {
+			for (int j = 0; j < 26; j++) {
+				char newChar = (char) ('a' + j);
+				StringBuilder newWord = new StringBuilder(word);
+				newWord.insert(i, newChar);
+
+				if (map.contains(newWord.toString())) {
+					queue.enqueue(newWord.toString());
+				}
+			}
+		}*/
+
+		/*for (int i = 0; i < four.length(); i++) {
 			StringBuilder newWord = new StringBuilder(four);
 			newWord.deleteCharAt(i);
+
+			System.out.println("New Word: " + newWord.toString());
 			//System.out.println(newWord.toString() + " : " + " map contains: " + map.contains(newWord.toString()));
 
 			if (map.contains(newWord.toString())) {
 				queue.enqueue(newWord.toString());
 			}
-		}
+		}*/
 
 		return queue;
 	}
 
-	private static boolean hasPath(Graph graph, int start, int target) {
+	private static boolean alreadyHasPath(Graph graph, int start, int target) {
 		for (int i : graph.adj(start)) {
 			if (i == target) return true;
 		}
@@ -97,13 +117,12 @@ public class BonusWordZipper {
 		String word1 = "restaff";
 		String word2 = "sheriff";
 
-		avl = new AVL<String>();
-
 		StopwatchCPU cpu = new StopwatchCPU();
 
-		Scanner sc = Dictionary.words();
+		// Use this to contain all three- and four-letter words that you find in dictionary
+		avl = new AVL<String>();
 
-		// do all work here
+		Scanner sc = Dictionary.words();
 		int i = 0;
 
 		while (sc.hasNext()) {
@@ -116,6 +135,14 @@ public class BonusWordZipper {
 			}
 		}
 
+//		Queue<String> test = masterQueue(word1);
+//		while (!test.isEmpty()) {
+//			String addedWord = test.dequeue();
+//			System.out.println(addedWord);
+//		}
+
+		System.out.println("Size: " + i);
+
 		// now construct graph, where each node represents a word, and an edge exists between
 		// two nodes if their respective words are off by a single letter. Hint: use the
 		// keys() method provided by the AVL tree. Your graph will be an undirected graph.
@@ -123,13 +150,23 @@ public class BonusWordZipper {
 		// TODO: FILL IN HERE
 		Graph words = new Graph(i);
 		for (String word : avl.keys()) {
-			if (word.length() == 4) {
+			Queue<String> test = masterQueue(word1);
+			while (!test.isEmpty()) {
+				String addedWord = test.dequeue();
+				int start = map.get(word);
+				int end = map.get(addedWord);
+				if (!alreadyHasPath(words, start, end)) {
+					words.addEdge(map.get(word), map.get(addedWord));
+				}
+				//System.out.println(addedWord);
+			}
+			/*if (word.length() % 2 == 0) {
 				Queue<String> queue = removeOne(word);
 				while (!queue.isEmpty()) {
 					String addedWord = queue.dequeue();
 					int start = map.get(word);
 					int end = map.get(addedWord);
-					if (!hasPath(words, start, end)) {
+					if (!alreadyHasPath(words, start, end)) {
 						words.addEdge(map.get(word), map.get(addedWord));
 					}
 				}
@@ -139,16 +176,16 @@ public class BonusWordZipper {
 					String addedWord = queue.dequeue();
 					int start = map.get(word);
 					int end = map.get(addedWord);
-					if (!hasPath(words, start, end)) {
+					if (!alreadyHasPath(words, start, end)) {
 						words.addEdge(map.get(word), map.get(addedWord));
 					}
 				}
-			}
+			}*/
 		}
 
 		System.out.println("Edge Size: " + words.E());
 
-		sc.close();
+		sc.close();  // once done, you can close this resource.
 
 		BreadthFirstPaths path = new BreadthFirstPaths(words, map.get(word1));
 		for (int j : path.pathTo(map.get(word2))) {
