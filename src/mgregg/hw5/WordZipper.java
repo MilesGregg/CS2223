@@ -186,8 +186,15 @@ public class WordZipper {
 			// be sure to output the words in the word zipper, IN ORDER, from the start to end.
 			// IF there is no word zipper possible, then output "NONE POSSIBLE."
 			BreadthFirstPaths path = new BreadthFirstPaths(words, map.get(start));
-			for (int j : path.pathTo(map.get(end))) {
-				System.out.println(reverse.get(j));
+			if (path.hasPathTo(map.get(end))) {
+				StringBuilder output = new StringBuilder();
+				for (int j : path.pathTo(map.get(end))) {
+					String addedWord = reverse.get(j);
+					output.append(addedWord).append(addedWord.equals(end) ? "" : " -> ");
+				}
+				System.out.println(output);
+			} else {
+				System.out.println("NONE POSSIBLE");
 			}
 
 		}

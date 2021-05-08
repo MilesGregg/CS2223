@@ -18,9 +18,6 @@ import edu.princeton.cs.algs4.EdgeWeightedGraph;
  * and no other pair of vertices demands a longer trip.
  */
 public class Q2 {
-	private static class Node {
-		private int test = 0;
-	}
 
 	public static void main(String[] args) {
 		WeightedInformation info = HighwayMapWeighted.undirectedGraph();
