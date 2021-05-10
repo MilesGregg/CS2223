@@ -88,6 +88,13 @@ public class PopularSymbolTable {
 			throw new IllegalArgumentException("calls put() with null key");
 		}
 
+		Integer old = st.get(key);
+		if (old != null) {
+			AVL<Integer> current = reverse.get(old) == null ? new AVL<Integer>() : reverse.get(old);
+			current.fastDelete(key);
+			reverse.put(old, current);
+		}
+
 		AVL<Integer> current = reverse.get(value) == null ? new AVL<Integer>() : reverse.get(value);
 		current.insert(key);
 		reverse.put(value, current);

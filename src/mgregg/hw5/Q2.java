@@ -35,15 +35,6 @@ public class Q2 {
 		// THAT HAVE THE GREATEST OF THE SHORTEST DISTANCES.
 		for (int u = 0; u < info.graph.V(); u++) {
 			for (int v = u; v < info.graph.V(); v++) {
-				/*for (int i : fw.shortestPath(u, v)) {
-					GPS gps = info.positions.get(i);
-					double mileage = gps.distance(info.positions.get(i+1));
-
-				}*/
-
-
-				//BreadthFirstPaths bfsWestToEast = new BreadthFirstPaths(information.graph, vertex1);
-				//Iterable<Integer> pathBfsWestToEast = bfsWestToEast.pathTo(vertex2);
 				double sum = 0;
 				int index = 0;
 				GPS prev = null;
@@ -59,13 +50,12 @@ public class Q2 {
 					vertex1 = u;
 					vertex2 = v;
 				}
-				//System.out.println("Sum: " + sum);
 			}
 		}
 
-		System.out.println("Highest: " + highestSum);
-		System.out.println("Vertex 1: " + info.positions.get(vertex1));
-		System.out.println("Vertex 2: " + info.positions.get(vertex2));
+		System.out.println("vertex1 is " + info.labels.get(vertex1) + " @ " + info.positions.get(vertex1));
+		System.out.println("vertex2 is " + info.labels.get(vertex2) + " @ " + info.positions.get(vertex2));
+		System.out.println("Total mileage: " + highestSum);
 
 		// To visually animate the solution, properly use integer vertex endpoints. You know this is
 		// right when you see it!
