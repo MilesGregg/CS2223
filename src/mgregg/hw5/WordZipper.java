@@ -69,7 +69,6 @@ public class WordZipper {
 		for (int i = 0; i < four.length(); i++) {
 			StringBuilder newWord = new StringBuilder(four);
 			newWord.deleteCharAt(i);
-			//System.out.println(newWord.toString() + " : " + " map contains: " + map.contains(newWord.toString()));
 
 			if (map.contains(newWord.toString())) {
 				queue.enqueue(newWord.toString());
@@ -140,27 +139,6 @@ public class WordZipper {
 				}
 			}
 		}
-		/*for (int j = 0; j < i; j++) {
-			String currentWord = reverse.get(j);
-			//System.out.println(currentWord);
-			for (String word : avl.keys()) {
-				if (word.length() == 4) {
-					Queue<String> queue = removeOne(currentWord);
-					while (!queue.isEmpty()) {
-						String addedWord = queue.dequeue();
-						words.addEdge(map.get(currentWord), map.get(addedWord));
-					}
-				} else {
-					Queue<String> queue = addOne(currentWord);
-					while (!queue.isEmpty()) {
-						String addedWord = queue.dequeue();
-						words.addEdge(map.get(currentWord), map.get(addedWord));
-					}
-				}
-			}
-		}*/
-
-		System.out.println("Edge Size: " + words.E());
 
 		sc.close();  // once done, you can close this resource.
 

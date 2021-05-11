@@ -1,10 +1,5 @@
 import algs.days.day04.FixedCapacityStack;
 import algs.days.day05.FixedCapacityQueue;
-import algs.days.day18.AVL;
-import edu.princeton.cs.algs4.LinkedQueue;
-import edu.princeton.cs.algs4.MinPQ;
-import mgregg.hw2.MyDeck;
-import mgregg.hw5.MyLinkedList;
 
 public class Test {
 

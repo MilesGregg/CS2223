@@ -3,9 +3,21 @@ HW5
 Written Questions
 
 
-Q1. Expression Trees:   <- ("Please run Q1.java to get the results for Q1")
+Q1. Word Zippers: Breadth First Search Exercise:   <- ("Please run WordZipper.java to get the results for Q1")
 
-Q2. Learn to work with graphs and Breadth First Search:   <- ("To get these results for Q3 please run Q2.java")
+    Output for cold to warm:
+
+        Enter word to start from (all in lower case):
+        cold
+        Enter word to end at (all in lower case):
+        warm
+        cold -> old -> wold -> wod -> woad -> wad -> ward -> war -> warm
+
+Q2. Shortest Distance:   <- ("Please run Q2.java to get the results for Q2")
+
+    vertex1 is MA6APro_Pro/US6_E/US6HisPro @ <42.045357,-70.21471>
+    vertex2 is MA43/NY43@NY/MA @ <42.53935,-73.34164>
+    Total mileage: 251.43175936229497
 
 Q3. Data Type with performance Guarantees:   <- ("To get these similar results for Q3 please run TestPopular.java")
 
@@ -14,24 +26,24 @@ Q3. Data Type with performance Guarantees:   <- ("To get these similar results f
     BuildT is the build time, which should be O(log N)
     SearchS should be essentially 0 since it does reverseMatch when K is small
     SearchL should be O(N) since it does reverseMatch when K is N/2
-    N	BuildT	SearchS	SearchL
-    2048	0.039	0.000	0.018
-    4096	0.085	0.000	0.033
-    8192	0.182	0.000	0.072
-    16384	0.391	0.000	0.136
-    32768	0.880	0.000	0.298
-    65536	2.022	0.000	0.650
-    131072	4.617	0.000	1.518
-    262144	10.698	0.000	2.644
+    N	    BuildT	SearchS	SearchL
+    2048	0.028	0.000	0.018
+    4096	0.063	0.000	0.031
+    8192	0.131	0.000	0.074
+    16384	0.270	0.000	0.130
+    32768	0.602	0.000	0.306
+    65536	1.402	0.000	0.557
+    131072	3.222	0.000	1.512
+    262144	7.283	0.000	2.578
 
     In the following table:
     -----------------------
     BuildT is the build time, which should be O(log N)
     SearchT should be O(N) since reverseMatch returns K=N values
-    N	BuildT	SearchT
-    2048	0.031	0.031
-    4096	0.075	0.074
-    8192	0.155	0.132
-    16384	0.339	0.295
-    32768	0.787	0.597
-    65536	1.864	1.410
+    N	    BuildT	SearchT
+    2048	0.023	0.030
+    4096	0.050	0.072
+    8192	0.112	0.125
+    16384	0.239	0.285
+    32768	0.537	0.552
+    65536	1.246	1.321

@@ -44,19 +44,18 @@ import edu.princeton.cs.algs4.*;
  *
  */
 public class PopularSymbolTable {
-	private final TreeMap<Integer, Integer> st;
+	private final TreeMap<Integer, Integer> tree;
 	private final TreeMap<Integer, AVL<Integer>> reverse;
 
 	public PopularSymbolTable () {
 		// fill in by student....
-		st = new TreeMap<>();
+		tree = new TreeMap<>();
 		reverse = new TreeMap<>();
 	}
 
 	/** Return number of (key, value) pairs in the table. Performance must be O(1). */
 	public int size() {
-		return st.size();
-		//throw new RuntimeException ("Student Must complete.");
+		return tree.size();
 	}
 
 	/** Might return an empty Queue object. */
@@ -70,53 +69,35 @@ public class PopularSymbolTable {
 		}
 
 		return queue;
-		//throw new RuntimeException ("Student Must complete.");
 	}
 
 	/** Return value associated with key. */
 	public Integer get(Integer key) {
-		if (key == null) throw new IllegalArgumentException("key is null");
-		return st.get(key);
+		return tree.get(key);
 	}
 
 	/**
 	 * Return true if the key was newly added to the collection.
 	 */
 	public boolean put (Integer key, Integer value) {
-		//throw new RuntimeException ("Student Must complete.");
-		if (key == null) {
-			throw new IllegalArgumentException("calls put() with null key");
-		}
+		Integer currentValue = tree.put(key, value);
+		if (reverse.get(value) == null)
+			reverse.put(value, new AVL<>());
+		reverse.get(value).insert(key);
+		if (currentValue != null)
+			reverse.get(currentValue).fastDelete(key);
 
-		Integer old = st.get(key);
-		if (old != null) {
-			AVL<Integer> current = reverse.get(old) == null ? new AVL<Integer>() : reverse.get(old);
-			current.fastDelete(key);
-			reverse.put(old, current);
-		}
-
-		AVL<Integer> current = reverse.get(value) == null ? new AVL<Integer>() : reverse.get(value);
-		current.insert(key);
-		reverse.put(value, current);
-
-		Integer val = st.put(key, value);
-		return val == null;
+		return currentValue == null;
 	}
 
 	/**
 	 * Return true if the key was removed.
 	 */
 	public boolean remove (Integer key) {
-		if (key == null) throw new IllegalArgumentException("calls remove() with null key");
+		Integer currentValue = tree.remove(key);
+		if (currentValue != null)
+			reverse.get(currentValue).fastDelete(key);
 
-		Integer currentValue = st.get(key);
-		if (currentValue != null) {
-			AVL<Integer> current = reverse.get(currentValue) == null ? new AVL<Integer>() : reverse.get(currentValue);
-			current.fastDelete(key);
-			reverse.put(currentValue, current);
-		}
-
-		Integer oldValue = st.remove(key);
-		return oldValue != null;
+		return currentValue != null;
 	}
 }
