@@ -22,6 +22,26 @@ public class BSTTesting {
             if (node.right == null) { return node; }
             return deleteMax(node.right);
         }
+
+
+
+        public int countBetween(int lo, int hi) {
+            return countBetween(lo, hi, root);
+        }
+
+        public int countBetween(int lo, int hi, Node node) {
+            if (node == null) {
+                return 0;
+            }
+
+            if (node.key <= lo && node.key >= hi) {
+                return 1 + countBetween(lo, hi, node.left) + countBetween(lo, hi, node.right);
+            } else if (node.key < lo) {
+                return countBetween(lo, hi, node.right);
+            } else {
+                return countBetween(lo, hi, node.left);
+            }
+        }
     }
 
     public static void main(String[] args) {
